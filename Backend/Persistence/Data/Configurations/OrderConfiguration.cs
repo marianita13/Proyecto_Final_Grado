@@ -10,7 +10,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)
     {
-        builder.HasKey(e => e.OrderCode).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("orders");
 
@@ -18,7 +18,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.HasIndex(e => e.StatusCode, "status_code");
 
-        builder.Property(e => e.OrderCode)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("order_code");
         builder.Property(e => e.ClientCode)

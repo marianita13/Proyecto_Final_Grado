@@ -10,11 +10,11 @@ public class SupplierConfiguration : IEntityTypeConfiguration<Supplier>
 {
     public void Configure(EntityTypeBuilder<Supplier> builder)
     {
-        builder.HasKey(e => e.SupplierId).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("supplier");
 
-        builder.Property(e => e.SupplierId)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("supplier_id");
         builder.Property(e => e.Fax)

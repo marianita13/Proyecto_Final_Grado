@@ -10,11 +10,11 @@ public class MethodPaymentConfiguration : IEntityTypeConfiguration<MethodPayment
 {
     public void Configure(EntityTypeBuilder<MethodPayment> builder)
     {
-        builder.HasKey(e => e.IdMethod).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("method_payment");
 
-        builder.Property(e => e.IdMethod)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("id_method");
         builder.Property(e => e.MethodPayment1)

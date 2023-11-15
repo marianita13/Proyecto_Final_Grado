@@ -10,7 +10,7 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
-        builder.HasKey(e => e.PersonId).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("person");
 
@@ -18,7 +18,7 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 
         builder.HasIndex(e => e.PostalCodeId, "postal_code_id");
 
-        builder.Property(e => e.PersonId)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("person_id");
         builder.Property(e => e.Email)

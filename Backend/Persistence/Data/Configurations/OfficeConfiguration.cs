@@ -10,13 +10,13 @@ public class OfficeConfiguration : IEntityTypeConfiguration<Office>
 {
     public void Configure(EntityTypeBuilder<Office> builder)
     {
-        builder.HasKey(e => e.OfficeCode).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("office");
 
         builder.HasIndex(e => e.PostalCodeId, "postal_code_id");
 
-        builder.Property(e => e.OfficeCode)
+        builder.Property(e => e.Id)
             .HasMaxLength(10)
             .HasColumnName("office_code");
         builder.Property(e => e.AddressLine1)

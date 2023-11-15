@@ -10,7 +10,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.HasKey(e => e.ProductCode).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("product");
 
@@ -18,7 +18,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.HasIndex(e => e.ProductLine, "product_line");
 
-        builder.Property(e => e.ProductCode)
+        builder.Property(e => e.Id)
             .HasMaxLength(15)
             .HasColumnName("product_code");
         builder.Property(e => e.Description)

@@ -10,13 +10,13 @@ public class StateConfiguration : IEntityTypeConfiguration<State>
 {
     public void Configure(EntityTypeBuilder<State> builder)
     {
-        builder.HasKey(e => e.StateId).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("state");
 
         builder.HasIndex(e => e.CountryId, "country_id");
 
-        builder.Property(e => e.StateId)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("state_id");
         builder.Property(e => e.CountryId)

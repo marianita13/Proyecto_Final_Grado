@@ -10,7 +10,7 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 {
     public void Configure(EntityTypeBuilder<Employee> builder)
     {
-        builder.HasKey(e => e.EmployeeCode).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("employee");
 
@@ -18,7 +18,7 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 
         builder.HasIndex(e => e.PersonId, "person_id");
 
-        builder.Property(e => e.EmployeeCode)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("employee_code");
         builder.Property(e => e.ManagerCode)

@@ -10,11 +10,11 @@ public class ProductLineConfiguration : IEntityTypeConfiguration<ProductLine>
 {
     public void Configure(EntityTypeBuilder<ProductLine> builder)
     {
-        builder.HasKey(e => e.CodProductLine).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("product_line");
 
-        builder.Property(e => e.CodProductLine)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("cod_product_line");
         builder.Property(e => e.DescriptionHtml)

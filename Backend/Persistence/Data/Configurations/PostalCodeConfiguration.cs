@@ -10,13 +10,13 @@ public class PostalCodeConfiguration : IEntityTypeConfiguration<PostalCode>
 {
     public void Configure(EntityTypeBuilder<PostalCode> builder)
     {
-        builder.HasKey(e => e.PostalCodeId).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("postal_code");
 
         builder.HasIndex(e => e.CityId, "city_id");
 
-        builder.Property(e => e.PostalCodeId)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("postal_code_id");
         builder.Property(e => e.CityId)

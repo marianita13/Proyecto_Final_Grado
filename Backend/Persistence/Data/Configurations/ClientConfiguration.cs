@@ -10,13 +10,13 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
     public void Configure(EntityTypeBuilder<Client> builder)
     {
-        builder.HasKey(e => e.ClientCode).HasName("PRIMARY");
+        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("client");
 
         builder.HasIndex(e => e.PersonId, "person_id");
 
-        builder.Property(e => e.ClientCode)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("client_code");
         builder.Property(e => e.CreditLimit)
