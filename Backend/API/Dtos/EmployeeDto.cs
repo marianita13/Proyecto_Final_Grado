@@ -1,0 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace API.Dtos
+{
+    public class EmployeeDto
+    {
+        public int PersonId { get; set; }
+
+    public string OfficeCode { get; set; } = null!;
+
+    public int ManagerCode { get; set; }
+
+    public string Position { get; set; }
+
+    
+    }
+}

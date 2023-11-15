@@ -1,24 +1,11 @@
-<<<<<<< HEAD
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Domain.Entities
-{
-    public class Person : BaseEntity
-    {
-        public string Name { get; set; }
-    }
-=======
 ﻿using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Person
+public partial class Person:BaseEntity
 {
-    public int PersonId { get; set; }
+
 
     public string FirstName { get; set; } = null!;
 
@@ -41,5 +28,4 @@ public partial class Person
     public virtual PersonType PersonType { get; set; } = null!;
 
     public virtual PostalCode PostalCode { get; set; }
->>>>>>> origin/Dev_duban
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class MethodPayment
+public partial class MethodPayment:BaseEntity
 {
-    public int IdMethod { get; set; }
+
 
     public string MethodPayment1 { get; set; }
 

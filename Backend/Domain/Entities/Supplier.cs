@@ -1,24 +1,11 @@
-<<<<<<< HEAD
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Domain.Entities
-{
-    public class Supplier : BaseEntity
-    {
-        public string Name { get; set; }
-    }
-=======
 ﻿using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Supplier
+public partial class Supplier:BaseEntity
 {
-    public int SupplierId { get; set; }
+
 
     public string Name { get; set; } = null!;
 
@@ -27,5 +14,4 @@ public partial class Supplier
     public string Fax { get; set; } = null!;
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
->>>>>>> origin/Dev_duban
 }

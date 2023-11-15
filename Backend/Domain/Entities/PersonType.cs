@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class PersonType
+public partial class PersonType:BaseEntity
 {
-    public int TypeId { get; set; }
+
 
     public string TypeName { get; set; } = null!;
 

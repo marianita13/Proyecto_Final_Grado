@@ -1,22 +1,9 @@
-<<<<<<< HEAD
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Domain.Entities
-{
-    public class Payment : BaseEntity
-    {
-        public string Name { get; set; }
-    }
-=======
 ﻿using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Payment
+public partial class Payment:BaseEntity
 {
     public int ClientCode { get; set; }
 
@@ -31,5 +18,4 @@ public partial class Payment
     public virtual Client ClientCodeNavigation { get; set; } = null!;
 
     public virtual MethodPayment Method { get; set; } = null!;
->>>>>>> origin/Dev_duban
 }

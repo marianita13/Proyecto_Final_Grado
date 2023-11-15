@@ -1,24 +1,11 @@
-<<<<<<< HEAD
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Domain.Entities
-{
-    public class Product : BaseEntity
-    {
-        public string Name { get; set; }
-    }
-=======
 ﻿using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Product
+public partial class Product:BaseEntity
 {
-    public string ProductCode { get; set; } = null!;
+
 
     public string Name { get; set; } = null!;
 
@@ -41,5 +28,4 @@ public partial class Product
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
     public virtual ProductLine ProductLineNavigation { get; set; } = null!;
->>>>>>> origin/Dev_duban
 }
