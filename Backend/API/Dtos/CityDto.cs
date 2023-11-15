@@ -8,10 +8,11 @@ namespace API.Dtos
 {
     public class CityDto
     {
-    public string CityName { get; set; } = null!;
+        public int Id { get; set; }
+        public string CityName { get; set; } = null!;
 
-    public int? StateId { get; set; }
+        public int? StateId { get; set; }
 
-    public virtual ICollection<PostalCode> PostalCodes { get; set; } = new List<PostalCode>();
+        public virtual ICollection<PostalCode> PostalCodes { get; set; } = new List<PostalCode>();
     }
 }

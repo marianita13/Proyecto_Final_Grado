@@ -8,25 +8,27 @@ namespace API.Dtos
 {
     public class ProductDto
     {
+        public int Id { get; set; }
+        
         public string Name { get; set; } = null!;
 
-    public int ProductLine { get; set; }
+        public int ProductLine { get; set; }
 
-    public string Dimensions { get; set; }
+        public string Dimensions { get; set; }
 
-    public int IdSupplier { get; set; }
+        public int IdSupplier { get; set; }
 
-    public string Description { get; set; }
+        public string Description { get; set; }
 
-    public short StockQuantity { get; set; }
+        public short StockQuantity { get; set; }
 
-    public decimal SellingPrice { get; set; }
+        public decimal SellingPrice { get; set; }
 
-    public decimal SupplierPrice { get; set; }
+        public decimal SupplierPrice { get; set; }
 
-    
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
-    
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+
+
     }
 }

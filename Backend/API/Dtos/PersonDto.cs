@@ -8,24 +8,25 @@ namespace API.Dtos
 {
     public class PersonDto
     {
+        public int Id { get; set; }
         public string FirstName { get; set; } = null!;
 
-    public string LastName1 { get; set; } = null!;
+        public string LastName1 { get; set; } = null!;
 
-    public string LastName2 { get; set; }
+        public string LastName2 { get; set; }
 
-    public string Extension { get; set; } = null!;
+        public string Extension { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+        public string Email { get; set; } = null!;
 
-    public int PersonTypeId { get; set; }
+        public int PersonTypeId { get; set; }
 
-    public int PostalCodeId { get; set; }
+        public int PostalCodeId { get; set; }
 
-    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
+        public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 
-    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+        public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
-  
+
     }
 }

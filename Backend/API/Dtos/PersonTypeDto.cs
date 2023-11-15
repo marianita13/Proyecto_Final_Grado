@@ -8,8 +8,9 @@ namespace API.Dtos
 {
     public class PersonTypeDto
     {
-         public string TypeName { get; set; } = null!;
+        public int Id { get; set; }
+        public string TypeName { get; set; } = null!;
 
-    public virtual ICollection<Person> People { get; set; } = new List<Person>();
+        public virtual ICollection<Person> People { get; set; } = new List<Person>();
     }
 }

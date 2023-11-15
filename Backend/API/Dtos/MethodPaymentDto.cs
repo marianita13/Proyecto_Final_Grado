@@ -8,8 +8,9 @@ namespace API.Dtos
 {
     public class MethodPaymentDto
     {
+        public int Id { get; set; }
         public string MethodPayment1 { get; set; }
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
     }
 }

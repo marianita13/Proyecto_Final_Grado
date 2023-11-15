@@ -8,17 +8,18 @@ namespace API.Dtos
 {
     public class ClientDto
     {
-         public int PersonId { get; set; }
+        public int Id { get; set; }
+        public int PersonId { get; set; }
 
-    public string Phone { get; set; } = null!;
+        public string Phone { get; set; } = null!;
 
-    public string Fax { get; set; } = null!;
+        public string Fax { get; set; } = null!;
 
-    public decimal? CreditLimit { get; set; }
+        public decimal? CreditLimit { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
-        }
+    }
 }
