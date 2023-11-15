@@ -1,32 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Data.Configurations;
 
 
-public class City : IEntityTypeConfiguration<City>
+public class CityConfiguration : IEntityTypeConfiguration<City>
 {
     public void Configure(EntityTypeBuilder<City> builder)
     {
-        entity.HasKey(e => e.CityId).HasName("PRIMARY");
+        builder.HasKey(e => e.CityId).HasName("PRIMARY");
 
-        entity.ToTable("city");
+        builder.ToTable("city");
 
-        entity.HasIndex(e => e.StateId, "state_id");
+        builder.HasIndex(e => e.StateId, "state_id");
 
-        entity.Property(e => e.CityId)
+        builder.Property(e => e.CityId)
             .HasColumnType("int(11)")
             .HasColumnName("city_id");
-        entity.Property(e => e.CityName)
+        builder.Property(e => e.CityName)
             .HasMaxLength(50)
             .HasColumnName("city_name");
-        entity.Property(e => e.StateId)
+        builder.Property(e => e.StateId)
             .HasColumnType("int(11)")
             .HasColumnName("state_id");
 
-        entity.HasOne(d => d.State).WithMany(p => p.Cities)
+        builder.HasOne(d => d.State).WithMany(p => p.Cities)
             .HasForeignKey(d => d.StateId)
             .HasConstraintName("city_ibfk_1");
     }

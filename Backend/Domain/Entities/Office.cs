@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Office
+public partial class Office: BaseEntity
 {
-    public string OfficeCode { get; set; } = null!;
 
     public int PostalCodeId { get; set; }
 
