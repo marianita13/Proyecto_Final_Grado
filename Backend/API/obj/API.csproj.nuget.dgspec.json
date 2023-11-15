@@ -1,35 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {}
+    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {
+    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\APM02-43\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\obj\\",
+        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-43\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj"
+              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj"
               }
             }
           }
@@ -98,35 +96,33 @@
         }
       }
     },
-    "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
+    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\APM02-43\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
+        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-43\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
+              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -160,24 +156,22 @@
         }
       }
     },
-    "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\APM02-43\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-43\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -229,32 +223,30 @@
         }
       }
     },
-    "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\APM02-43\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-43\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
               }
             }
           }
