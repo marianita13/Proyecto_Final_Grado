@@ -5216,19 +5216,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\duvan\\.nuget\\packages\\": {}
+    "C:\\Users\\APM02-45\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
-      "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+      "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "packagesPath": "C:\\Users\\APM02-45\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\APM02-45\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5240,8 +5240,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+            "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
             }
           }
         }
@@ -5284,13 +5284,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\APM02-44\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

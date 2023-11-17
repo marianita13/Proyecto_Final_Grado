@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {}
+    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {
+    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\API\\obj\\",
+        "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\APM02-45\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\APM02-45\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj"
+              "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj"
               }
             }
           }
@@ -108,17 +108,17 @@
         }
       }
     },
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
+    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
+        "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\APM02-45\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\APM02-45\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -130,11 +130,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
+              "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -168,17 +168,17 @@
         }
       }
     },
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\APM02-45\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\APM02-45\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -235,17 +235,17 @@
         }
       }
     },
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\APM02-45\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\APM02-45\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -257,8 +257,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\NetCore\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
               }
             }
           }
