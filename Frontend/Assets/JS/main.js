@@ -21,7 +21,8 @@ const passwordlogin = document.querySelector("#password-login");
 const user = document.querySelector("#user");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
-const buttonUp = document.querySelector("#Sign-Up")
+const buttonUp = document.querySelector("#Sign-Up");
+const opcion = document.querySelector(".form-select");
 
 // Validate Login Form
 buttonUp.addEventListener('click',(evento) =>{
@@ -29,6 +30,7 @@ buttonUp.addEventListener('click',(evento) =>{
     var loginUser = user.value;
     var emailUser = email.value;
     var loginPass = password.value;
+    var opcions = opcion.value;
     if (loginUser == "" || loginPass == "") {
         alert("Please Fill All Fields!");
         return false;
@@ -37,7 +39,8 @@ buttonUp.addEventListener('click',(evento) =>{
         data = {
             "username": loginUser,
             "password": loginPass,
-            "email": emailUser
+            "email": emailUser,
+            "PersonType": opcions
         }
         var Json = JSON.stringify(data);
         localStorage.setItem("Usuario",Json);
@@ -48,10 +51,9 @@ buttonUp.addEventListener('click',(evento) =>{
     }
 })
 
-const Consult = document.querySelector("#employees");
+const Consult = document.querySelector(".employees");
 
 Consult.addEventListener('click', (evento) => {
-    localStorage.clear();
     var prueba = "AAAAAA"
     localStorage.setItem("prueba",prueba)
 })
