@@ -25,13 +25,13 @@ namespace API.Controllers
             return _mapper.Map<List<OrderDetailDto>>(orderDetail);
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("{OrderCode}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<OrderDetailDto>> Get(int id)
+        public async Task<ActionResult<OrderDetailDto>> Get(int OrderCode)
         {
-            var orderDetail = await _unitOfWork.Details.GetByIdAsync(id);
+            var orderDetail = await _unitOfWork.Details.GetByIdAsync(OrderCode);
             if (orderDetail == null) return NotFound();
             return _mapper.Map<OrderDetailDto>(orderDetail);
         }
@@ -45,19 +45,19 @@ namespace API.Controllers
             _unitOfWork.Details.Add(orderDetail);
             await _unitOfWork.SaveAsync();
             if (orderDetail == null) return BadRequest();
-            orderDetailDto.Id = orderDetail.Id;
-            return CreatedAtAction(nameof(Post), new { id = orderDetailDto.Id }, orderDetailDto);
+            orderDetailDto.OrderCode = orderDetail.OrderCode;
+            return CreatedAtAction(nameof(Post), new { OrderCode = orderDetailDto.OrderCode }, orderDetailDto);
         }
         
-        [HttpPut("{id}")]
+        [HttpPut("{OrderCode}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<OrderDetailDto>> Put(int id, [FromBody] OrderDetailDto orderDetailDto)
         {
             if (orderDetailDto == null) return NotFound();
-            if (orderDetailDto.Id == 0) orderDetailDto.Id = id;
-            if (orderDetailDto.Id != id) return BadRequest();
+            if (orderDetailDto.OrderCode == 0) orderDetailDto.OrderCode = id;
+            if (orderDetailDto.OrderCode != id) return BadRequest();
             var orderDetail = await _unitOfWork.Details.GetByIdAsync(id);
             _mapper.Map(orderDetailDto, orderDetail);
             //orderDetail.FechaModificacion = DateTime.Now;
@@ -66,12 +66,12 @@ namespace API.Controllers
             return _mapper.Map<OrderDetailDto>(orderDetail);
         
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("{OrderCode}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int OrderCode)
         {
-            var orderDetail = await _unitOfWork.Details.GetByIdAsync(id);
+            var orderDetail = await _unitOfWork.Details.GetByIdAsync(OrderCode);
             if (orderDetail == null) return NotFound();
             _unitOfWork.Details.Remove(orderDetail);
             await _unitOfWork.SaveAsync();
