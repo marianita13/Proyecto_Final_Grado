@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +8,7 @@ namespace Persistence.Data;
 
 public partial class GardeningContext : DbContext
 {
-    public GardeningContext()
-    {
-    }
+
 
     public GardeningContext(DbContextOptions<GardeningContext> options)
         : base(options)
@@ -50,10 +49,11 @@ public partial class GardeningContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;user=root;password=123456;database=gardening", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.27-mariadb"));
 
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
 }

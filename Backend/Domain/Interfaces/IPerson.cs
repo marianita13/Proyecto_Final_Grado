@@ -8,6 +8,9 @@ namespace Domain.Interfaces
 {
     public interface IPerson:IGenericRepository<Person>
     {
+        
+        Task<Person>GetByFirstNameAsync (string FirstName);
+        Task<Person> GetByRefreshTokenAsync(string FirstName);
     
     }
 }

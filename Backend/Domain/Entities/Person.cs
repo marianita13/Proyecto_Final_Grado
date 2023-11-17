@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dominio.Entities;
 
 namespace Domain.Entities;
 
@@ -27,4 +28,5 @@ public partial class Person: BaseEntity
     public virtual PersonType PersonType { get; set; } = null!;
 
     public virtual PostalCode PostalCode { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; } = new HashSet<RefreshToken>();
 }

@@ -9,7 +9,7 @@ using Persistence.Data;
 
 namespace Application.Repository
 {
-    public class OfficeRepository : GenericRepository<Office>, IOffice
+    public class OfficeRepository : GenericRepositoryS<Office>, IOffice
     {
         private readonly GardeningContext _context;
 

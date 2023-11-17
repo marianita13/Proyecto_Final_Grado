@@ -9,7 +9,7 @@ using Persistence.Data;
 
 namespace Application.Repository
 {
-    public class ProductRepository : GenericRepository<Product>, IProduct
+    public class ProductRepository : GenericRepositoryS<Product>, IProduct
     {
         private readonly GardeningContext _context;
 

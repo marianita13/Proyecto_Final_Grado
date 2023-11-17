@@ -82,8 +82,7 @@ CREATE TABLE
         last_name2 VARCHAR(50) DEFAULT NULL,
         email VARCHAR(100) NOT NULL,
         person_type_id INT NOT NULL,
-        -- postal_code_id INT,
-        FOREIGN KEY (person_type_id) REFERENCES person_type (type_id) -- FOREIGN KEY (postal_code_id) REFERENCES postal_code (postal_code_id)
+        FOREIGN KEY (person_type_id) REFERENCES person_type (type_id) 
     );
 
 CREATE TABLE
@@ -143,7 +142,7 @@ CREATE TABLE
         PRIMARY KEY (client_code),
         FOREIGN KEY (person_id) REFERENCES person (person_id),
         FOREIGN KEY (postal_code_id) REFERENCES postal_code (postal_code_id),
-        FOREIGN KEY (cod_employee) REFERENCES employee (employe_code)
+        FOREIGN KEY (cod_employee) REFERENCES employee (employee_code)
     );
 
 CREATE TABLE

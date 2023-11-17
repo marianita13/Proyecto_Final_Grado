@@ -10,7 +10,7 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
     public void Configure(EntityTypeBuilder<Payment> builder)
     {
-        builder.HasKey(e => new { e.ClientCode, e.TransactionId })
+        builder.HasKey(e => new { e.Id, e.TransactionId })
             .HasName("PRIMARY")
             .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
@@ -18,7 +18,7 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 
         builder.HasIndex(e => e.MethodId, "method_id");
 
-        builder.Property(e => e.ClientCode)
+        builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("client_code");
         builder.Property(e => e.TransactionId)
@@ -33,7 +33,7 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
             .HasColumnName("total");
 
         builder.HasOne(d => d.ClientCodeNavigation).WithMany(p => p.Payments)
-            .HasForeignKey(d => d.ClientCode)
+            .HasForeignKey(d => d.Id)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("payment_ibfk_2");
 

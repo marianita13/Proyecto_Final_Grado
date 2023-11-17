@@ -46,7 +46,7 @@ namespace API.Controllers
             _unitOfWork.Payments.Add(payment);
             await _unitOfWork.SaveAsync();
             if (payment == null) return BadRequest();
-            paymentDto.ClientCode = payment.ClientCode;
+            paymentDto.ClientCode = payment.Id;
             return CreatedAtAction(nameof(Post), new { id = paymentDto.ClientCode }, paymentDto);
         }
         
