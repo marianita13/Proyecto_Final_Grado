@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS gardening;
 CREATE DATABASE gardening CHARACTER SET utf8mb4;
 
 USE gardening;
@@ -224,8 +225,8 @@ INSERT INTO country (country_name) VALUES
 
 -- Inserciones en la tabla state
 INSERT INTO state (state_name, country_id) VALUES 
-(NULL, 1), 
-(NULL, 4), 
+('', 1), 
+('', 4), 
 ('Barcelona', 2),
 ('MA', 2),
 ('EMEA', 3),
@@ -475,6 +476,7 @@ INSERT INTO method_payment (method_payment) VALUES
  ('PayPal'),
  ('Transferencia'),
  ('Cheque');
+ 
 INSERT INTO payment (client_code, method_id, transaction_id, payment_date, total) VALUES
  (1, 1, 'ak-std-000001', '2008-11-10', 2000),
  (1, 1, 'ak-std-000002', '2008-12-10', 2000),
@@ -835,7 +837,7 @@ blanco-rojo',4,'',3,'',350,4,3),
  ('FR-21','Kordes Perfect bicolor rojo-amarillo, Roundelay rojo
 fuerte',4,'',3,'',350,4,3),
  ('FR-22','Pitimini rojo',4,'',3,'',350,4,3),
- ('FR-23','Rosal copa ',4,'',3,'',400,8,6);
+ ('FR-23','Rosal copa ',4,'',3,'',400,8,6), 
  ('FR-24','Albaricoquero Corbato',4,'',5,'árbol que puede pasar de los 6 m
 de altura, en la región mediterránea con ramas formando una copa redondeada. La corteza del tronco
 es pardo-violácea, agrietada; las ramas son rojizas y extendidas cuando jóvenes y las ramas secundarias
