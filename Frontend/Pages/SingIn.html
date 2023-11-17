@@ -9,6 +9,7 @@
         src="https://kit.fontawesome.com/64d58efce2.js"
         crossorigin="anonymous"
     ></script>
+    <script src="../Assets/JS/main.js" async></script>
     <title>Sing In</title>
 </head>
 <body>
@@ -20,11 +21,11 @@
                 <h2 class="title">Sign In</h2>
                 <div class="input-field">
                 <i class="fas fa-user"></i>
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder="Username" id="user-login"/>
                 </div>
                 <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" id="password-login"/>
                 </div>
                 <a href="../Index.html" id="Sign-In"><button type="button" class="btn solid">Sign In</button></a>
             </form>
@@ -33,17 +34,17 @@
                 <h2 class="title">Sign Up</h2>
                 <div class="input-field">
                 <i class="fas fa-user"></i>
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder="Username" id="user"/>
                 </div>
                 <div class="input-field">
                 <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Email" />
+                <input type="email" placeholder="Email" id="email"/>
                 </div>
                 <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" id="password"/>
                 </div>
-                <a href="../Index.html" id="Sign-In"><button type="button" class="btn solid">Sign Up</button></a>
+                <a href="../Index.html" id="Sign-Up"><button type="button" class="btn solid">Sign Up</button></a>
             </form>
             </div>
         </div>
@@ -51,7 +52,7 @@
             <div class="panel left-panel">
                 <div class="content">
                     <h3>New here?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minus natus est.</p>
+                    <p>Join us and unlock a world of possibilities! Sign up now.</p>
                     <button class="btn transparent" id="sign-up-btn">Sign Up</button>
                 </div>
                 <img src="../Images/farmer-removebg-preview.png" class="image" alt="">
@@ -60,7 +61,7 @@
             <div class="panel right-panel">
                 <div class="content">
                     <h3>One of us?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minus natus est.</p>
+                    <p>Welcome back! Log in to explore all we have for you.</p>
                     <button class="btn transparent" id="sign-in-btn">Sign In</button>
                 </div>
                 <img src="../Images/plant.png" class="image1" alt="">
@@ -68,6 +69,5 @@
         </div>
     </div>
     </main>
-    <script src="../Assets/JS/main.js"></script>
 </body>
 </html>

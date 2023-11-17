@@ -218,6 +218,7 @@ li {
 }
 /* NAVBAR */
 nav {
+	background: #f0f2f5;
 	height: 64px;
 	padding: 0 20px;
 	display: flex;
@@ -384,171 +385,24 @@ nav .profile {
 	margin-top: 20px;
 	flex-wrap: wrap;
 }
-#buttons .data .content-data {
-	flex-grow: 1;
-	flex-basis: 400px;
-	padding: 20px;
-	background: var(--light);
-	border-radius: 10px;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, .1);
-}
-#buttons .content-data .head {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 24px;
-}
-#buttons .content-data .head h3 {
-	font-size: 20px;
-	font-weight: 600;
-}
-#buttons .content-data .head .menu {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-#buttons .content-data .head .menu .icon {
-	cursor: pointer;
-}
-#buttons .content-data .head .menu-link {
-	position: absolute;
-	top: calc(100% + 10px);
-	right: 0;
-	width: 140px;
-	background: var(--light);
-	border-radius: 10px;
-	box-shadow: 4px 4px 16px rgba(0, 0, 0, .1);
-	padding: 10px 0;
-	z-index: 100;
-	opacity: 0;
-	pointer-events: none;
-	transition: all .3s ease;
-}
-#buttons .content-data .head .menu-link.show {
-	top: 100%;
-	opacity: 1;
-	pointer-events: visible;
-}
-#buttons .content-data .head .menu-link a {
-	display: block;
-	padding: 6px 16px;
-	font-size: 14px;
-	color: var(--dark);
-	transition: all .3s ease;
-}
-#buttons .content-data .head .menu-link a:hover {
-	background: var(--grey);
-}
-#buttons .content-data .chart {
+/* #buttons */
+
+/* CONTENT */
+.data{
 	width: 100%;
-	max-width: 100%;
-	overflow-x: auto;
-	scrollbar-width: none;
-}
-#buttons .content-data .chart::-webkit-scrollbar {
-	display: none;
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
 
-#buttons .chat-box {
-	width: 100%;
-	max-height: 360px;
-	overflow-y: auto;
-	scrollbar-width: none;
-}
-#buttons .chat-box::-webkit-scrollbar {
-	display: none;
-}
-#buttons .chat-box .day {
-	text-align: center;
-	margin-bottom: 10px;
-}
-#buttons .chat-box .day span {
-	display: inline-block;
-	padding: 6px 12px;
+#content-data, #other-graphic{
+	width: 49%;
+	height: 390px;
+	color: #fff;
+	background-color: #fff;
 	border-radius: 20px;
-	background: var(--light-blue);
-	color: var(--blue);
-	font-size: 12px;
-	font-weight: 600;
+	box-shadow: 4px 4px 3px rgba(0, 0, 0, .05);
 }
-#buttons .chat-box .msg img {
-	width: 28px;
-	height: 28px;
-	border-radius: 50%;
-	object-fit: cover;
-}
-#buttons .chat-box .msg {
-	display: flex;
-	grid-gap: 6px;
-	align-items: flex-start;
-}
-#buttons .chat-box .profile .username {
-	font-size: 14px;
-	font-weight: 600;
-	display: inline-block;
-	margin-right: 6px;
-}
-#buttons .chat-box .profile .time {
-	font-size: 12px;
-	color: var(--dark-grey);
-}
-#buttons .chat-box .chat p {
-	font-size: 14px;
-	padding: 6px 10px;
-	display: inline-block;
-	max-width: 400px;
-	line-height: 150%;
-}
-#buttons .chat-box .msg:not(.me) .chat p {
-	border-radius: 0 5px 5px 5px;
-	background: var(--blue);
-	color: var(--light);
-}
-#buttons .chat-box .msg.me {
-	justify-content: flex-end;
-}
-#buttons .chat-box .msg.me .profile {
-	text-align: right;
-}
-#buttons .chat-box .msg.me p {
-	background: var(--grey);
-	border-radius: 5px 0 5px 5px;
-}
-#buttons form {
-	margin-top: 6px;
-}
-#buttons .form-group {
-	width: 100%;
-	display: flex;
-	grid-gap: 10px;
-}
-#buttons .form-group input {
-	flex-grow: 1;
-	padding: 10px 16px;
-	border-radius: 5px;
-	outline: none;
-	background: var(--grey);
-	border: none;
-	transition: all .3s ease;
-	width: 100%;
-}
-#buttons .form-group input:focus {
-	box-shadow: 0 0 0 1px var(--blue), 0 0 0 4px var(--light-blue);
-}
-#buttons .btn-send {
-	padding: 0 16px;
-	background: var(--blue);
-	border-radius: 5px;
-	color: var(--light);
-	cursor: pointer;
-	border: none;
-	transition: all .3s ease;
-}
-#buttons .btn-send:hover {
-	background: var(--dark-blue);
-}
-/* #buttons */
 /* CONTENT */
 
 @media screen and (max-width: 768px) {
@@ -560,5 +414,35 @@ nav .profile {
 	nav .nav-link,
 	nav .divider {
 		display: none;
+	}
+}
+
+@media screen and (max-width:1440px){
+	#content {
+		grid-template-columns: 1fr;
+	}
+	#content-data, #other-graphic{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width:768px){
+	#sidebar{
+		display:none;
+		width: 0;
+	}
+	#content{
+		position: relative;
+		width: 100%;
+		left: 0px;
+		transition: all .3s ease;
+	}
+	nav .toggle-sidebar {
+		display: none;
+	}
+	#sidebar.hide + #content {
+		width: 100%;
+		left: 0px;
+		right: 0px;
 	}
 }
