@@ -29,7 +29,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<OfficeDto>> Get(int id)
+        public async Task<ActionResult<OfficeDto>> Get(string id)
         {
             var office = await _unitOfWork.Offices.GetByIdAsync(id);
             if (office == null) return NotFound();
@@ -53,10 +53,10 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<OfficeDto>> Put(int id, [FromBody] OfficeDto officeDto)
+        public async Task<ActionResult<OfficeDto>> Put(string id, [FromBody] OfficeDto officeDto)
         {
             if (officeDto == null) return NotFound();
-            if (officeDto.Id == 0) officeDto.Id = id;
+            if (officeDto.Id == null) officeDto.Id = id;
             if (officeDto.Id != id) return BadRequest();
             var office = await _unitOfWork.Offices.GetByIdAsync(id);
             _mapper.Map(officeDto, office);
@@ -69,7 +69,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             var office = await _unitOfWork.Offices.GetByIdAsync(id);
             if (office == null) return NotFound();

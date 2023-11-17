@@ -15,13 +15,11 @@ namespace API.Dtos
 
         public string LastName2 { get; set; }
 
-        public string Extension { get; set; } = null!;
 
         public string Email { get; set; } = null!;
 
         public int PersonTypeId { get; set; }
 
-        public int PostalCodeId { get; set; }
 
         public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 

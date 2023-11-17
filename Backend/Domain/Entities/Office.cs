@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Office: BaseEntity
+public partial class Office: BaseEntityS
 {
 
     public int PostalCodeId { get; set; }

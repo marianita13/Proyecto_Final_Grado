@@ -46,20 +46,20 @@ namespace API.Controllers
             _unitOfWork.Payments.Add(payment);
             await _unitOfWork.SaveAsync();
             if (payment == null) return BadRequest();
-            paymentDto.Id = payment.Id;
-            return CreatedAtAction(nameof(Post), new { id = paymentDto.Id }, paymentDto);
+            paymentDto.ClientCode = payment.ClientCode;
+            return CreatedAtAction(nameof(Post), new { id = paymentDto.ClientCode }, paymentDto);
         }
         
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<PaymentDto>> Put(int id, [FromBody] PaymentDto paymentDto)
+        public async Task<ActionResult<PaymentDto>> Put(int ClientCode, [FromBody] PaymentDto paymentDto)
         {
             if (paymentDto == null) return NotFound();
-            if (paymentDto.Id == 0) paymentDto.Id = id;
-            if (paymentDto.Id != id) return BadRequest();
-            var payment = await _unitOfWork.Payments.GetByIdAsync(id);
+            if (paymentDto.ClientCode == 0) paymentDto.ClientCode = ClientCode;
+            if (paymentDto.ClientCode != ClientCode) return BadRequest();
+            var payment = await _unitOfWork.Payments.GetByIdAsync(ClientCode);
             _mapper.Map(paymentDto, payment);
             //payment.FechaModificacion = DateTime.Now;
             _unitOfWork.Payments.Update(payment);

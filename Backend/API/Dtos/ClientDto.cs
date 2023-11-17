@@ -9,6 +9,7 @@ namespace API.Dtos
     public class ClientDto
     {
         public int Id { get; set; }
+        public string name { get; set; } = null!;
         public int PersonId { get; set; }
 
         public string Phone { get; set; } = null!;

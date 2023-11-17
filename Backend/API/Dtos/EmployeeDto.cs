@@ -10,6 +10,7 @@ namespace API.Dtos
         public int Id { get; set; }
         public int PersonId { get; set; }
 
+        public string extention{ get; set; } = null!;
         public string OfficeCode { get; set; } = null!;
 
         public int ManagerCode { get; set; }

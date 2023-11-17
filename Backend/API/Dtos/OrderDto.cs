@@ -20,9 +20,6 @@ namespace API.Dtos
         public string Comments { get; set; }
 
         public int ClientCode { get; set; }
-
-
-
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
 

@@ -8,7 +8,7 @@ namespace API.Dtos
 {
     public class OfficeDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int PostalCodeId { get; set; }
 
         public string Phone { get; set; } = null!;
