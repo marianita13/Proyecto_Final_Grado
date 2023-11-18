@@ -39,3 +39,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// dotnet ef dbcontext scaffold "server=localhost; user=root; password=123456;database=gardening" Pomelo.EntityFrameworkCore.MySql -s API -p Persistence --context ApoloCampusContext --context-dir Data --output-dir Entities 
+// dotnet ef database update -s .\API\ -p .\Persistence\

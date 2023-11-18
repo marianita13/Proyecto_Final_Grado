@@ -7,13 +7,15 @@ public partial class Employee: BaseEntity
 {
     public int PersonId { get; set; }
 
-    public string OfficeCode { get; set; } = null!;
+    public string Extention { get; set; }
 
-    public int ManagerCode { get; set; }
+    public string OfficeCode { get; set; }
 
-    public string Position { get; set; }
+    public int? ManagerCode { get; set; }
 
-    public virtual Office OfficeCodeNavigation { get; set; } = null!;
+    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 
-    public virtual Person Person { get; set; } = null!;
+    public virtual Office OfficeCodeNavigation { get; set; }
+
+    public virtual Person Person { get; set; }
 }

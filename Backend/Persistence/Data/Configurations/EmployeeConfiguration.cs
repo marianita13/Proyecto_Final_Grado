@@ -21,18 +21,20 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.Property(e => e.Id)
             .HasColumnType("int(11)")
             .HasColumnName("employee_code");
+        builder.Property(e => e.Extention)
+            .IsRequired()
+            .HasMaxLength(10)
+            .HasColumnName("extention");
         builder.Property(e => e.ManagerCode)
             .HasColumnType("int(11)")
             .HasColumnName("manager_code");
         builder.Property(e => e.OfficeCode)
+            .IsRequired()
             .HasMaxLength(10)
             .HasColumnName("office_code");
         builder.Property(e => e.PersonId)
             .HasColumnType("int(11)")
             .HasColumnName("person_id");
-        builder.Property(e => e.Position)
-            .HasMaxLength(50)
-            .HasColumnName("position");
 
         builder.HasOne(d => d.OfficeCodeNavigation).WithMany(p => p.Employees)
             .HasForeignKey(d => d.OfficeCode)
