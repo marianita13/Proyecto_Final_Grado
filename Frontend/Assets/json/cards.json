@@ -1,0 +1,138 @@
+{
+    "employee":[
+        {
+            "name":"Employees Info with Boss-Code equals 7",
+            "Id":1,
+            "button":"Table"
+        },
+        {
+            "name":"The boss of Gardens Company",
+            "Id":2,
+            "button":"Table"
+        },
+        {
+            "name":"Employees who aren't sales agents",
+            "Id":3,
+            "button":"Table"
+        },
+        {
+            "name":"Employees & their boss name",
+            "Id":4,
+            "button":"Table"
+        },
+        {
+            "name":"Employees, their bosses & the bosses of them",
+            "Id":5,
+            "button":"Table"
+        },
+        {
+            "name":"Employees with any office assign",
+            "Id":6,
+            "button":"Table"
+        },
+        {
+            "name":"Employees with any client assign",
+            "Id":7,
+            "button":"Table"
+        },
+        {
+            "name":"Employees with any client assign & their offices",
+            "Id":8,
+            "button":"Table"
+        },
+        {
+            "name":"Employees with any client & office asign",
+            "Id":9,
+            "button":"Table"
+        },
+        {
+            "name":"Employees with any client assign & their boss name",
+            "Id":10,
+            "button":"Table"
+        },
+        {
+            "name":"Number of employees in the company",
+            "Id":11,
+            "button":"Table"
+        },
+        {
+            "name":"Sales Agents names & their number of clients",
+            "Id":12,
+            "button":"Table"
+        },
+        {
+            "name":"Employees who are in charge of Alberto Soria",
+            "Id":13,
+            "button":"Table"
+        },
+        {
+            "name":"Employees who doesn't represent any client",
+            "Id":14,
+            "button":"Table"
+        }
+    ],
+    "offices":[
+        {
+            "name":"Code-offices & the cities",
+            "Id":1,
+            "button":"Table"
+        },
+        {
+            "name":"Phone & City of the Offices in Spain",
+            "Id":2,
+            "button":"Table"
+        },
+        {
+            "name":"Offices Adress that have clients in Fuenlabrada",
+            "Id":3,
+            "button":"Table"
+        },
+        {
+            "name":"Offices Where any employee had a client who buy a fruit product",
+            "Id":4,
+            "button":"Table"
+        },
+        {
+            "name":"Info of the office & employee who aren't sell agent of any client",
+            "Id":5,
+            "button":"Table"
+        },
+        {
+            "name":"Offices in the cities & their number of employees",
+            "Id":6,
+            "button":"Table"
+        }
+    ],
+    "pays":[
+        {
+            "name":"Pays made in 2008 by Paypal",
+            "Id":1,
+            "button":"Table"
+        },
+        {
+            "name":"Ways to pay",
+            "Id":2,
+            "button":"Table"
+        },
+        {
+            "name":"Pay Method in 2009",
+            "Id":3,
+            "button":"Table"
+        },
+        {
+            "name":"F&L pay made for every client",
+            "Id":4,
+            "button":"Table"
+        },
+        {
+            "name":"Company invoicing with IVA",
+            "Id":5,
+            "button":"Table"
+        },
+        {
+            "name":"Total payments for each year",
+            "Id":5,
+            "button":"Table"
+        }
+    ]
+}

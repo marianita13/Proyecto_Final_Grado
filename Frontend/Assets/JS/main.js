@@ -50,10 +50,3 @@ buttonUp.addEventListener('click',(evento) =>{
         location.assign("../Index.html")
     }
 })
-
-const Consult = document.querySelector(".employees");
-
-Consult.addEventListener('click', (evento) => {
-    var prueba = "AAAAAA"
-    localStorage.setItem("prueba",prueba)
-})

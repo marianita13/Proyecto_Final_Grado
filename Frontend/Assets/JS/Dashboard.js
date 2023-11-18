@@ -1,5 +1,6 @@
 /*GRAPHIC ONE*/
-var dom = document.getElementById('content-data');
+function graphica1(){
+	var dom = document.getElementById('content-data');
     var myChart = echarts.init(dom, null, {
     renderer: 'canvas',
     useDirtyRect: false
@@ -43,69 +44,107 @@ var dom = document.getElementById('content-data');
 			}
 		}
 	]
-};
-
-if (option && typeof option === 'object') {
-myChart.setOption(option);
+	};
+	if (option && typeof option === 'object') {
+		myChart.setOption(option);
+		}
+		
+		window.addEventListener('resize', myChart.resize);
 }
+graphica1()
 
-window.addEventListener('resize', myChart.resize);
 
 /*GRAPHIC TWO*/
+function graphic2(){
+	var dom = document.getElementById('other-graphic');
+	var myChart = echarts.init(dom, null, {
+	renderer: 'canvas',
+	useDirtyRect: false
+	});
+	var app = {};
 
-var dom = document.getElementById('other-graphic');
-var myChart = echarts.init(dom, null, {
-renderer: 'canvas',
-useDirtyRect: false
-});
-var app = {};
+	var option;
 
-var option;
+	option = {
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'shadow'
+			}
+		},
+		legend: {
+			top:'10px'
+		},
+		grid: {
+			left: '3%',
+			top:'50px',
+			right: '4%',
+			bottom: '6%',
+			containLabel: true
+		},
+		xAxis: [
+			{
+				type: 'category',
+				data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec']
+			}
+		],
+		yAxis: [
+			{
+				type: 'value'
+			}
+		],
+		series: [
+			{
+				name: 'Orders',
+				color: '#FC3B56',
+				type: 'bar',
+				emphasis: {
+				focus: 'series'
+				},
+				data: [39,13,19,8,5,3,2,3,1,8,6,9]
+			}
+		]
+	};
 
-option = {
-	tooltip: {
-		trigger: 'axis',
-		axisPointer: {
-			type: 'shadow'
-		}
-	},
-	legend: {
-		top:'10px'
-	},
-	grid: {
-		left: '3%',
-		top:'50px',
-		right: '4%',
-		bottom: '6%',
-		containLabel: true
-	},
-	xAxis: [
-		{
-			type: 'category',
-			data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec']
-		}
-	],
-	yAxis: [
-		{
-			type: 'value'
-		}
-	],
-	series: [
-		{
-			name: 'Orders',
-			color: '#FC3B56',
-			type: 'bar',
-			emphasis: {
-			focus: 'series'
-			},
-			data: [39,13,19,8,5,3,2,3,1,8,6,9]
-		}
-	]
-};
+	if (option && typeof option === 'object') {
+		myChart.setOption(option);
+	}
 
-if (option && typeof option === 'object') {
-	myChart.setOption(option);
+	window.addEventListener('resize', myChart.resize);
 }
+graphic2()
 
-window.addEventListener('resize', myChart.resize);
-
+document.addEventListener('DOMContentLoaded', function(){
+	consult()
+})
+function consult(){
+	var consulta = document.querySelectorAll('.Consult');
+	consulta.forEach(button =>{
+		button.addEventListener('click',(evento)=>{
+			evento.preventDefault();
+			localStorage.clear();
+			var prueba = {}
+			if(evento.target.classList.contains('employees')){
+				prueba = {"Id":"Employee"};
+			}
+			if(evento.target.classList.contains('offices')){
+				prueba = {"Id":"Offices"};
+			}
+			if(evento.target.classList.contains('clients')){
+				prueba = {"Id":"Clients"};
+			}
+			if(evento.target.classList.contains('products')){
+				prueba = {"Id":"Products"};
+			}
+			if(evento.target.classList.contains('pays')){
+				prueba = {"Id":"Pays"};
+			}
+			if(evento.target.classList.contains('orders')){
+				prueba = {"Id":"Orders"};
+			}
+			var Json = JSON.stringify(prueba);
+			localStorage.setItem("prueba",Json)
+			location.assign("./Pages/Queries.html")
+		})
+	})
+}

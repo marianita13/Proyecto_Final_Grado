@@ -320,7 +320,7 @@ nav .profile {
 	display: flex;
 	justify-content: end;
 }
-#Consult{
+.Consult{
 	height: 32px;
 	width: 90px;
 	border: none;
