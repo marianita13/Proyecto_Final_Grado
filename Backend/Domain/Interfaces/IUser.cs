@@ -10,7 +10,6 @@ namespace Domain.Interfaces
 { 
     Task<User> GetByUsernameAsync(string username);
     Task<User> GetByRefreshTokenAsync(string username);
-
-
-}
+        Task<User> GetUserByEmailAsync(string email);
+    }
 }

@@ -44,7 +44,7 @@ public static class ApplicationServiceExtensions
             options.AddPolicy("CorsPolicy", builder =>
                 builder.AllowAnyOrigin()    //WithOrigins("https://domain.com")
                     .AllowAnyMethod()       //WithMethods("GET","POST)
-                    .AllowAnyHeader());     //WithHeaders("accept","content-type")
+                    .WithOrigins("http://127.0.0.1:5500"));     //WithHeaders("accept","content-type")
         });
     public static void AddAplicacionServices(this IServiceCollection services)
     {
