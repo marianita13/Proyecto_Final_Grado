@@ -194,11 +194,11 @@
           "lib/netstandard1.3/Microsoft.DotNet.PlatformAbstractions.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.12": {
+      "Microsoft.EntityFrameworkCore/7.0.10": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.12",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.12",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.10",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.10",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
@@ -217,7 +217,7 @@
           "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.10": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -230,7 +230,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.12": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.10": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1592,7 +1592,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "FluentValidation.AspNetCore": "11.3.0",
-          "Microsoft.EntityFrameworkCore": "7.0.12",
+          "Microsoft.EntityFrameworkCore": "7.0.10",
           "itext7.pdfhtml": "5.0.1"
         },
         "compile": {
@@ -1781,10 +1781,10 @@
         "microsoft.dotnet.platformabstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore/7.0.12": {
-      "sha512": "HRge/bJ5SKMNeqybC4NnRwWZn69QBjVVoVmwhmJ8xgQ50Ye+jTOOf2mef/y4Lrq1HUeMg8cu+3JeFdnp+Y8skA==",
+    "Microsoft.EntityFrameworkCore/7.0.10": {
+      "sha512": "24NbXJqJ/x8u88/agqeb1pLdAF9+9StDLA36+P/3g5xsJPOaB2GxXn7epR8dWpZTgHsNZ7cvBMxBgfFmF+xZlg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/7.0.12",
+      "path": "microsoft.entityframeworkcore/7.0.10",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1792,35 +1792,35 @@
         "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.7.0.10.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.12": {
-      "sha512": "GDlY3DzUbpagqb0683NUM2RK9eJFjTfmlLJd5YtvzBf8T4dwanIOSjd2vN7dXJihyZ0JlYaCetyHgxzbrxiUOw==",
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.10": {
+      "sha512": "Z/lDWmGLiT9uNQrp6UXTKZxofSmAKQCiKOz98FDscTbfAGgBXE3DTTqRsPMc8HFIVVSNANSiFRz3JyLg07HN9Q==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.12",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.10",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.7.0.10.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.12": {
-      "sha512": "feFe61uKUNoHJfo9tnO65BTzcpWEYIr34xWikhYgZl5c9RiiUJLuCoTqoGc9fuuKy+xk9aUa1NwgDGMC4KmBig==",
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.10": {
+      "sha512": "+8NVNpyJTzW6nNh/7RGfldf+mbeboVcn+X1tD8kMBCEJswuy3RqM/qecEEfOfTcWLliZExPMaHwOwtHO6RMpdA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.12",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.10",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.7.0.10.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
@@ -5211,24 +5211,24 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Domain >= 1.0.0",
-      "Microsoft.EntityFrameworkCore >= 7.0.12",
+      "Microsoft.EntityFrameworkCore >= 7.0.10",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\duvan\\.nuget\\packages\\": {}
+    "C:\\Users\\Janus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
-      "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+      "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "packagesPath": "C:\\Users\\Janus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Janus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5240,8 +5240,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+            "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
             }
           }
         }
@@ -5258,7 +5258,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[7.0.12, )"
+            "version": "[7.0.10, )"
           },
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
@@ -5281,16 +5281,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\APM02-44\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
