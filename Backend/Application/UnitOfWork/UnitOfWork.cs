@@ -9,6 +9,8 @@ namespace Application.UnitOfWork;
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly GardeningContext _context;
+    private IUser _user;
+    private IRol _rol;
     private ICity _city;
     private IClient _client;
     private ICountry _country;
@@ -26,7 +28,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IState _state;
     private IStatus _status;
     private ISupplier _supplier;
-
+    private IBoss _Boss;
     public ICity Cities 
     {
         get
@@ -230,6 +232,40 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _supplier;
         }
     }
+
+    public IBoss Bosses 
+    {
+        get
+        {
+            if (_Boss == null)
+            {
+                _Boss = new BossRepository(_context);
+            }
+            return _Boss;
+        }
+    }
+
+    public IUser Users {
+        get
+        {
+            if (_user == null)
+            {
+                _user = new UserRepository(_context);
+            }
+            return _user;
+        }
+    }
+    public IRol Roles {
+        get
+        {
+            if (_rol == null)
+            {
+                _rol = new RolRepository(_context);
+            }
+            return _rol;
+        }
+    }
+
 
     public UnitOfWork(GardeningContext context)
     {

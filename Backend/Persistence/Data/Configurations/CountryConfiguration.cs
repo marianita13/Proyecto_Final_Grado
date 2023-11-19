@@ -10,11 +10,11 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
 {
     public void Configure(EntityTypeBuilder<Country> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id);
 
         builder.ToTable("countries");
 
-        builder.Property(e => e.Id).HasColumnType("int(11)");
-        builder.Property(e => e.CountryName).HasMaxLength(50);
+        builder.Property(e => e.CountryName).HasMaxLength(50).IsRequired();
     }
 }

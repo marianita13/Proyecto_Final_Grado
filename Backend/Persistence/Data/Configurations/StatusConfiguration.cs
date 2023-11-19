@@ -10,11 +10,10 @@ public class StatusConfiguration : IEntityTypeConfiguration<Status>
 {
     public void Configure(EntityTypeBuilder<Status> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
-
         builder.ToTable("status");
-
-        builder.Property(e => e.Id).HasColumnType("int(11)");
-        builder.Property(e => e.NameStatus).HasMaxLength(50);
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id);
+;
+        builder.Property(e => e.NameStatus).HasMaxLength(50).IsRequired();
     }
 }

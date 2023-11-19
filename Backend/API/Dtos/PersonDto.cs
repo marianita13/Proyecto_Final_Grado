@@ -9,6 +9,7 @@ namespace API.Dtos
     public class PersonDto
     {
         public int Id { get; set; }
+        
         public string FirstName { get; set; } = null!;
 
         public string LastName1 { get; set; } = null!;

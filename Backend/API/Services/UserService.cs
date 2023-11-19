@@ -1,5 +1,4 @@
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,18 +7,17 @@ using API.Dtos;
 using API.Helpers;
 using Domain.Entities;
 using Domain.Interfaces;
-using Dominio.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.Services;
-public class UserService : IUserService
+public class UserService :IUserService 
 {
     private readonly JWT _jwt;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IPasswordHasher<Person> _passwordHasher;
-    public UserService(IUnitOfWork unitOfWork, IOptions<JWT> jwt, IPasswordHasher<Person> passwordHasher)
+    private readonly IPasswordHasher<User> _passwordHasher;
+    public UserService(IUnitOfWork unitOfWork, IOptions<JWT> jwt, IPasswordHasher<User> passwordHasher)
     {
         _jwt = jwt.Value;
         _unitOfWork = unitOfWork;
@@ -27,30 +25,30 @@ public class UserService : IUserService
     }
     public async Task<string> RegisterAsync(RegisterDto registerDto)
     {
-        var Person = new Person
+        var user = new User
         {
             Email = registerDto.Email,
-            FirstName = registerDto.Username
+            Username = registerDto.Username
         };
 
-        Person.FirstName = _passwordHasher.HashPassword(Person, registerDto.Password); //Encrypt password
+        user.Password = _passwordHasher.HashPassword(user, registerDto.Password); //Encrypt password
 
-        var existingPerson = _unitOfWork.Persons
-                                    .Find(u => u.FirstName.ToLower() == registerDto.Username.ToLower())
-                                    .FirstOrDefault();
+        var existingUser = _unitOfWork.Users
+                                        .Find(u => u.Username.ToLower() == registerDto.Username.ToLower())
+                                        .FirstOrDefault();
 
-        if (existingPerson == null)
+        if (existingUser == null)
         {
-            var rolDefault = _unitOfWork.PTypes
-                                    .Find(u => u.TypeName == Helpers.Authorization.rol_default.ToString())
+            var rolDefault = _unitOfWork.Roles
+                                    .Find(u => u.Name == Authorization1.rol_default.ToString())
                                     .First();
             try
             {
-                Person.PersonType = rolDefault;
-                _unitOfWork.Persons.Add(Person);
+                user.Rols.Add(rolDefault);
+                _unitOfWork.Users.Add(user);
                 await _unitOfWork.SaveAsync();
 
-                return $"Person  {registerDto.Username} has been registered successfully";
+                return $"User  {registerDto.Username} has been registered successfully";
             }
             catch (Exception ex)
             {
@@ -60,84 +58,88 @@ public class UserService : IUserService
         }
         else
         {
-            return $"Person {registerDto.Username} already registered.";
+            return $"User {registerDto.Username} already registered.";
         }
     }
     public async Task<DataPersonDto> GetTokenAsync(LoginDto model)
     {
-        DataPersonDto dataPersonDto = new DataPersonDto();
-        var Person = await _unitOfWork.Persons
-                    .GetByFirstNameAsync(model.Username);
+        DataPersonDto dataUserDto = new DataPersonDto();
+        var user = await _unitOfWork.Users
+                    .GetByUsernameAsync(model.Username);
 
-        if (Person == null)
+        if (user == null)
         {
-            dataPersonDto.IsAuthenticated = false;
-            dataPersonDto.Message = $"Person does not exist with FirstName {model.Username}.";
-            return dataPersonDto;
+            dataUserDto.IsAuthenticated = false;
+            dataUserDto.Message = $"User does not exist with username {model.Username}.";
+            return dataUserDto;
         }
 
-        var result = _passwordHasher.VerifyHashedPassword(Person, Person.FirstName, model.Password);
+        var result = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
 
         if (result == PasswordVerificationResult.Success)
         {
-            dataPersonDto.IsAuthenticated = true;
-            JwtSecurityToken jwtSecurityToken = CreateJwtToken(Person);
-            dataPersonDto.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-            dataPersonDto.Email = Person.Email;
-            dataPersonDto.FirstName = Person.FirstName;
-            dataPersonDto.TypePerson = Person.PersonType.TypeName.ToList();
+            dataUserDto.IsAuthenticated = true;
+            JwtSecurityToken jwtSecurityToken = CreateJwtToken(user);
+            dataUserDto.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            dataUserDto.Email = user.Email;
+            dataUserDto.UserName = user.Username;
+            dataUserDto.Roles = user.Rols
+                                            .Select(u => u.Name)
+                                            .ToList();
 
-            if (Person.RefreshTokens.Any(a => a.IsActive))
+            if (user.RefreshTokens.Any(a => a.IsActive))
             {
-                var activeRefreshToken = Person.RefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
-                dataPersonDto.RefreshToken = activeRefreshToken.Token;
-                dataPersonDto.RefreshTokenExpiration = activeRefreshToken.Expires;
+                var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                dataUserDto.RefreshToken = activeRefreshToken.Token;
+                dataUserDto.RefreshTokenExpiration = activeRefreshToken.Expires;
             }
             else
             {
                 var refreshToken = CreateRefreshToken();
-                dataPersonDto.RefreshToken = refreshToken.Token;
-                dataPersonDto.RefreshTokenExpiration = refreshToken.Expires;
-                Person.RefreshTokens.Add(refreshToken);
-                _unitOfWork.Persons.Update(Person);
+                dataUserDto.RefreshToken = refreshToken.Token;
+                dataUserDto.RefreshTokenExpiration = refreshToken.Expires;
+                user.RefreshTokens.Add(refreshToken);
+                _unitOfWork.Users.Update(user);
                 await _unitOfWork.SaveAsync();
             }
 
-            return dataPersonDto;
+            return dataUserDto;
         }
-        dataPersonDto.IsAuthenticated = false;
-        dataPersonDto.Message = $"Credenciales incorrectas para el usuario {Person.FirstName}.";
-        return dataPersonDto;
+        dataUserDto.IsAuthenticated = false;
+        dataUserDto.Message = $"Credenciales incorrectas para el usuario {user.Username}.";
+        return dataUserDto;
     }
     public async Task<string> AddRoleAsync(AddRoleDto model)
     {
-        var Person = await _unitOfWork.Persons
-                    .GetByFirstNameAsync(model.Username);
-        if (Person == null)
+
+        var user = await _unitOfWork.Users
+                    .GetByUsernameAsync(model.Username);
+        if (user == null)
         {
-            return $"Person {model.Username} does not exists.";
+            return $"User {model.Username} does not exists.";
         }
 
-        var result = _passwordHasher.VerifyHashedPassword(Person, Person.FirstName, model.Password);
+        var result = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
 
         if (result == PasswordVerificationResult.Success)
         {
-            var rolExists = _unitOfWork.PTypes
-                                        .Find(u => u.TypeName.ToLower() == model.Role.ToLower())
+            var rolExists = _unitOfWork.Roles
+                                        .Find(u => u.Name.ToLower() == model.Role.ToLower())
                                         .FirstOrDefault();
 
             if (rolExists != null)
             {
-                var PersonHasRole = Person.PersonType.Id.Equals(rolExists.Id);
+                var userHasRole = user.Rols
+                                            .Any(u => u.Id == rolExists.Id);
 
-                if (PersonHasRole == false)
+                if (userHasRole == false)
                 {
-                    Person.PersonType = rolExists;
-                    _unitOfWork.Persons.Update(Person);
+                    user.Rols.Add(rolExists);
+                    _unitOfWork.Users.Update(user);
                     await _unitOfWork.SaveAsync();
                 }
 
-                return $"Role {model.Role} added to Person {model.Username} successfully.";
+                return $"Role {model.Role} added to user {model.Username} successfully.";
             }
 
             return $"Role {model.Role} was not found.";
@@ -146,43 +148,45 @@ public class UserService : IUserService
     }
     public async Task<DataPersonDto> RefreshTokenAsync(string refreshToken)
     {
-        var dataPersonDto = new DataPersonDto();
+        var dataUserDto = new DataPersonDto();
 
-        var usuario = await _unitOfWork.Persons
+        var usuario = await _unitOfWork.Users
                         .GetByRefreshTokenAsync(refreshToken);
 
         if (usuario == null)
         {
-            dataPersonDto.IsAuthenticated = false;
-            dataPersonDto.Message = $"Token is not assigned to any Person.";
-            return dataPersonDto;
+            dataUserDto.IsAuthenticated = false;
+            dataUserDto.Message = $"Token is not assigned to any user.";
+            return dataUserDto;
         }
 
         var refreshTokenBd = usuario.RefreshTokens.Single(x => x.Token == refreshToken);
 
         if (!refreshTokenBd.IsActive)
         {
-            dataPersonDto.IsAuthenticated = false;
-            dataPersonDto.Message = $"Token is not active.";
-            return dataPersonDto;
+            dataUserDto.IsAuthenticated = false;
+            dataUserDto.Message = $"Token is not active.";
+            return dataUserDto;
         }
         //Revoque the current refresh token and
         refreshTokenBd.Revoked = DateTime.UtcNow;
         //generate a new refresh token and save it in the database
         var newRefreshToken = CreateRefreshToken();
         usuario.RefreshTokens.Add(newRefreshToken);
-        _unitOfWork.Persons.Update(usuario);
+        _unitOfWork.Users.Update(usuario);
         await _unitOfWork.SaveAsync();
         //Generate a new Json Web Token
-        dataPersonDto.IsAuthenticated = true;
+        dataUserDto.IsAuthenticated = true;
         JwtSecurityToken jwtSecurityToken = CreateJwtToken(usuario);
-        dataPersonDto.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        dataPersonDto.Email = usuario.Email;
-        dataPersonDto.FirstName = usuario.FirstName;
-        dataPersonDto.TypePerson = usuario.PersonType.TypeName.ToList();
-        dataPersonDto.RefreshToken = newRefreshToken.Token;
-        dataPersonDto.RefreshTokenExpiration = newRefreshToken.Expires;
-        return dataPersonDto;
+        dataUserDto.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+        dataUserDto.Email = usuario.Email;
+        dataUserDto.UserName = usuario.Username;
+        dataUserDto.Roles = usuario.Rols
+                                        .Select(u => u.Name)
+                                        .ToList();
+        dataUserDto.RefreshToken = newRefreshToken.Token;
+        dataUserDto.RefreshTokenExpiration = newRefreshToken.Expires;
+        return dataUserDto;
     }
     private RefreshToken CreateRefreshToken()
     {
@@ -198,17 +202,17 @@ public class UserService : IUserService
             };
         }
     }
-    private JwtSecurityToken CreateJwtToken(Person usuario)
+    private JwtSecurityToken CreateJwtToken(User usuario)
     {
-        var roles = usuario.PersonType.People;
+        var roles = usuario.Rols;
         var roleClaims = new List<Claim>();
         foreach (var role in roles)
         {
-            roleClaims.Add(new Claim("roles", role.FirstName));
+            roleClaims.Add(new Claim("roles", role.Name));
         }
         var claims = new[]
         {
-                                new Claim(JwtRegisteredClaimNames.Sub, usuario.FirstName),
+                                new Claim(JwtRegisteredClaimNames.Sub, usuario.Username),
                                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                                 new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
                                 new Claim("uid", usuario.Id.ToString())
@@ -220,7 +224,7 @@ public class UserService : IUserService
             issuer: _jwt.Issuer,
             audience: _jwt.Audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(_jwt.DurationMinutes),
+            expires: DateTime.UtcNow.AddMinutes(_jwt.DurationInMinutes),
             signingCredentials: signingCredentials);
         return jwtSecurityToken;
     }

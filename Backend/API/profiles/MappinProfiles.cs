@@ -12,6 +12,8 @@ namespace API.profiles
     {
         public MappinProfiles()
         {
+            CreateMap<Boss, BossDto>().ReverseMap();
+
             CreateMap<City, CityDto>().ReverseMap();
 
             CreateMap<Client, ClientDto>().ReverseMap();

@@ -5,7 +5,7 @@ namespace Domain.Entities;
 
 public partial class Product: BaseEntityS
 {
-public string Name { get; set; }
+    public string Name { get; set; }
 
     public int ProductLine { get; set; }
 
@@ -21,7 +21,7 @@ public string Name { get; set; }
 
     public decimal SupplierPrice { get; set; }
 
-    public virtual Supplier IdSupplierNavigation { get; set; }
+    public virtual Supplier Supplier { get; set; }
 
     public virtual ICollection<OrderDetail> Orderdetails { get; set; } = new List<OrderDetail>();
 

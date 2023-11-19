@@ -1,13 +1,10 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "nIxqen7JVzIsZXfOprLGhVUN7AszUdQwv7SVXFUSRLiSLydAubixnOejxPFgY/4gBct6hrGuQ1B+QcKx5tn9tg==",
-=======
-  "dgSpecHash": "sGh0EY45PU1QZm6ObcDy0iFofoqVb4vnd+baLSumEJi9DzYXlN9DbtGO1FtnzoRYaka3LWpU2Hfg4f7I7KZj+w==",
->>>>>>> Marianita
+  "dgSpecHash": "0fVJaClWXtG4JnZkVWtaXpecabOP6isi5FLswQaJD4fh73cWjpMV+J0zVdJJvVyowVIA0f8Js9rlDawUpY4zeA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Janus\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
@@ -16,15 +13,9 @@
     "C:\\Users\\Janus\\.nuget\\packages\\itext.pdfhtml\\5.0.1\\itext.pdfhtml.5.0.1.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\itext7.pdfhtml\\5.0.1\\itext7.pdfhtml.5.0.1.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\1.1.0\\microsoft.dotnet.platformabstractions.1.1.0.nupkg.sha512",
-<<<<<<< HEAD
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.10\\microsoft.entityframeworkcore.7.0.10.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.10\\microsoft.entityframeworkcore.abstractions.7.0.10.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.10\\microsoft.entityframeworkcore.analyzers.7.0.10.nupkg.sha512",
-=======
-    "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
-    "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
-    "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.12\\microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",
->>>>>>> Marianita
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.2\\microsoft.entityframeworkcore.relational.7.0.2.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Janus\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

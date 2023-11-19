@@ -9,7 +9,7 @@ public partial class Order : BaseEntity
 
     public DateOnly ExpectedDate { get; set; }
 
-    public DateOnly? DeliveryDate { get; set; }
+    public DateOnly DeliveryDate { get; set; }
 
     public int StatusCode { get; set; }
 

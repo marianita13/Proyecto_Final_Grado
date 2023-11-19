@@ -7,6 +7,8 @@ namespace Domain.Interfaces
 {
     public interface IUnitOfWork
     {
+        IUser Users { get; }
+        IRol Roles { get; }
         ICity Cities { get; }
         IClient Clients { get; }
         ICountry Countries { get; }
@@ -24,6 +26,7 @@ namespace Domain.Interfaces
         IState States { get; }
         IStatus Status { get; }
         ISupplier Suppliers { get; }
+        IBoss Bosses { get; }
 
         Task<int> SaveAsync();
     }

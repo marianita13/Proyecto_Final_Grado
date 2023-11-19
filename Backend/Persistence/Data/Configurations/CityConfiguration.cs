@@ -14,12 +14,6 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id);
 
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
-
-        builder.ToTable("cities");
-
-        builder.HasIndex(e => e.StateId, "IX_Cities_StateId");
-
         builder.Property(e => e.Id).HasColumnType("int(11)");
         builder.Property(p => p.CityName).IsRequired().HasMaxLength(50);
         builder.Property(e => e.StateId).HasColumnType("int(11)");

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Dominio.Entities;
 
 namespace Domain.Entities;
 
@@ -17,13 +16,11 @@ public partial class Person: BaseEntity
 
     public int PersonTypeId { get; set; }
 
-    public string Password { get; set; }
-
     public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+    public virtual ICollection<Boss> Bosses { get; set; } = new List<Boss>();
 
     public virtual PersonType PersonType { get; set; }
 
-    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

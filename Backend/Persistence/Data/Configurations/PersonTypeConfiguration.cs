@@ -10,11 +10,11 @@ public class PersonTypeConfiguration : IEntityTypeConfiguration<PersonType>
 {
     public void Configure(EntityTypeBuilder<PersonType> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
 
         builder.ToTable("persontypes");
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id);
 
-        builder.Property(e => e.Id).HasColumnType("int(11)");
-        builder.Property(e => e.TypeName).HasMaxLength(50);
+        builder.Property(e => e.TypeName).HasMaxLength(50).IsRequired();
     }
 }

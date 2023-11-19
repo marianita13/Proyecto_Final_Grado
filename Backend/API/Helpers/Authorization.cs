@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace API.Helpers
 {
-    public class Authorization
+    public class Authorization1
     {
 
-        public enum PersonType
+        public enum Rol
         {
             DirectorGeneral = 1,
             SubdirectorMarketing = 2,
@@ -16,10 +16,11 @@ namespace API.Helpers
             Secretaria = 4,
             RepresentanteVentas = 5,
             DirectorOficina = 6,
-            Cliente = 7
+            Cliente = 7,
+            Employee = 8
         }
 
-        public const PersonType rol_default = PersonType.Cliente;
+        public const Rol rol_default = Rol.Employee;
 
     }
 }

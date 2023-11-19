@@ -13,7 +13,7 @@ public partial class OrderDetail : BaseEntity
 
     public short LineNumber { get; set; }
 
-    public virtual Order IdNavigation { get; set; }
+    public virtual Order Order { get; set; }
 
-    public virtual Product ProductCodeNavigation { get; set; }
+    public virtual Product Product { get; set; }
 }

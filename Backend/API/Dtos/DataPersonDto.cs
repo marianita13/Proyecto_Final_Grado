@@ -10,9 +10,9 @@ namespace API.Dtos
     {
         public string Message { get; set; }
         public bool IsAuthenticated { get; set; }
-        public string FirstName { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
-        public List<char> TypePerson { get; set; }
+        public List<string> Roles { get; set; }
         public string Token { get; set; }
 
         [JsonIgnore] // ->this attribute restricts the property to be shown in the result
@@ -20,3 +20,4 @@ namespace API.Dtos
         public DateTime RefreshTokenExpiration { get; set; }
     }
 }
+
