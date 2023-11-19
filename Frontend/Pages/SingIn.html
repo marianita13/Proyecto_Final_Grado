@@ -3,10 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./Images/Logo_para_Plantas_y_Jardinería_Ilustrativo_Simple_Verde-removebg-preview.png" type="-icon">
+    <link rel="icon" href="../Images/Logo_para_Plantas_y_Jardinería_Ilustrativo_Simple_Verde-removebg-preview.png" type="-icon">
+    <link rel="stylesheet" href="../Assets/CSS/SingIn.css">
+    <script
+        src="https://kit.fontawesome.com/64d58efce2.js"
+        crossorigin="anonymous"
+    ></script>
+    <script src="../Assets/JS/main.js" defer></script>
     <title>Sing In</title>
 </head>
 <body>
-    
+    <main>
+        <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+            <form action="#" class="sign-in-form">
+                <h2 class="title">Sign In</h2>
+                <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" id="user-login"/>
+                </div>
+                <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" id="password-login"/>
+                </div>
+                <a href="../../Index.html" id="Sign-In"><button type="button" class="btn solid">Sign In</button></a>
+            </form>
+
+            <form action="" class="sign-up-form">
+                <h2 class="title">Sign Up</h2>
+                <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" id="user"/>
+                </div>
+                <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" id="email"/>
+                </div>
+                <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" id="password"/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <select name="select" id="TypePerson" class="form-select" required>
+                        <option value="">Select</option>
+                        <option value="DirectorGeneral" id="option">Director General</option>
+                        <option value="SubdirectorMarketing" id="option">Subdirector Marketing</option>
+                        <option value="SubdirectorVentas" id="option">Subdirector Ventas</option>
+                        <option value="Secretaria" id="option">Secretaria</option>
+                        <option value="RepresentanteVentas" id="option">Representante Ventas</option>
+                        <option value="DirectorOficina" id="option">Director Oficina</option>
+                        <option value="Cliente" id="option">Cliente</option>
+                    </select>
+                </div>
+                <a href="../../Index.html" id="Sign-Up"><button type="button" class="btn solid">Sign Up</button></a>
+            </form>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New here?</h3>
+                    <p>Join us and unlock a world of possibilities! Sign up now.</p>
+                    <button class="btn transparent" id="sign-up-btn">Sign Up</button>
+                </div>
+                <img src="../Images/farmer-removebg-preview.png" class="image" alt="">
+            </div>
+
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>One of us?</h3>
+                    <p>Welcome back! Log in to explore all we have for you.</p>
+                    <button class="btn transparent" id="sign-in-btn">Sign In</button>
+                </div>
+                <img src="../Images/plant.png" class="image1" alt="">
+            </div>
+        </div>
+    </div>
+    </main>
 </body>
 </html>
