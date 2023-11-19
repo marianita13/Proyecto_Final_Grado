@@ -109,43 +109,6 @@ public class UserService :IUserService
         dataUserDto.Message = $"Credenciales incorrectas para el usuario {user.Username}.";
         return dataUserDto;
     }
-    public async Task<string> AddRoleAsync(AddRoleDto model)
-    {
-
-        var user = await _unitOfWork.Users
-                    .GetByUsernameAsync(model.Username);
-        if (user == null)
-        {
-            return $"User {model.Username} does not exists.";
-        }
-
-        var result = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
-
-        if (result == PasswordVerificationResult.Success)
-        {
-            var rolExists = _unitOfWork.Roles
-                                        .Find(u => u.Name.ToLower() == model.Role.ToLower())
-                                        .FirstOrDefault();
-
-            if (rolExists != null)
-            {
-                var userHasRole = user.Rols
-                                            .Any(u => u.Id == rolExists.Id);
-
-                if (userHasRole == false)
-                {
-                    user.Rols.Add(rolExists);
-                    _unitOfWork.Users.Update(user);
-                    await _unitOfWork.SaveAsync();
-                }
-
-                return $"Role {model.Role} added to user {model.Username} successfully.";
-            }
-
-            return $"Role {model.Role} was not found.";
-        }
-        return $"Invalid Credentials";
-    }
     public async Task<DataPersonDto> RefreshTokenAsync(string refreshToken)
     {
         var dataUserDto = new DataPersonDto();
@@ -227,5 +190,42 @@ public class UserService :IUserService
             expires: DateTime.UtcNow.AddMinutes(_jwt.DurationInMinutes),
             signingCredentials: signingCredentials);
         return jwtSecurityToken;
+    }
+
+    public async Task<string> AddRoleAsync(AddRoleDto model)
+    {
+        var user = await _unitOfWork.Users
+                    .GetByUsernameAsync(model.Username);
+        if (user == null)
+        {
+            return $"User {model.Username} does not exists.";
+        }
+
+        var result = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
+
+        if (result == PasswordVerificationResult.Success)
+        {
+            var rolExists = _unitOfWork.Roles
+                                        .Find(u => u.Name.ToLower() == model.Role.ToLower())
+                                        .FirstOrDefault();
+
+            if (rolExists != null)
+            {
+                var userHasRole = user.Rols
+                                            .Any(u => u.Id == rolExists.Id);
+
+                if (userHasRole == false)
+                {
+                    user.Rols.Add(rolExists);
+                    _unitOfWork.Users.Update(user);
+                    await _unitOfWork.SaveAsync();
+                }
+
+                return $"Role {model.Role} added to user {model.Username} successfully.";
+            }
+
+            return $"Role {model.Role} was not found.";
+        }
+        return $"Invalid Credentials";
     }
 }

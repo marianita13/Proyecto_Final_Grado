@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Dtos
 {
-    public class AddPersonDto
+    public class AddRoleDto
     {
         [Required]
         public string Username { get; set; }
