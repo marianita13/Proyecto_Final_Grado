@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {}
+    "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
+    "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
+        "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Janus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Janus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -26,11 +26,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
+              "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -60,21 +60,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+    "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Janus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Janus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -104,7 +104,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.10, )"
             },
             "itext7.pdfhtml": {
               "target": "Package",
@@ -127,21 +127,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\Janus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Janus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -153,8 +153,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\corvus\\Documents\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
               }
             }
           }
@@ -169,9 +169,13 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[30.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.10, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
@@ -194,7 +198,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
