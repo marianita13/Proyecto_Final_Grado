@@ -37,185 +37,596 @@ DROP TABLE IF EXISTS state;
 
 DROP TABLE IF EXISTS country;
 
--- Tablas de Ubicación
+--
+-- Base de datos: `gardening`
+--
 
-CREATE TABLE
-    country (
-        country_id INT AUTO_INCREMENT PRIMARY KEY,
-        country_name VARCHAR(50) NOT NULL
-    );
+-- --------------------------------------------------------
 
-CREATE TABLE
-    state (
-        state_id INT AUTO_INCREMENT PRIMARY KEY,
-        state_name VARCHAR(50) NOT NULL,
-        country_id INT,
-        FOREIGN KEY (country_id) REFERENCES country (country_id)
-    );
+--
+-- Estructura de tabla para la tabla `cities`
+--
 
-CREATE TABLE
-    city (
-        city_id INT AUTO_INCREMENT PRIMARY KEY,
-        city_name VARCHAR(50) NOT NULL,
-        state_id INT,
-        FOREIGN KEY (state_id) REFERENCES state (state_id)
-    );
+CREATE TABLE `cities` (
+  `Id` int(11) NOT NULL,
+  `CityName` VARCHAR(50) DEFAULT NULL,
+  `StateId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE
-    postal_code (
-        postal_code_id INT AUTO_INCREMENT PRIMARY KEY,
-        postal_code VARCHAR(10) NOT NULL,
-        city_id INT,
-        FOREIGN KEY (city_id) REFERENCES city (city_id)
-    );
+-- --------------------------------------------------------
 
-CREATE TABLE
-    person_type (
-        type_id INT AUTO_INCREMENT PRIMARY KEY,
-        type_name VARCHAR(50) NOT NULL
-    );
+--
+-- Estructura de tabla para la tabla `clients`
+--
 
-CREATE TABLE
-    person (
-        person_id INT AUTO_INCREMENT PRIMARY KEY,
-        first_name VARCHAR(50) NOT NULL,
-        last_name1 VARCHAR(50) NOT NULL,
-        last_name2 VARCHAR(50) DEFAULT NULL,
-        email VARCHAR(100) NOT NULL,
-        person_type_id INT NOT NULL,
-        FOREIGN KEY (person_type_id) REFERENCES person_type (type_id) 
-    );
+CREATE TABLE `clients` (
+  `Id` int(11) NOT NULL,
+  `ClientName` VARCHAR(50) DEFAULT NULL,
+  `PersonId` int(11) NOT NULL,
+  `Phone` VARCHAR(50) DEFAULT NULL,
+  `Fax` VARCHAR(50) DEFAULT NULL,
+  `LineAddress` VARCHAR(100) DEFAULT NULL,
+  `LineAddress2` VARCHAR(100) DEFAULT NULL,
+  `PostalCodeId` int(11) NOT NULL,
+  `CodEmployee` int(11) DEFAULT NULL,
+  `CreditLimit` decimal(65,30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE
-    supplier (
-        supplier_id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(30) NOT NULL,
-        phone VARCHAR(15) NOT NULL,
-        fax VARCHAR(15) NOT NULL
-    );
+-- --------------------------------------------------------
 
-CREATE TABLE
-    office (
-        office_code VARCHAR(10) NOT NULL,
-        -- city_id INT NOT NULL,
-        postal_code_id INT NOT NULL,
-        phone VARCHAR(20) NOT NULL,
-        address_line1 VARCHAR(50) NOT NULL,
-        address_line2 VARCHAR(50) DEFAULT NULL,
-        PRIMARY KEY (office_code),
-        -- FOREIGN KEY (city_id) REFERENCES city (city_id),
-        FOREIGN KEY (postal_code_id) REFERENCES postal_code (postal_code_id)
-    );
+--
+-- Estructura de tabla para la tabla `countries`
+--
 
-CREATE TABLE
-    employee (
-        employee_code INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        person_id INT NOT NULL,
-        extention VARCHAR(10) NOT NULL,
-        office_code VARCHAR(10) NOT NULL,
-        manager_code INTEGER DEFAULT NULL,
-        FOREIGN KEY (person_id) REFERENCES person (person_id),
-        FOREIGN KEY (office_code) REFERENCES office (office_code)
-    );
+CREATE TABLE `countries` (
+  `Id` int(11) NOT NULL,
+  `CountryName` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE
-    product_line (
-        cod_product_line INTEGER AUTO_INCREMENT NOT NULL,
-        product_line VARCHAR(50) NOT NULL,
-        description_text TEXT,
-        description_html TEXT,
-        image VARCHAR(256),
-        PRIMARY KEY (cod_product_line)
-    );
+-- --------------------------------------------------------
 
-CREATE TABLE
-    client (
-        client_code INTEGER AUTO_INCREMENT NOT NULL,
-        client_name VARCHAR(50) NOT NULL,
-        person_id INT NOT NULL,
-        phone VARCHAR(15) NOT NULL,
-        fax VARCHAR(15) NOT NULL,
-        line_address VARCHAR(50) NOT NULL,
-        line_address2 VARCHAR(50) DEFAULT NULL,
-        postal_code_id INT NOT NULL,
-        cod_employee INTEGER DEFAULT NULL,
-        credit_limit NUMERIC (15, 2) DEFAULT NULL,
-        PRIMARY KEY (client_code),
-        FOREIGN KEY (person_id) REFERENCES person (person_id),
-        FOREIGN KEY (postal_code_id) REFERENCES postal_code (postal_code_id),
-        FOREIGN KEY (cod_employee) REFERENCES employee (employee_code)
-    );
+--
+-- Estructura de tabla para la tabla `employees`
+--
 
-CREATE TABLE
-    status(
-        cod_status INT AUTO_INCREMENT NOT NULL,
-        name_status VARCHAR(20),
-        PRIMARY KEY (cod_status)
-    );
+CREATE TABLE `employees` (
+  `Id` int(11) NOT NULL,
+  `PersonId` int(11) NOT NULL,
+  `Extention` VARCHAR(50) DEFAULT NULL,
+  `OfficeCode` varchar(255) DEFAULT NULL,
+  `ManagerCode` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE
-    orders (
-        order_code INTEGER AUTO_INCREMENT NOT NULL,
-        order_date DATE NOT NULL,
-        expected_date DATE NOT NULL,
-        delivery_date DATE DEFAULT NULL,
-        status_code INT NOT NULL,
-        comments TEXT,
-        client_code INTEGER NOT NULL,
-        PRIMARY KEY (order_code),
-        FOREIGN KEY (status_code) REFERENCES status (cod_status),
-        FOREIGN KEY (client_code) REFERENCES client (client_code)
-    );
+-- --------------------------------------------------------
 
-CREATE TABLE
-    product (
-        product_code VARCHAR(15) NOT NULL,
-        name VARCHAR(70) NOT NULL,
-        product_line INT NOT NULL,
-        dimensions VARCHAR(25) NULL,
-        id_supplier INT NOT NULL,
-        description TEXT NULL,
-        stock_quantity SMALLINT NOT NULL,
-        selling_price NUMERIC (15, 2) NOT NULL,
-        supplier_price NUMERIC (15, 2) DEFAULT NULL,
-        PRIMARY KEY (product_code),
-        FOREIGN KEY (id_supplier) REFERENCES supplier (supplier_id),
-        FOREIGN KEY (product_line) REFERENCES product_line (cod_product_line)
-    );
+--
+-- Estructura de tabla para la tabla `methodpayments`
+--
 
-CREATE TABLE
-    order_detail (
-        order_code INTEGER NOT NULL,
-        product_code VARCHAR (15) NOT NULL,
-        quantity INTEGER NOT NULL,
-        unit_price NUMERIC (15, 2) NOT NULL,
-        line_number SMALLINT NOT NULL,
-        PRIMARY KEY (order_code, product_code),
-        FOREIGN KEY (order_code) REFERENCES orders (order_code),
-        FOREIGN KEY (product_code) REFERENCES product (product_code)
-    );
+CREATE TABLE `methodpayments` (
+  `Id` int(11) NOT NULL,
+  `MethodPayment1` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE
-    method_payment(
-        id_method INT AUTO_INCREMENT NOT NULL,
-        method_payment VARCHAR(20),
-        PRIMARY KEY (id_method)
-    );
+-- --------------------------------------------------------
 
-CREATE TABLE
-    payment(
-        client_code INT NOT NULL,
-        method_id INT NOT NULL,
-        transaction_id VARCHAR(50) NOT NULL,
-        payment_date DATE NOT NULL,
-        total NUMERIC (15, 2) NOT NULL,
-        PRIMARY KEY (client_code, transaction_id),
-        FOREIGN KEY (method_id) REFERENCES method_payment (id_method),
-        FOREIGN KEY (client_code) REFERENCES client (client_code)
-    );
+--
+-- Estructura de tabla para la tabla `offices`
+--
 
-    
-INSERT INTO country (country_name) VALUES 
+CREATE TABLE `offices` (
+  `Id` varchar(255) NOT NULL,
+  `PostalCodeId` int(11) NOT NULL,
+  `Phone` VARCHAR(50) DEFAULT NULL,
+  `AddressLine1` VARCHAR(50) DEFAULT NULL,
+  `AddressLine2` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orderdetails`
+--
+
+CREATE TABLE `orderdetails` (
+  `Id` int(11) NOT NULL,
+  `ProductCode` varchar(255) DEFAULT NULL,
+  `Quantity` int(11) NOT NULL,
+  `UnitPrice` decimal(65,30) NOT NULL,
+  `LineNumber` smallint(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orders`
+--
+
+CREATE TABLE `orders` (
+  `Id` int(11) NOT NULL,
+  `OrderDate` date NOT NULL,
+  `ExpectedDate` date NOT NULL,
+  `DeliveryDate` date DEFAULT NULL,
+  `StatusCode` int(11) NOT NULL,
+  `Comments` VARCHAR(500) DEFAULT NULL,
+  `ClientCode` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `payments`
+--
+
+CREATE TABLE `payments` (
+  `Id` int(11) NOT NULL,
+  `MethodId` int(11) NOT NULL,
+  `TransactionId` VARCHAR(50) DEFAULT NULL,
+  `PaymentDate` date NOT NULL,
+  `Total` decimal(65,30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `persons`
+--
+
+CREATE TABLE `persons` (
+  `Id` int(11) NOT NULL,
+  `FirstName` VARCHAR(50) DEFAULT NULL,
+  `LastName1` VARCHAR(50) DEFAULT NULL,
+  `LastName2` VARCHAR(50) DEFAULT NULL,
+  `Email` VARCHAR(50) DEFAULT NULL,
+  `PersonTypeId` int(11) NOT NULL,
+  `Password` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `persontypes`
+--
+
+CREATE TABLE `persontypes` (
+  `Id` int(11) NOT NULL,
+  `TypeName` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `postalcodes`
+--
+
+CREATE TABLE `postalcodes` (
+  `Id` int(11) NOT NULL,
+  `PostalCode1` VARCHAR(50) DEFAULT NULL,
+  `CityId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productlines`
+--
+
+CREATE TABLE `productlines` (
+  `Id` int(11) NOT NULL,
+  `ProductLine1` VARCHAR(50) DEFAULT NULL,
+  `DescriptionText` VARCHAR(50) DEFAULT NULL,
+  `DescriptionHtml` VARCHAR(50) DEFAULT NULL,
+  `Image` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `products`
+--
+
+CREATE TABLE `products` (
+  `Id` varchar(255) NOT NULL,
+  `Name` VARCHAR(50) DEFAULT NULL,
+  `ProductLine` int(11) NOT NULL,
+  `Dimensions` VARCHAR(50) DEFAULT NULL,
+  `IdSupplier` int(11) NOT NULL,
+  `Description` VARCHAR(50) DEFAULT NULL,
+  `StockQuantity` smallint(6) NOT NULL,
+  `SellingPrice` decimal(65,30) NOT NULL,
+  `SupplierPrice` decimal(65,30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `refreshtoken`
+--
+
+CREATE TABLE `refreshtoken` (
+  `Id` int(11) NOT NULL,
+  `PersonId` int(11) NOT NULL,
+  `Token` VARCHAR(50) DEFAULT NULL,
+  `Expires` datetime(6) NOT NULL,
+  `Created` datetime(6) NOT NULL,
+  `Revoked` datetime(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `states`
+--
+
+CREATE TABLE `states` (
+  `Id` int(11) NOT NULL,
+  `StateName` VARCHAR(50) DEFAULT NULL,
+  `CountryId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `status`
+--
+
+CREATE TABLE `status` (
+  `Id` int(11) NOT NULL,
+  `NameStatus` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `Id` int(11) NOT NULL,
+  `Name` VARCHAR(50) DEFAULT NULL,
+  `Phone` VARCHAR(50) DEFAULT NULL,
+  `Fax` VARCHAR(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `__efmigrationshistory`
+--
+
+CREATE TABLE `__efmigrationshistory` (
+  `MigrationId` varchar(150) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `__efmigrationshistory`
+--
+
+INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
+('20231118171133_InitialCreate', '7.0.12'),
+('20231118213044_UpdateDatabase', '7.0.12');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cities`
+--
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_Cities_StateId` (`StateId`);
+
+--
+-- Indices de la tabla `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_Clients_CodEmployee` (`CodEmployee`),
+  ADD KEY `IX_Clients_PersonId` (`PersonId`),
+  ADD KEY `IX_Clients_PostalCodeId` (`PostalCodeId`);
+
+--
+-- Indices de la tabla `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_Employees_Office` (`OfficeCode`),
+  ADD KEY `IX_Employees_PersonId` (`PersonId`);
+
+--
+-- Indices de la tabla `methodpayments`
+--
+ALTER TABLE `methodpayments`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `offices`
+--
+ALTER TABLE `offices`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_Offices_PostalCodeId` (`PostalCodeId`);
+
+--
+-- Indices de la tabla `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`Id`,`ProductCode`),
+  ADD KEY `FK_OrderDetails_Orders_Order` (`Id`),
+  ADD KEY `FK_OrderDetails_ProductCode_ProductCode` (`ProductCode`);
+
+--
+-- Indices de la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `FK_Orders_Clients_Client` (`ClientCode`),
+  ADD KEY `FK_Orders_Status_Status` (`StatusCode`);
+
+--
+-- Indices de la tabla `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`Id`,`TransactionId`),
+  ADD KEY `IX_Payments_MethodId` (`MethodId`);
+
+--
+-- Indices de la tabla `persons`
+--
+ALTER TABLE `persons`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_Persons_PersonTypeId` (`PersonTypeId`);
+
+--
+-- Indices de la tabla `persontypes`
+--
+ALTER TABLE `persontypes`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `postalcodes`
+--
+ALTER TABLE `postalcodes`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_PostalCodes_CityId` (`CityId`);
+
+--
+-- Indices de la tabla `productlines`
+--
+ALTER TABLE `productlines`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `FK_Products_ProductLines_ProductLine` (`ProductLine`),
+  ADD KEY `FK_Products_Suppliers_IdSupplier` (`IdSupplier`);
+
+--
+-- Indices de la tabla `refreshtoken`
+--
+ALTER TABLE `refreshtoken`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_RefreshToken_PersonId` (`PersonId`);
+
+--
+-- Indices de la tabla `states`
+--
+ALTER TABLE `states`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IX_States_CountryId` (`CountryId`);
+
+--
+-- Indices de la tabla `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indices de la tabla `__efmigrationshistory`
+--
+ALTER TABLE `__efmigrationshistory`
+  ADD PRIMARY KEY (`MigrationId`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `methodpayments`
+--
+ALTER TABLE `methodpayments`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  MODIFY `Id` int(11) NOT NULL ;
+
+--
+-- AUTO_INCREMENT de la tabla `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `Id` int(11) NOT NULL ;
+
+--
+-- AUTO_INCREMENT de la tabla `persons`
+--
+ALTER TABLE `persons`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `persontypes`
+--
+ALTER TABLE `persontypes`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `postalcodes`
+--
+ALTER TABLE `postalcodes`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `productlines`
+--
+ALTER TABLE `productlines`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `refreshtoken`
+--
+ALTER TABLE `refreshtoken`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `states`
+--
+ALTER TABLE `states`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `status`
+--
+ALTER TABLE `status`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `cities`
+--
+ALTER TABLE `cities`
+  ADD CONSTRAINT `FK_Cities_States_StateId` FOREIGN KEY (`StateId`) REFERENCES `states` (`Id`);
+
+--
+-- Filtros para la tabla `clients`
+--
+ALTER TABLE `clients`
+  ADD CONSTRAINT `FK_Clients_Employees_CodEmployee` FOREIGN KEY (`CodEmployee`) REFERENCES `employees` (`Id`),
+  ADD CONSTRAINT `FK_Clients_Persons_PersonId` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`Id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_Clients_PostalCodes_PostalCodeId` FOREIGN KEY (`PostalCodeId`) REFERENCES `postalcodes` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `employees`
+--
+ALTER TABLE `employees`
+  ADD CONSTRAINT `FK_Employees_Persons_PersonId` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `offices`
+--
+ALTER TABLE `offices`
+  ADD CONSTRAINT `FK_Offices_PostalCodes_PostalCodeId` FOREIGN KEY (`PostalCodeId`) REFERENCES `postalcodes` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD CONSTRAINT `FK_OrderDetails_Orders_Order` FOREIGN KEY (`Id`) REFERENCES `orders` (`Id`),
+  ADD CONSTRAINT `FK_OrderDetails_ProductCode_ProductCode` FOREIGN KEY (`ProductCode`) REFERENCES `products` (`Id`);
+
+--
+-- Filtros para la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `FK_Orders_Clients_Client` FOREIGN KEY (`ClientCode`) REFERENCES `clients` (`Id`),
+  ADD CONSTRAINT `FK_Orders_Status_Status` FOREIGN KEY (`StatusCode`) REFERENCES `status` (`Id`);
+
+--
+-- Filtros para la tabla `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `FK_Payments_Clients_Client` FOREIGN KEY (`Id`) REFERENCES `clients` (`Id`),
+  ADD CONSTRAINT `FK_Payments_MethodPayments_MethodId` FOREIGN KEY (`MethodId`) REFERENCES `methodpayments` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `persons`
+--
+ALTER TABLE `persons`
+  ADD CONSTRAINT `FK_Persons_PersonTypes_PersonTypeId` FOREIGN KEY (`PersonTypeId`) REFERENCES `persontypes` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `postalcodes`
+--
+ALTER TABLE `postalcodes`
+  ADD CONSTRAINT `FK_PostalCodes_Cities_CityId` FOREIGN KEY (`CityId`) REFERENCES `cities` (`Id`);
+
+--
+-- Filtros para la tabla `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `FK_Products_ProductLines_ProductLine` FOREIGN KEY (`ProductLine`) REFERENCES `productlines` (`Id`),
+  ADD CONSTRAINT `FK_Products_Suppliers_IdSupplier` FOREIGN KEY (`IdSupplier`) REFERENCES `suppliers` (`Id`);
+
+--
+-- Filtros para la tabla `refreshtoken`
+--
+ALTER TABLE `refreshtoken`
+  ADD CONSTRAINT `FK_RefreshToken_Persons_PersonId` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `states`
+--
+ALTER TABLE `states`
+  ADD CONSTRAINT `FK_States_Countries_CountryId` FOREIGN KEY (`CountryId`) REFERENCES `countries` (`Id`) ON DELETE CASCADE;
+COMMIT;
+
+INSERT INTO countries (CountryName) VALUES 
 ('USA'),
 ('España'),
 ('Inglaterra'),
@@ -224,7 +635,7 @@ INSERT INTO country (country_name) VALUES
 ('Japón');
 
 -- Inserciones en la tabla state
-INSERT INTO state (state_name, country_id) VALUES 
+INSERT INTO states (StateName, CountryId) VALUES 
 ('', 1), 
 ('', 4), 
 ('Barcelona', 2),
@@ -246,7 +657,7 @@ INSERT INTO state (state_name, country_id) VALUES
 ('Fuenlabrada', 2);
 
 -- Inserciones en la tabla city
-INSERT INTO city (city_name, state_id) VALUES 
+INSERT INTO cities (CityName, StateId) VALUES 
 ('San Francisco', 8),
 ('Miami', 14),
 ('New York', 5),
@@ -268,7 +679,7 @@ INSERT INTO city (city_name, state_id) VALUES
 ('Tokyo', 11);
 
 -- Inserciones en la tabla postal_code
-INSERT INTO postal_code (postal_code, city_id) VALUES 
+INSERT INTO postalcodes (PostalCode1, CityId) VALUES 
 ('24006', 1),
 ('24010', 2),
 ('85495', 3),
@@ -311,87 +722,88 @@ INSERT INTO postal_code (postal_code, city_id) VALUES
 ('2003', 17);
 
 -- inserciones tabla person_type
-INSERT INTO person_type (type_id, type_name) VALUES
-(1, 'Director General'),
-(2, 'Subdirector Marketing'),
-(3, 'Subdirector Ventas'),
-(4, 'Secretaria'),
-(5, 'Representante Ventas'),
-(6, 'Director Oficina'),
-(7, 'Cliente');
+INSERT INTO persontypes (TypeName) VALUES
+('Director General'),
+('Subdirector Marketing'),
+('Subdirector Ventas'),
+('Secretaria'),
+('Representante Ventas'),
+('Director Oficina'),
+('Cliente');
 
 -- inserciones person
-INSERT INTO person (first_name,last_name1,last_name2,email,person_type_id) VALUES 
-('Marcos','Magaña','Perez','marcos@gardening.es',1),
-('Ruben','López','Martinez','rlopez@gardening.es',2),
-('Alberto','Soria','Carrasco','asoria@gardening.es',3),
-('Maria','Solís','Jerez','msolis@gardening.es',4),
-('Felipe','Rosas','Marquez','frosas@gardening.es',5),
-('Juan Carlos','Ortiz','Serrano','cortiz@gardening.es',5),
-('Carlos','Soria','Jimenez','csoria@gardening.es',6),
-('Mariano','López','Murcia','mlopez@gardening.es',5),
-('Lucio','Campoamor','Martín','lcampoamor@gardening.es',5),
-('Hilario','Rodriguez','Huertas','hrodriguez@gardening.es',5),
-('Emmanuel','Magaña','Perez','manu@gardening.es',6),
-('José Manuel','Martinez','De la Osa','jmmart@hotmail.es',5),
-('David','Palma','Aceituno','dpalma@gardening.es',5),
-('Oscar','Palma','Aceituno','opalma@gardening.es',5),
-('Francois','Fignon','','ffignon@gardening.com',6),
-('Lionel','Narvaez','','lnarvaez@gardening.com',5),
-('Laurent','Serra','','lserra@gardening.com',5),
-('Michael','Bolton','','mbolton@gardening.com',6),
-('Walter Santiago','Sanchez','Lopez','wssanchez@gardening.com',5),
-('Hilary','Washington','','hwashington@gardening.com',6),
-('Marcus','Paxton','','mpaxton@gardening.com',5),
-('Lorena','Paxton','','lpaxton@gardening.com',5),
-('Nei','Nishikori','','nnishikori@gardening.com',6),
-('Narumi','Riko','','nriko@gardening.com',5),
-('Takuma','Nomura','','tnomura@gardening.com',5),
-('Amy','Johnson','','ajohnson@gardening.com',6),
-('Larry','Westfalls','','lwestfalls@gardening.com',5),
-('John','Walton','','jwalton@gardening.com',5),
-('Kevin','Fallmer','','kfalmer@gardening.com',6),
-('Julian','Bellinelli','','jbellinelli@gardening.com',5),
-('Mariko','Kishi','','mkishi@gardening.com',5),
-('Daniel G','GoldFish','','daniel.g@gardening.com',7),
-('Anne','Wright','','anne.w@gardening.com',7),
-('Link','Flaute','','link.f@gardening.com',7),
-('Akane','Tendo','','akane.t@gardening.com',7),
-('Antonio','Lasas','','antonio.l@gardening.com',7),
-('Jose','Bermejo','','jose.b@gardening.com',7),
-('Paco','Lopez','','paco.l@gardening.com',7),
-('Naturagua','Guillermo','','guillermo.r@gardening.com',7),
-('David','Serrano','','david.s@gardening.com',7),
-('Jose','Tacaño','','jose.t@gardening.com',7),
-('Antonio','Lasas','','antonio.l@gardening.com',7),
-('Pedro','Camunas','','pedro.c@gardening.com',7),
-('Juan','Rodriguez','','juan.r@gardening.com',7),
-('Javier','Villar','','javier.v@gardening.com',7),
-('Maria','Rodriguez','','maria.r@gardening.com',7),
-('Beatriz','Fernandez','','beatriz.f@gardening.com',7),
-('Victoria','Cruz','','victoria.c@gardening.com',7),
-('Luis','Martinez','','luis.m@gardening.com',7),
-('Mario','Suarez','','mario.s@gardening.com',7),
-('Cristian','Rodrigez','','cristian.r@gardening.com',7),
-('Francisco','Camacho','','francisco.c@gardening.com',7),
-('Maria','Santillana','','maria.s@gardening.com',7),
-('Federico','Gomez','','federico.g@gardening.com',7),
-('Tony','Muñoz Mena','','tony.m@gardening.com',7),
-('Eva María','Sánchez','','eva.s@gardening.com',7),
-('Matías','San Martín','','matias.s@gardening.com',7),
-('Benito','Lopez','','benito.l@gardening.com',7),
-('Joseluis','Sanchez','','joseluis.s@gardening.com',7),
-('Sara','Marquez','','sara.m@gardening.com',7),
-('Luis','Jimenez','','luis.j@gardening.com',7),
-('FraÃ§ois','Toulou','','francois.t@gardening.com',7),
-('Pierre','Delacroux','','pierre.d@gardening.com',7),
-('Jacob','Jones','','jacob.j@gardening.com',7),
-('Antonio','Romero','','antonio.r@gardening.com',7),
-('Richard','Mcain','','richard.m@gardening.com',7),
-('Justin','Smith','','justin.s@gardening.com',7);
+INSERT INTO persons (FirstName, LastName1, LastName2, Email, PersonTypeId, Password) VALUES 
+('Marcos','Magaña','Perez','marcos@gardening.es',1,"password"),
+('Ruben','López','Martinez','rlopez@gardening.es',2,"password"),
+('Alberto','Soria','Carrasco','asoria@gardening.es',3,"password"),
+('Maria','Solís','Jerez','msolis@gardening.es',4,"password"),
+('Felipe','Rosas','Marquez','frosas@gardening.es',5,"password"),
+('Juan Carlos','Ortiz','Serrano','cortiz@gardening.es',5,"password"),
+('Carlos','Soria','Jimenez','csoria@gardening.es',6,"password"),
+('Mariano','López','Murcia','mlopez@gardening.es',5,"password"),
+('Lucio','Campoamor','Martín','lcampoamor@gardening.es',5,"password"),
+('Hilario','Rodriguez','Huertas','hrodriguez@gardening.es',5,"password"),
+('Emmanuel','Magaña','Perez','manu@gardening.es',6,"password"),
+('José Manuel','Martinez','De la Osa','jmmart@hotmail.es',5,"password"),
+('David','Palma','Aceituno','dpalma@gardening.es',5,"password"),
+('Oscar','Palma','Aceituno','opalma@gardening.es',5,"password"),
+('Francois','Fignon','','ffignon@gardening.com',6,"password"),
+('Lionel','Narvaez','','lnarvaez@gardening.com',5,"password"),
+('Laurent','Serra','','lserra@gardening.com',5,"password"),
+('Michael','Bolton','','mbolton@gardening.com',6,"password"),
+('Walter Santiago','Sanchez','Lopez','wssanchez@gardening.com',5,"password"),
+('Hilary','Washington','','hwashington@gardening.com',6,"password"),
+('Marcus','Paxton','','mpaxton@gardening.com',5,"password"),
+('Lorena','Paxton','','lpaxton@gardening.com',5,"password"),
+('Nei','Nishikori','','nnishikori@gardening.com',6,"password"),
+('Narumi','Riko','','nriko@gardening.com',5,"password"),
+('Takuma','Nomura','','tnomura@gardening.com',5,"password"),
+('Amy','Johnson','','ajohnson@gardening.com',6,"password"),
+('Larry','Westfalls','','lwestfalls@gardening.com',5,"password"),
+('John','Walton','','jwalton@gardening.com',5,"password"),
+('Kevin','Fallmer','','kfalmer@gardening.com',6,"password"),
+('Julian','Bellinelli','','jbellinelli@gardening.com',5,"password"),
+('Mariko','Kishi','','mkishi@gardening.com',5,"password"),
+('Daniel G','GoldFish','','daniel.g@gardening.com',7,"password"),
+('Anne','Wright','','anne.w@gardening.com',7,"password"),
+('Link','Flaute','','link.f@gardening.com',7,"password"),
+('Akane','Tendo','','akane.t@gardening.com',7,"password"),
+('Antonio','Lasas','','antonio.l@gardening.com',7,"password"),
+('Jose','Bermejo','','jose.b@gardening.com',7,"password"),
+('Paco','Lopez','','paco.l@gardening.com',7,"password"),
+('Naturagua','Guillermo','','guillermo.r@gardening.com',7,"password"),
+('David','Serrano','','david.s@gardening.com',7,"password"),
+('Jose','Tacaño','','jose.t@gardening.com',7,"password"),
+('Antonio','Lasas','','antonio.l@gardening.com',7,"password"),
+('Pedro','Camunas','','pedro.c@gardening.com',7,"password"),
+('Juan','Rodriguez','','juan.r@gardening.com',7,"password"),
+('Javier','Villar','','javier.v@gardening.com',7,"password"),
+('Maria','Rodriguez','','maria.r@gardening.com',7,"password"),
+('Beatriz','Fernandez','','beatriz.f@gardening.com',7,"password"),
+('Victoria','Cruz','','victoria.c@gardening.com',7,"password"),
+('Luis','Martinez','','luis.m@gardening.com',7,"password"),
+('Mario','Suarez','','mario.s@gardening.com',7,"password"),
+('Cristian','Rodrigez','','cristian.r@gardening.com',7,"password"),
+('Francisco','Camacho','','francisco.c@gardening.com',7,"password"),
+('Maria','Santillana','','maria.s@gardening.com',7,"password"),
+('Federico','Gomez','','federico.g@gardening.com',7,"password"),
+('Tony','Muñoz Mena','','tony.m@gardening.com',7,"password"),
+('Eva María','Sánchez','','eva.s@gardening.com',7,"password"),
+('Matías','San Martín','','matias.s@gardening.com',7,"password"),
+('Benito','Lopez','','benito.l@gardening.com',7,"password"),
+('Joseluis','Sanchez','','joseluis.s@gardening.com',7,"password"),
+('Sara','Marquez','','sara.m@gardening.com',7,"password"),
+('Luis','Jimenez','','luis.j@gardening.com',7,"password"),
+('FraÃ§ois','Toulou','','francois.t@gardening.com',7,"password"),
+('Pierre','Delacroux','','pierre.d@gardening.com',7,"password"),
+('Jacob','Jones','','jacob.j@gardening.com',7,"password"),
+('Antonio','Romero','','antonio.r@gardening.com',7,"password"),
+('Richard','Mcain','','richard.m@gardening.com',7,"password"),
+('Justin','Smith','','justin.s@gardening.com',7,"password");
 
 
-INSERT INTO office VALUES ('BCN-ES',26,'+34 93 3561182','Avenida Diagonal, 38','3A escalera Derecha'),
+INSERT INTO offices (Id, PostalCodeId, Phone, AddressLine1, AddressLine2) VALUES 
+('BCN-ES',26,'+34 93 3561182','Avenida Diagonal, 38','3A escalera Derecha'),
 ('BOS-USA',27,'+1 215 837 0825','1550 Court Place','Suite 102'),
 ('LON-UK',28,'+44 20 78772041','52 Old Broad Street','Ground Floor'),
 ('MAD-ES',29,'+34 91 7514487','Bulevar Indalecio Prieto, 32',''),
@@ -401,7 +813,7 @@ INSERT INTO office VALUES ('BCN-ES',26,'+34 93 3561182','Avenida Diagonal, 38','
 ('TAL-ES',33,'+34 925 867231','Francisco Aguirre, 32','5º piso (exterior)'),
 ('TOK-JP',34,'+81 33 224 5000','4-1 Kioicho','');
 
-INSERT INTO employee(person_id,extention,office_code,manager_code) VALUES 
+INSERT INTO employees (PersonId, Extention, OfficeCode, ManagerCode	) VALUES 
 (1,'3897','TAL-ES',NULL),
 (2,'2899','TAL-ES',1),
 (3,'2837','TAL-ES',2),
@@ -434,7 +846,7 @@ INSERT INTO employee(person_id,extention,office_code,manager_code) VALUES
 (30,'3211','SYD-AU',29),
 (31,'3211','SYD-AU',29);
 
-INSERT INTO client ( client_name, person_id, phone, fax, line_address, line_address2, postal_code_id, cod_employee, credit_limit) VALUES 
+INSERT INTO clients ( ClientName, PersonId, Phone, Fax, LineAddress, LineAddress2, PostalCodeId, CodEmployee, CreditLimit) VALUES 
 ( 'GoldFish Garden', 32, '5556901745', '5556901746', 'False Street 52 2 A', NULL, 1, 19, 3000),
 ( 'Gardening Associates', 33, '5557410345', '5557410346', 'Wall-e Avenue', NULL, 2, 19, 6000),
 ( 'Gerudo Valley', 34, '5552323129', '5552323128', 'Oaks Avenue nº22', NULL, 3, 22, 12000),
@@ -472,12 +884,12 @@ INSERT INTO client ( client_name, person_id, phone, fax, line_address, line_addr
 ( 'The Magic Garden', 66, '926523468', '9364875882', 'Lihgting Park', NULL, 39, 18, 10000),
 ( 'El Jardin Viviente S.L', 67, '2 8005-7161', '2 8005-7162', '176 Cumberland Street The rocks', NULL, 40, 31, 8000);
 
-INSERT INTO method_payment (method_payment) VALUES
+INSERT INTO methodpayments (MethodPayment1) VALUES
  ('PayPal'),
  ('Transferencia'),
  ('Cheque');
  
-INSERT INTO payment (client_code, method_id, transaction_id, payment_date, total) VALUES
+INSERT INTO payments (Id, MethodId, TransactionId, PaymentDate, Total) VALUES
  (1, 1, 'ak-std-000001', '2008-11-10', 2000),
  (1, 1, 'ak-std-000002', '2008-12-10', 2000),
  (2, 1, 'ak-std-000003', '2009-01-16', 5000),
@@ -505,141 +917,141 @@ INSERT INTO payment (client_code, method_id, transaction_id, payment_date, total
  (33, 1, 'ak-std-000025', '2007-10-06', 3321),
  (36, 1, 'ak-std-000026', '2006-05-26', 1171);
 
- INSERT INTO status VALUES
- (1, 'Entregado'),
- (2, 'Rechazado'),
- (3, 'Pendiente');
+ INSERT INTO status(NameStatus) VALUES
+ ( 'Entregado'),
+ ( 'Rechazado'),
+ ( 'Pendiente');
  
 
-INSERT INTO orders VALUES 
- (1,'2006-01-17','2006-01-19','2006-01-19',1,'Pagado a plazos',4),
- (2,'2007-10-23','2007-10-28','2007-10-26',1,'La entrega llego antes de lo esperado',4),
- (3,'2008-06-20','2008-06-25',NULL,2,'Limite de credito superado',4),
- (4,'2009-01-20','2009-01-26',NULL,3,NULL,4),
- (8,'2008-11-09','2008-11-14','2008-11-14',1,'El cliente paga la mitad con tarjeta y la otra mitad con efectivo, se le realizan dos facturas',1),
- (9,'2008-12-22','2008-12-27','2008-12-28',1,'El cliente comprueba la integridad del paquete, todo correcto',1),
- (10,'2009-01-15','2009-01-20',NULL,3,'El cliente llama para confirmar la fecha - Esperando al proveedor',2),
- (11,'2009-01-20','2009-01-27',NULL,3,'El cliente requiere que el pedido se le entregue de 16:00h a 22:00h',1),
- (12,'2009-01-22','2009-01-27',NULL,3,'El cliente requiere que el pedido se le entregue de 9:00h a 13:00h',1),
- (13,'2009-01-12','2009-01-14','2009-01-15',1,NULL,6),
- (14,'2009-01-02','2009-01-02',null,2,'mal pago',6),
- (15,'2009-01-09','2009-01-12','2009-01-11',1,NULL,6),
- (16,'2009-01-06','2009-01-07','2009-01-15',1,NULL,6),
- (17,'2009-01-08','2009-01-09','2009-01-11',1,'mal estado',6),
- (18,'2009-01-05','2009-01-06','2009-01-07',1,NULL,8),
- (19,'2009-01-18','2009-02-12',NULL,3,'entregar en murcia',8),
- (20,'2009-01-20','2009-02-15',NULL,3,NULL,8),
- (21,'2009-01-09','2009-01-09','2009-01-09',2,'mal pago',8),
- (22,'2009-01-11','2009-01-11','2009-01-13',1,NULL,8),
- (23,'2008-12-30','2009-01-10',NULL,2,'El pedido fue anulado por el cliente',4),
- (24,'2008-07-14','2008-07-31','2008-07-25',1,NULL,13),
- (25,'2009-02-02','2009-02-08',NULL,2,'El cliente carece de saldo en la cuenta asociada',1),
- (26,'2009-02-06','2009-02-12',NULL,2,'El cliente anula la operacion para adquirir mas producto',2),
- (27,'2009-02-07','2009-02-13',NULL,1,'El pedido aparece como entregado pero no sabemos en que fecha',2),
- (28,'2009-02-10','2009-02-17','2009-02-20',1,'El cliente se queja bastante de la espera asociada al producto',2),
- (29,'2008-08-01','2008-09-01','2008-09-01',2,'El cliente no está conforme con el pedido',13),
- (30,'2008-08-03','2008-09-03','2008-08-31',1,NULL,12),
- (31,'2008-09-04','2008-09-30','2008-10-04',2,'El cliente ha rechazado por llegar 5 dias tarde',12),
- (32,'2007-01-07','2007-01-19','2007-01-27',1,'Entrega tardia, el cliente puso reclamacion',3),
- (33,'2007-05-20','2007-05-28',NULL,2,'El pedido fue anulado por el cliente',3),
- (34,'2007-06-20','2008-06-28','2008-06-28',1,'Pagado a plazos',3),
- (35,'2008-03-10','2009-03-20',NULL,2,'Limite de credito superado',3),
- (36,'2008-10-15','2008-12-15','2008-12-10',1,NULL,13),
- (37,'2008-11-03','2009-11-13',NULL,3,'El pedido nunca llego a su destino',3),
- (38,'2009-03-05','2009-03-06','2009-03-07',1,NULL,18),
- (39,'2009-03-06','2009-03-07','2009-03-09',3,NULL,18),
- (40,'2009-03-09','2009-03-10','2009-03-13',2,NULL,18),
- (41,'2009-03-12','2009-03-13','2009-03-13',1,NULL,18),
- (42,'2009-03-22','2009-03-23','2009-03-27',1,NULL,18),
- (43,'2009-03-25','2009-03-26','2009-03-28',3,NULL,22),
- (44,'2009-03-26','2009-03-27','2009-03-30',3,NULL,22),
- (45,'2009-04-01','2009-03-04','2009-03-07',1,NULL,22),
- (46,'2009-04-03','2009-03-04','2009-03-05',2,NULL,22),
- (47,'2009-04-15','2009-03-17','2009-03-17',1,NULL,22),
- (48,'2008-03-17','2008-03-30','2008-03-29',1,'Según el Cliente, el pedido llegó defectuoso',25),
- (49,'2008-07-12','2008-07-22','2008-07-30',1,'El pedido llegó 1 día tarde, pero no hubo queja por parte de la empresa compradora',25),
- (50,'2008-03-17','2008-08-09',NULL,3,'Al parecer, el pedido se ha extraviado a la altura de Sotalbo (Ávila)',25),
- (51,'2008-10-01','2008-10-14','2008-10-14',1,'Todo se entregó a tiempo y en perfecto estado, a pesar del pésimo estado de las carreteras.',25),
- (52,'2008-12-07','2008-12-21',NULL,3,'El transportista ha llamado a Eva María para indicarle que el pedido llegará más tarde de lo esperado.',25),
- (53,'2008-10-15','2008-11-15','2008-11-09',1,'El pedido llega 6 dias antes',12),
- (54,'2009-01-11','2009-02-11',NULL,3,NULL,13),
- (55,'2008-12-10','2009-01-10','2009-01-11',1,'Retrasado 1 dia por problemas de transporte',13),
- (56,'2008-12-19','2009-01-20',NULL,2,'El cliente a anulado el pedido el dia 2009-01-10',12),
- (57,'2009-01-05','2009-02-05',NULL,3,NULL,12),
- (58,'2009-01-24','2009-01-31','2009-01-30',1,'Todo correcto',2),
- (59,'2008-11-09','2008-11-14','2008-11-14',1,'El cliente paga la mitad con tarjeta y la otra mitad con efectivo, se le realizan dos facturas',1),
- (60,'2008-12-22','2008-12-27','2008-12-28',1,'El cliente comprueba la integridad del paquete, todo correcto',1),
- (61,'2009-01-15','2009-01-20',NULL,3,'El cliente llama para confirmar la fecha - Esperando al proveedor',2),
- (62,'2009-01-20','2009-01-27',NULL,3,'El cliente requiere que el pedido se le entregue de 16:00h a 22:00h',1),
- (63,'2009-01-22','2009-01-27',NULL,3,'El cliente requiere que el pedido se le entregue de 9:00h a 13:00h',1),
- (64,'2009-01-24','2009-01-31','2009-01-30',1,'Todo correcto',1),
- (65,'2009-02-02','2009-02-08',NULL,2,'El cliente carece de saldo en la cuenta asociada',1),
- (66,'2009-02-06','2009-02-12',NULL,2,'El cliente anula la operacion para adquirir mas producto',2),
- (67,'2009-02-07','2009-02-13',NULL,1,'El pedido aparece como entregado pero no sabemos en que fecha',2),
- (68,'2009-02-10','2009-02-17','2009-02-20',1,'El cliente se queja bastante de la espera asociada al producto',2),
- (74,'2009-01-14','2009-01-22',NULL,2,'El pedido no llego el dia que queria el cliente por fallo del transporte',14),
- (75,'2009-01-11','2009-01-13','2009-01-13',1,'El pedido llego perfectamente',14),
- (76,'2008-11-15','2008-11-23','2008-11-23',1,NULL,14),
- (77,'2009-01-03','2009-01-08',NULL,3,'El pedido no pudo ser entregado por problemas meteorologicos',14),
- (78,'2008-12-15','2008-12-17','2008-12-17',1,'Fue entregado, pero faltaba mercancia que sera entregada otro dia',14),
- (79,'2009-01-12','2009-01-13','2009-01-13',1,NULL,27),
- (80,'2009-01-25','2009-01-26',NULL,3,'No terminó el pago',27),
- (81,'2009-01-18','2009-01-24',NULL,2,'Los producto estaban en mal estado',27),
- (82,'2009-01-20','2009-01-29','2009-01-29',1,'El pedido llego un poco mas tarde de la hora fijada',27),
- (83,'2009-01-24','2009-01-28',NULL,1,NULL,27),
- (89,'2007-10-05','2007-12-13','2007-12-10',1,'La entrega se realizo dias antes de la fecha esperada por lo que el cliente quedo satisfecho',33),
- (90,'2009-02-07','2008-02-17',NULL,3,'Debido a la nevada caída en la sierra, el pedido no podrá llegar hasta el día ',26),
- (91,'2009-03-18','2009-03-29','2009-03-27',1,'Todo se entregó a su debido tiempo, incluso con un día de antelación',26),
- (92,'2009-04-19','2009-04-30','2009-05-03',1,'El pedido se entregó tarde debido a la festividad celebrada en España durante esas fechas',26),
- (93,'2009-05-03','2009-05-30','2009-05-17',1,'El pedido se entregó antes de lo esperado.',26),
- (94,'2009-10-18','2009-11-01',NULL,3,'El pedido está en camino.',26),
- (95,'2008-01-04','2008-01-19','2008-01-19',1,NULL,33),
- (96,'2008-03-20','2008-04-12','2008-04-13',1,'La entrega se retraso undia',33),
- (97,'2008-10-08','2008-11-25','2008-11-25',1,NULL,33),
- (98,'2009-01-08','2009-02-13',NULL,3,NULL,33),
- (99,'2009-02-15','2009-02-27',NULL,3,NULL,15),
- (100,'2009-01-10','2009-01-15','2009-01-15',1,'El pedido llego perfectamente',15),
- (101,'2009-03-07','2009-03-27',NULL,2,'El pedido fue rechazado por el cliente',15),
- (102,'2008-12-28','2009-01-08','2009-01-08',1,'Pago pendiente',15),
- (103,'2009-01-15','2009-01-20','2009-01-24',3,NULL,29),
- (104,'2009-03-02','2009-03-06','2009-03-06',1,NULL,29),
- (105,'2009-02-14','2009-02-20',NULL,2,'el producto ha sido rechazado por la pesima calidad',29),
- (106,'2009-05-13','2009-05-15','2009-05-20',3,NULL,29),
- (107,'2009-04-06','2009-04-10','2009-04-10',1,NULL,29),
- (108,'2009-04-09','2009-04-15','2009-04-15',1,NULL,15),
- (109,'2006-05-25','2006-07-28','2006-07-28',1,NULL,36),
- (110,'2007-03-19','2007-04-24','2007-04-24',1,NULL,36),
- (111,'2008-03-05','2008-03-30','2008-03-30',1,NULL,34),
- (112,'2009-03-05','2009-04-06','2009-05-07',3,NULL,34),
- (113,'2008-10-28','2008-11-09','2009-01-09',2,'El producto ha sido rechazado por la tardanza de el envio',34),
- (114,'2009-01-15','2009-01-29','2009-01-31',1,'El envio llego dos dias más tarde debido al mal tiempo',34),
- (115,'2008-11-29','2009-01-26','2009-02-27',3,NULL,34),
- (116,'2008-06-28','2008-08-01','2008-08-01',1,NULL,36),
- (117,'2008-08-25','2008-10-01',NULL,2,'El pedido ha sido rechazado por la acumulacion de pago pendientes del cliente',36),
- (118,'2009-02-15','2009-02-27',NULL,3,NULL,15),
- (119,'2009-01-10','2009-01-15','2009-01-15',1,'El pedido llego perfectamente',15),
- (120,'2009-03-07','2009-03-27',NULL,2,'El pedido fue rechazado por elcliente',15),
- (121,'2008-12-28','2009-01-08','2009-01-08',1,'Pago pendiente',15),
- (122,'2009-04-09','2009-04-15','2009-04-15',1,NULL,15),
- (123,'2009-01-15','2009-01-20','2009-01-24',3,NULL,29),
- (124,'2009-03-02','2009-03-06','2009-03-06',1,NULL,29),
- (125,'2009-02-14','2009-02-20',NULL,2,'el producto ha sido rechazado por la pesima calidad',29),
- (126,'2009-05-13','2009-05-15','2009-05-20',3,NULL,29),
- (127,'2009-04-06','2009-04-10','2009-04-10',1,NULL,29),
- (128,'2008-11-10','2008-12-10','2008-12-29',2,'El pedido ha sido rechazado por el cliente por el retraso en la entrega',36);
+INSERT INTO orders(Id, OrderDate, ExpectedDate, DeliveryDate, StatusCode, Comments, ClientCode) VALUES 
+ (1, '2006-01-17', '2006-01-19', '2006-01-19', 1, 'Pagado a plazos', 4),
+(2, '2007-10-23', '2007-10-28', '2007-10-26', 1, 'La entrega llego antes de lo esperado', 4),
+(3, '2008-06-20', '2008-06-25', NULL, 2, 'Limite de credito superado', 4),
+(4, '2009-01-20', '2009-01-26', NULL, 3, NULL, 4),
+(8, '2008-11-09', '2008-11-14', '2008-11-14', 1, 'El cliente paga la mitad con tarjeta y la otra mitad con efectivo, se le realizan dos facturas', 1),
+(9, '2008-12-22', '2008-12-27', '2008-12-28', 1, 'El cliente comprueba la integridad del paquete, todo correcto', 1),
+(10, '2009-01-15', '2009-01-20', NULL, 3, 'El cliente llama para confirmar la fecha - Esperando al proveedor', 2),
+(11, '2009-01-20', '2009-01-27', NULL, 3, 'El cliente requiere que el pedido se le entregue de 16:00h a 22:00h', 1),
+(12, '2009-01-22', '2009-01-27', NULL, 3, 'El cliente requiere que el pedido se le entregue de 9:00h a 13:00h', 1),
+(13, '2009-01-12', '2009-01-14', '2009-01-15', 1, NULL, 6),
+(14, '2009-01-02', '2009-01-02', NULL, 2, 'mal pago', 6),
+(15, '2009-01-09', '2009-01-12', '2009-01-11', 1, NULL, 6),
+(16, '2009-01-06', '2009-01-07', '2009-01-15', 1, NULL, 6),
+(17, '2009-01-08', '2009-01-09', '2009-01-11', 1, 'mal estado', 6),
+(18, '2009-01-05', '2009-01-06', '2009-01-07', 1, NULL, 8),
+(19, '2009-01-18', '2009-02-12', NULL, 3, 'entregar en murcia', 8),
+(20, '2009-01-20', '2009-02-15', NULL, 3, NULL, 8),
+(21, '2009-01-09', '2009-01-09', '2009-01-09', 2, 'mal pago', 8),
+(22, '2009-01-11', '2009-01-11', '2009-01-13', 1, NULL, 8),
+(23, '2008-12-30', '2009-01-10', NULL, 2, 'El pedido fue anulado por el cliente', 4),
+(24, '2008-07-14', '2008-07-31', '2008-07-25', 1, NULL, 13),
+(25, '2009-02-02', '2009-02-08', NULL, 2, 'El cliente carece de saldo en la cuenta asociada', 1),
+(26, '2009-02-06', '2009-02-12', NULL, 2, 'El cliente anula la operacion para adquirir mas producto', 2),
+(27, '2009-02-07', '2009-02-13', NULL, 1, 'El pedido aparece como entregado pero no sabemos en que fecha', 2),
+(28, '2009-02-10', '2009-02-17', '2009-02-20', 1, 'El cliente se queja bastante de la espera asociada al producto', 2),
+(29, '2008-08-01', '2008-09-01', '2008-09-01', 2, 'El cliente no está conforme con el pedido', 13),
+(30, '2008-08-03', '2008-09-03', '2008-08-31', 1, NULL, 12),
+(31, '2008-09-04', '2008-09-30', '2008-10-04', 2, 'El cliente ha rechazado por llegar 5 dias tarde', 12),
+(32, '2007-01-07', '2007-01-19', '2007-01-27', 1, 'Entrega tardia, el cliente puso reclamacion', 3),
+(33, '2007-05-20', '2007-05-28', NULL, 2, 'El pedido fue anulado por el cliente', 3),
+(34, '2007-06-20', '2008-06-28', '2008-06-28', 1, 'Pagado a plazos', 3),
+(35, '2008-03-10', '2009-03-20', NULL, 2, 'Limite de credito superado', 3),
+(36, '2008-10-15', '2008-12-15', '2008-12-10', 1, NULL, 13),
+(37, '2008-11-03', '2009-11-13', NULL, 3, 'El pedido nunca llego a su destino', 3),
+(38, '2009-03-05', '2009-03-06', '2009-03-07', 1, NULL, 18),
+(39, '2009-03-06', '2009-03-07', '2009-03-09', 3, NULL, 18),
+(40, '2009-03-09', '2009-03-10', '2009-03-13', 2, NULL, 18),
+(41, '2009-03-12', '2009-03-13', '2009-03-13', 1, NULL, 18),
+(42, '2009-03-22', '2009-03-23', '2009-03-27', 1, NULL, 18),
+(43, '2009-03-25', '2009-03-26', '2009-03-28', 3, NULL, 22),
+(44, '2009-03-26', '2009-03-27', '2009-03-30', 3, NULL, 22),
+(45, '2009-04-01', '2009-03-04', '2009-03-07', 1, NULL, 22),
+(46, '2009-04-03', '2009-03-04', '2009-03-05', 2, NULL, 22),
+(47, '2009-04-15', '2009-03-17', '2009-03-17', 1, NULL, 22),
+(48, '2008-03-17', '2008-03-30', '2008-03-29', 1, 'Según el Cliente, el pedido llegó defectuoso', 25),
+(49, '2008-07-12', '2008-07-22', '2008-07-30', 1, 'El pedido llegó 1 día tarde, pero no hubo queja por parte de la empresa compradora', 25),
+(50, '2008-03-17', '2008-08-09', NULL, 3, 'Al parecer, el pedido se ha extraviado a la altura de Sotalbo (Ávila)', 25),
+(51, '2008-10-01', '2008-10-14', '2008-10-14', 1, 'Todo se entregó a tiempo y en perfecto estado, a pesar del pésimo estado de las carreteras.', 25),
+(52, '2008-12-07', '2008-12-21', NULL, 3, 'El transportista ha llamado a Eva María para indicarle que el pedido llegará más tarde de lo esperado.', 25),
+(53, '2008-10-15', '2008-11-15', '2008-11-09', 1, 'El pedido llega 6 dias antes', 12),
+(54, '2009-01-11', '2009-02-11', NULL, 3, NULL, 13),
+(55, '2008-12-10', '2009-01-10', '2009-01-11', 1, 'Retrasado 1 dia por problemas de transporte', 13),
+(56, '2008-12-19', '2009-01-20', NULL, 2, 'El cliente a anulado el pedido el dia 2009-01-10', 12),
+(57, '2009-01-05', '2009-02-05', NULL, 3, NULL, 12),
+(58, '2009-01-24', '2009-01-31', '2009-01-30', 1, 'Todo correcto', 2),
+(59, '2008-11-09', '2008-11-14', '2008-11-14', 1, 'El cliente paga la mitad con tarjeta y la otra mitad con efectivo, se le realizan dos facturas', 1),
+(60, '2008-12-22', '2008-12-27', '2008-12-28', 1, 'El cliente comprueba la integridad del paquete, todo correcto', 1),
+(61, '2009-01-15', '2009-01-20', NULL, 3, 'El cliente llama para confirmar la fecha - Esperando al proveedor', 2),
+(62, '2009-01-20', '2009-01-27', NULL, 3, 'El cliente requiere que el pedido se le entregue de 16:00h a 22:00h', 1),
+(63, '2009-01-22', '2009-01-27', NULL, 3, 'El cliente requiere que el pedido se le entregue de 9:00h a 13:00h', 1),
+(64, '2009-01-24', '2009-01-31', '2009-01-30', 1, 'Todo correcto', 1),
+(65, '2009-02-02', '2009-02-08', NULL, 2, 'El cliente carece de saldo en la cuenta asociada', 1),
+(66, '2009-02-06', '2009-02-12', NULL, 2, 'El cliente anula la operacion para adquirir mas producto', 2),
+(67, '2009-02-07', '2009-02-13', NULL, 1, 'El pedido aparece como entregado pero no sabemos en que fecha', 2),
+(68, '2009-02-10', '2009-02-17', '2009-02-20', 1, 'El cliente se queja bastante de la espera asociada al producto', 2),
+(74, '2009-01-14', '2009-01-22', NULL, 2, 'El pedido no llego el dia que queria el cliente por fallo del transporte', 14),
+(75, '2009-01-11', '2009-01-13', '2009-01-13', 1, 'El pedido llego perfectamente', 14),
+(76, '2008-11-15', '2008-11-23', '2008-11-23', 1, NULL, 14),
+(77, '2009-01-03', '2009-01-08', NULL, 3, 'El pedido no pudo ser entregado por problemas meteorologicos', 14),
+(78, '2008-12-15', '2008-12-17', '2008-12-17', 1, 'Fue entregado, pero faltaba mercancia que sera entregada otro dia', 14),
+(79, '2009-01-12', '2009-01-13', '2009-01-13', 1, NULL, 27),
+(80, '2009-01-25', '2009-01-26', NULL, 3, 'No terminó el pago', 27),
+(81, '2009-01-18', '2009-01-24', NULL, 2, 'Los producto estaban en mal estado', 27),
+(82, '2009-01-20', '2009-01-29', '2009-01-29', 1, 'El pedido llego un poco mas tarde de la hora fijada', 27),
+(83, '2009-01-24', '2009-01-28', NULL, 1, NULL, 27),
+(89, '2007-10-05', '2007-12-13', '2007-12-10', 1, 'La entrega se realizo dias antes de la fecha esperada por lo que el cliente quedo satisfecho', 33),
+(90, '2009-02-07', '2008-02-17', NULL, 3, 'Debido a la nevada caída en la sierra, el pedido no podrá llegar hasta el día ', 26),
+(91, '2009-03-18', '2009-03-29', '2009-03-27', 1, 'Todo se entregó a su debido tiempo, incluso con un día de antelación', 26),
+(92, '2009-04-19', '2009-04-30', '2009-05-03', 1, 'El pedido se entregó tarde debido a la festividad celebrada en España durante esas fechas', 26),
+(93, '2009-05-03', '2009-05-30', '2009-05-17', 1, 'El pedido se entregó antes de lo esperado.', 26),
+(94, '2009-10-18', '2009-11-01', NULL, 3, 'El pedido está en camino.', 26),
+(95, '2008-01-04', '2008-01-19', '2008-01-19', 1, NULL, 33),
+(96, '2008-03-20', '2008-04-12', '2008-04-13', 1, 'La entrega se retraso undia', 33),
+(97, '2008-10-08', '2008-11-25', '2008-11-25', 1, NULL, 33),
+(98, '2009-01-08', '2009-02-13', NULL, 3, NULL, 33),
+(99, '2009-02-15', '2009-02-27', NULL, 3, NULL, 15),
+(100, '2009-01-10', '2009-01-15', '2009-01-15', 1, 'El pedido llego perfectamente', 15),
+(101, '2009-03-07', '2009-03-27', NULL, 2, 'El pedido fue rechazado por el cliente', 15),
+(102, '2008-12-28', '2009-01-08', '2009-01-08', 1, 'Pago pendiente', 15),
+(103, '2009-01-15', '2009-01-20', '2009-01-24', 3, NULL, 29),
+(104, '2009-03-02', '2009-03-06', '2009-03-06', 1, NULL, 29),
+(105, '2009-02-14', '2009-02-20', NULL, 2, 'el producto ha sido rechazado por la pesima calidad', 29),
+(106, '2009-05-13', '2009-05-15', '2009-05-20', 3, NULL, 29),
+(107, '2009-04-06', '2009-04-10', '2009-04-10', 1, NULL, 29),
+(108, '2009-04-09', '2009-04-15', '2009-04-15', 1, NULL, 15),
+(109, '2006-05-25', '2006-07-28', '2006-07-28', 1, NULL, 36),
+(110, '2007-03-19', '2007-04-24', '2007-04-24', 1, NULL, 36),
+(111, '2008-03-05', '2008-03-30', '2008-03-30', 1, NULL, 34),
+(112, '2009-03-05', '2009-04-06', '2009-05-07', 3, NULL, 34),
+(113, '2008-10-28', '2008-11-09', '2009-01-09', 2, 'El producto ha sido rechazado por la tardanza de el envio', 34),
+(114, '2009-01-15', '2009-01-29', '2009-01-31', 1, 'El envio llego dos dias más tarde debido al mal tiempo', 34),
+(115, '2008-11-29', '2009-01-26', '2009-02-27', 3, NULL, 34),
+(116, '2008-06-28', '2008-08-01', '2008-08-01', 1, NULL, 36),
+(117, '2008-08-25', '2008-10-01', NULL, 2, 'El pedido ha sido rechazado por la acumulacion de pago pendientes del cliente', 36),
+(118, '2009-02-15', '2009-02-27', NULL, 3, NULL, 15),
+(119, '2009-01-10', '2009-01-15', '2009-01-15', 1, 'El pedido llego perfectamente', 15),
+(120, '2009-03-07', '2009-03-27', NULL, 2, 'El pedido fue rechazado por elcliente', 15),
+(121, '2008-12-28', '2009-01-08', '2009-01-08', 1, 'Pago pendiente', 15),
+(122, '2009-04-09', '2009-04-15', '2009-04-15', 1, NULL, 15),
+(123, '2009-01-15', '2009-01-20', '2009-01-24', 3, NULL, 29),
+(124, '2009-03-02', '2009-03-06', '2009-03-06', 1, NULL, 29),
+(125, '2009-02-14', '2009-02-20', NULL, 2, 'el producto ha sido rechazado por la pesima calidad', 29),
+(126, '2009-05-13', '2009-05-15', '2009-05-20', 3, NULL, 29),
+(127, '2009-04-06', '2009-04-10', '2009-04-10', 1, NULL, 29),
+(128, '2008-11-10', '2008-12-10', '2008-12-29', 2, 'El pedido ha sido rechazado por el cliente por el retraso en la entrega', 36);
 
-INSERT INTO supplier VALUES
- (1, 'HiperGarden Tools', '+1234567890', 'Fax1234567890'),
- (2, 'Murcia Seasons', '+2345678901', 'Fax2345678901'),
- (3, 'Frutales Talavera S.A', '+3456789012', 'Fax3456789012'),
- (4, 'NaranjasValencianas.com', '+4567890123', 'Fax4567890123'),
- (5, 'Melocotones de Cieza S.A.', '+5678901234', 'Fax5678901234'),
- (6, 'Viveros EL OASIS', '+6789012345', 'Fax6789012345'),
- (7, 'Jerte Distribuciones S.L.','+57412441234','Fax5641241444'),
- (8,"Valencia Garden Service","+51441491241","Fax5908172347");
+INSERT INTO suppliers(Name, Phone, Fax) VALUES
+ ( 'HiperGarden Tools', '+1234567890', 'Fax1234567890'),
+ ( 'Murcia Seasons', '+2345678901', 'Fax2345678901'),
+ ( 'Frutales Talavera S.A', '+3456789012', 'Fax3456789012'),
+ ( 'NaranjasValencianas.com', '+4567890123', 'Fax4567890123'),
+ ( 'Melocotones de Cieza S.A.', '+5678901234', 'Fax5678901234'),
+ ( 'Viveros EL OASIS', '+6789012345', 'Fax6789012345'),
+ ( 'Jerte Distribuciones S.L.','+57412441234','Fax5641241444'),
+ ( 'Valencia Garden Service','+51441491241','Fax5908172347');
 
 
-INSERT INTO product_line(product_line,description_text,description_html,image) VALUES 
+INSERT INTO productlines(ProductLine1, DescriptionText, DescriptionHtml, Image) VALUES 
 ('Herbaceas','Plantas para jardin decorativas',NULL,NULL),
 ('Herramientas','Herramientas para todo tipo de acción',NULL,NULL),
 ('Aromáticas','Plantas aromáticas',NULL,NULL),
@@ -647,7 +1059,7 @@ INSERT INTO product_line(product_line,description_text,description_html,image) V
 ('Ornamentales','Plantas vistosas para la decoración del jardín',NULL,NULL);
 
 
-INSERT INTO product VALUES 
+INSERT INTO products(Id, Name, ProductLine, Dimensions, IdSupplier, Description, StockQuantity, SellingPrice, SupplierPrice) VALUES 
 ('11679','Sierra de Poda 400MM',2,'0,258',1,'Gracias a la poda se consigue
 manipular un poco la naturaleza, dándole la forma que más nos guste. Este trabajo básico de jardinería
 también facilita que las plantas crezcan de un modo más equilibrado, y que las flores y los frutos vuelvan
@@ -1544,322 +1956,323 @@ curvada, con los bordes algo constreñidos entre las semillas, que se disponen e
 longitudinalmente...',100,14,11);
 
 
- INSERT INTO order_detail VALUES (1,'FR-67',10,70,3),
-(1,'OR-127',40,4,1),
-(1,'OR-141',25,4,2),
-(1,'OR-241',15,19,4),
-(1,'OR-99',23,14,5),
-(2,'FR-4',3,29,6),
-(2,'FR-40',7,8,7),
-(2,'OR-140',50,4,3),
-(2,'OR-141',20,5,2),
-(2,'OR-159',12,6,5),
-(2,'OR-227',67,64,1),
-(2,'OR-247',5,462,4),
-(3,'FR-48',120,9,6),
-(3,'OR-122',32,5,4),
-(3,'OR-123',11,5,5),
-(3,'OR-213',30,266,1),
-(3,'OR-217',15,65,2),
-(3,'OR-218',24,25,3),
-(4,'FR-31',12,8,7),
-(4,'FR-34',42,8,6),
-(4,'FR-40',42,9,8),
-(4,'OR-152',3,6,5),
-(4,'OR-155',4,6,3),
-(4,'OR-156',17,9,4),
-(4,'OR-157',38,10,2),
-(4,'OR-222',21,59,1),
-(8,'FR-106',3,11,1),
-(8,'FR-108',1,32,2),
-(8,'FR-11',10,100,3),
-(9,'AR-001',80,1,3),
-(9,'AR-008',450,1,2),
-(9,'FR-106',80,8,1),
-(9,'FR-69',15,91,2),
-(10,'FR-82',5,70,2),
-(10,'FR-91',30,75,1),
-(10,'OR-234',5,64,3),
-(11,'AR-006',180,1,3),
-(11,'OR-247',80,8,1),
-(12,'AR-009',290,1,1),
-(13,'11679',5,14,1),
-(13,'21636',12,14,2),
-(13,'FR-11',5,100,3),
-(14,'FR-100',8,11,2),
-(14,'FR-13',13,57,1),
-(15,'FR-84',4,13,3),
-(15,'OR-101',2,6,2),
-(15,'OR-156',6,10,1),
-(15,'OR-203',9,10,4),
-(16,'30310',12,12,1),
-(16,'FR-36',10,9,2),
-(17,'11679',5,14,1),
-(17,'22225',5,12,3),
-(17,'FR-37',5,9,2),
-(17,'FR-64',5,22,4),
-(17,'OR-136',5,18,5),
-(18,'22225',4,12,2),
-(18,'FR-22',2,4,1),
-(18,'OR-159',10,6,3),
-(19,'30310',9,12,5),
-(19,'FR-23',6,8,4),
-(19,'FR-75',1,32,2),
-(19,'FR-84',5,13,1),
-(19,'OR-208',20,4,3),
-(20,'11679',14,14,1),
-(20,'30310',8,12,2),
-(21,'21636',5,14,3),
-(21,'FR-18',22,4,1),
-(21,'FR-53',3,8,2),
-(22,'OR-240',1,6,1),
-(23,'AR-002',110,1,4),
-(23,'FR-107',50,22,3),
-(23,'FR-85',4,70,2),
-(23,'OR-249',30,5,1),
-(24,'22225',3,15,1),
-(24,'FR-1',4,7,4),
-(24,'FR-23',2,7,2),
-(24,'OR-241',10,20,3),
-(25,'FR-77',15,69,1),
-(25,'FR-9',4,30,3),
-(25,'FR-94',10,30,2),
-(26,'FR-15',9,25,3),
-(26,'OR-188',4,25,1),
-(26,'OR-218',14,25,2),
-(27,'OR-101',22,6,2),
-(27,'OR-102',22,6,3),
-(27,'OR-186',40,6,1),
-(28,'FR-11',8,99,3),
-(28,'OR-213',3,266,2),
-(28,'OR-247',1,462,1),
-(29,'FR-82',4,70,4),
-(29,'FR-9',4,28,1),
-(29,'FR-94',20,31,5),
-(29,'OR-129',2,111,2),
-(29,'OR-160',10,9,3),
-(30,'AR-004',10,1,6),
-(30,'FR-108',2,32,2),
-(30,'FR-12',2,19,3),
-(30,'FR-72',4,31,5),
-(30,'FR-89',10,45,1),
-(30,'OR-120',5,5,4),
-(31,'AR-009',25,2,3),
-(31,'FR-102',1,20,1),
-(31,'FR-4',6,29,2),
-(32,'11679',1,14,4),
-(32,'21636',4,15,5),
-(32,'22225',1,15,3),
-(32,'OR-128',29,100,2),
-(32,'OR-193',5,20,1),
-(33,'FR-17',423,2,4),
-(33,'FR-29',120,8,3),
-(33,'OR-214',212,10,2),
-(33,'OR-247',150,462,1),
-(34,'FR-3',56,7,4),
-(34,'FR-7',12,29,3),
-(34,'OR-172',20,18,1),
-(34,'OR-174',24,18,2),
-(35,'21636',12,14,4),
-(35,'FR-47',55,8,3),
-(35,'OR-165',3,10,2),
-(35,'OR-181',36,10,1),
-(35,'OR-225',72,10,5),
-(36,'30310',4,12,2),
-(36,'FR-1',2,7,3),
-(36,'OR-147',6,7,4),
-(36,'OR-203',1,12,5),
-(36,'OR-99',15,13,1),
-(37,'FR-105',4,70,1),
-(37,'FR-57',203,8,2),
-(37,'OR-176',38,10,3),
-(38,'11679',5,14,1),
-(38,'21636',2,14,2),
-(39,'22225',3,12,1),
-(39,'30310',6,12,2),
-(40,'AR-001',4,1,1),
-(40,'AR-002',8,1,2),
-(41,'AR-003',5,1,1),
-(41,'AR-004',5,1,2),
-(42,'AR-005',3,1,1),
-(42,'AR-006',1,1,2),
-(43,'AR-007',9,1,1),
-(44,'AR-008',5,1,1),
-(45,'AR-009',6,1,1),
-(45,'AR-010',4,1,2),
-(46,'FR-1',4,7,1),
-(46,'FR-10',8,7,2),
-(47,'FR-100',9,11,1),
-(47,'FR-101',5,13,2),
-(48,'FR-102',1,18,1),
-(48,'FR-103',1,25,2),
-(48,'OR-234',50,64,1),
-(48,'OR-236',45,49,2),
-(48,'OR-237',50,19,3),
-(49,'OR-204',50,10,1),
-(49,'OR-205',10,10,2),
-(49,'OR-206',5,5,3),
-(50,'OR-225',12,10,1),
-(50,'OR-226',15,38,2),
-(50,'OR-227',44,64,3),
-(51,'OR-209',50,10,1),
-(51,'OR-210',80,39,2),
-(51,'OR-211',70,59,3),
-(53,'FR-2',1,7,1),
-(53,'FR-85',1,70,3),
-(53,'FR-86',2,11,2),
-(53,'OR-116',6,7,4),
-(54,'11679',3,14,3),
-(54,'FR-100',45,10,2),
-(54,'FR-18',5,4,1),
-(54,'FR-79',3,22,4),
-(54,'OR-116',8,7,6),
-(54,'OR-123',3,5,5),
-(54,'OR-168',2,10,7),
-(55,'OR-115',9,7,1),
-(55,'OR-213',2,266,2),
-(55,'OR-227',6,64,5),
-(55,'OR-243',2,64,4),
-(55,'OR-247',1,462,3),
-(56,'OR-129',1,115,5),
-(56,'OR-130',10,18,6),
-(56,'OR-179',1,6,3),
-(56,'OR-196',3,10,4),
-(56,'OR-207',4,4,2),
-(56,'OR-250',3,10,1),
-(57,'FR-69',6,91,4),
-(57,'FR-81',3,49,3),
-(57,'FR-84',2,13,1),
-(57,'FR-94',6,9,2),
-(58,'OR-102',65,18,3),
-(58,'OR-139',80,4,1),
-(58,'OR-172',69,15,2),
-(58,'OR-177',150,15,4),
-(74,'FR-67',15,70,1),
-(74,'OR-227',34,64,2),
-(74,'OR-247',42,8,3),
-(75,'AR-006',60,1,2),
-(75,'FR-87',24,22,3),
-(75,'OR-157',46,10,1),
-(76,'AR-009',250,1,5),
-(76,'FR-79',40,22,3),
-(76,'FR-87',24,22,4),
-(76,'FR-94',35,9,1),
-(76,'OR-196',25,10,2),
-(77,'22225',34,12,2),
-(77,'30310',15,12,1),
-(78,'FR-53',25,8,2),
-(78,'FR-85',56,70,3),
-(78,'OR-157',42,10,4),
-(78,'OR-208',30,4,1),
-(79,'OR-240',50,6,1),
-(80,'FR-11',40,100,3),
-(80,'FR-36',47,9,2),
-(80,'OR-136',75,18,1),
-(81,'OR-208',30,4,1),
-(82,'OR-227',34,64,1),
-(83,'OR-208',30,4,1),
-(89,'FR-108',3,32,2),
-(89,'FR-3',15,7,6),
-(89,'FR-42',12,8,4),
-(89,'FR-66',5,49,1),
-(89,'FR-87',4,22,3),
-(89,'OR-157',8,10,5),
-(90,'AR-001',19,1,1),
-(90,'AR-002',10,1,2),
-(90,'AR-003',12,1,3),
-(91,'FR-100',52,11,1),
-(91,'FR-101',14,13,2),
-(91,'FR-102',35,18,3),
-(92,'FR-108',12,23,1),
-(92,'FR-11',20,100,2),
-(92,'FR-12',30,21,3),
-(93,'FR-54',25,9,1),
-(93,'FR-58',51,11,2),
-(93,'FR-60',3,32,3),
-(94,'11679',12,14,1),
-(94,'FR-11',33,100,3),
-(94,'FR-4',79,29,2),
-(95,'FR-10',9,7,2),
-(95,'FR-75',6,32,1),
-(95,'FR-82',5,70,3),
-(96,'FR-43',6,8,1),
-(96,'FR-6',16,7,4),
-(96,'FR-71',10,22,3),
-(96,'FR-90',4,70,2),
-(97,'FR-41',12,8,1),
-(97,'FR-54',14,9,2),
-(97,'OR-156',10,10,3),
-(98,'FR-33',14,8,4),
-(98,'FR-56',16,8,3),
-(98,'FR-60',8,32,1),
-(98,'FR-8',18,6,5),
-(98,'FR-85',6,70,2),
-(99,'OR-157',15,10,2),
-(99,'OR-227',30,64,1),
-(100,'FR-87',20,22,1),
-(100,'FR-94',40,9,2),
-(101,'AR-006',50,1,1),
-(101,'AR-009',159,1,2),
-(102,'22225',32,12,2),
-(102,'30310',23,12,1),
-(103,'FR-53',12,8,2),
-(103,'OR-208',52,4,1),
-(104,'FR-85',9,70,1),
-(104,'OR-157',113,10,2),
-(105,'OR-227',21,64,2),
-(105,'OR-240',27,6,1),
-(106,'AR-009',231,1,1),
-(106,'OR-136',47,18,2),
-(107,'30310',143,12,2),
-(107,'FR-11',15,100,1),
-(108,'FR-53',53,8,1),
-(108,'OR-208',59,4,2),
-(109,'FR-22',8,4,5),
-(109,'FR-36',12,9,3),
-(109,'FR-45',14,8,4),
-(109,'OR-104',20,10,1),
-(109,'OR-119',10,5,2),
-(109,'OR-125',3,5,6),
-(109,'OR-130',2,18,7),
-(110,'AR-010',6,1,3),
-(110,'FR-1',14,7,1),
-(110,'FR-16',1,45,2),
-(116,'21636',5,14,1),
-(116,'AR-001',32,1,2),
-(116,'AR-005',18,1,5),
-(116,'FR-33',13,8,3),
-(116,'OR-200',10,4,4),
-(117,'FR-78',2,15,1),
-(117,'FR-80',1,32,3),
-(117,'OR-146',17,4,2),
-(117,'OR-179',4,6,4),
-(128,'AR-004',15,1,1),
-(128,'OR-150',18,2,2),
-(52,'FR-67',10,70,1),
-(59,'FR-67',10,70,1),
-(60,'FR-67',10,70,1),
-(61,'FR-67',10,70,1),
-(62,'FR-67',10,70,1),
-(63,'FR-67',10,70,1),
-(64,'FR-67',10,70,1),
-(65,'FR-67',10,70,1),
-(66,'FR-67',10,70,1),
-(67,'FR-67',10,70,1),
-(68,'FR-67',10,70,1),
-(111,'FR-67',10,70,1),
-(112,'FR-67',10,70,1),
-(113,'FR-67',10,70,1),
-(114,'FR-67',10,70,1),
-(115,'FR-67',10,70,1),
-(118,'FR-67',10,70,1),
-(119,'FR-67',10,70,1),
-(120,'FR-67',10,70,1),
-(121,'FR-67',10,70,1),
-(122,'FR-67',10,70,1),
-(123,'FR-67',10,70,1),
-(124,'FR-67',10,70,1),
-(125,'FR-67',10,70,1),
-(126,'FR-67',10,70,1),
-(127,'FR-67',10,70,1);
+ INSERT INTO orderdetails(Id, ProductCode, Quantity, UnitPrice, LineNumber) VALUES 
+(1, 'FR-67', 10, '70.00', 3),
+(1, 'OR-127', 40, '4.00', 1),
+(1, 'OR-141', 25, '4.00', 2),
+(1, 'OR-241', 15, '19.00', 4),
+(1, 'OR-99', 23, '14.00', 5),
+(2, 'FR-4', 3, '29.00', 6),
+(2, 'FR-40', 7, '8.00', 7),
+(2, 'OR-140', 50, '4.00', 3),
+(2, 'OR-141', 20, '5.00', 2),
+(2, 'OR-159', 12, '6.00', 5),
+(2, 'OR-227', 67, '64.00', 1),
+(2, 'OR-247', 5, '462.00', 4),
+(3, 'FR-48', 120, '9.00', 6),
+(3, 'OR-122', 32, '5.00', 4),
+(3, 'OR-123', 11, '5.00', 5),
+(3, 'OR-213', 30, '266.00', 1),
+(3, 'OR-217', 15, '65.00', 2),
+(3, 'OR-218', 24, '25.00', 3),
+(4, 'FR-31', 12, '8.00', 7),
+(4, 'FR-34', 42, '8.00', 6),
+(4, 'FR-40', 42, '9.00', 8),
+(4, 'OR-152', 3, '6.00', 5),
+(4, 'OR-155', 4, '6.00', 3),
+(4, 'OR-156', 17, '9.00', 4),
+(4, 'OR-157', 38, '10.00', 2),
+(4, 'OR-222', 21, '59.00', 1),
+(8, 'FR-106', 3, '11.00', 1),
+(8, 'FR-108', 1, '32.00', 2),
+(8, 'FR-11', 10, '100.00', 3),
+(9, 'AR-001', 80, '1.00', 3),
+(9, 'AR-008', 450, '1.00', 2),
+(9, 'FR-106', 80, '8.00', 1),
+(9, 'FR-69', 15, '91.00', 2),
+(10, 'FR-82', 5, '70.00', 2),
+(10, 'FR-91', 30, '75.00', 1),
+(10, 'OR-234', 5, '64.00', 3),
+(11, 'AR-006', 180, '1.00', 3),
+(11, 'OR-247', 80, '8.00', 1),
+(12, 'AR-009', 290, '1.00', 1),
+(13, '11679', 5, '14.00', 1),
+(13, '21636', 12, '14.00', 2),
+(13, 'FR-11', 5, '100.00', 3),
+(14, 'FR-100', 8, '11.00', 2),
+(14, 'FR-13', 13, '57.00', 1),
+(15, 'FR-84', 4, '13.00', 3),
+(15, 'OR-101', 2, '6.00', 2),
+(15, 'OR-156', 6, '10.00', 1),
+(15, 'OR-203', 9, '10.00', 4),
+(16, '30310', 12, '12.00', 1),
+(16, 'FR-36', 10, '9.00', 2),
+(17, '11679', 5, '14.00', 1),
+(17, '22225', 5, '12.00', 3),
+(17, 'FR-37', 5, '9.00', 2),
+(17, 'FR-64', 5, '22.00', 4),
+(17, 'OR-136', 5, '18.00', 5),
+(18, '22225', 4, '12.00', 2),
+(18, 'FR-22', 2, '4.00', 1),
+(18, 'OR-159', 10, '6.00', 3),
+(19, '30310', 9, '12.00', 5),
+(19, 'FR-23', 6, '8.00', 4),
+(19, 'FR-75', 1, '32.00', 2),
+(19, 'FR-84', 5, '13.00', 1),
+(19, 'OR-208', 20, '4.00', 3),
+(20, '11679', 14, '14.00', 1),
+(20, '30310', 8, '12.00', 2),
+(21, '21636', 5, '14.00', 3),
+(21, 'FR-18', 22, '4.00', 1),
+(21, 'FR-53', 3, '8.00', 2),
+(22, 'OR-240', 1, '6.00', 1),
+(23, 'AR-002', 110, '1.00', 4),
+(23, 'FR-107', 50, '22.00', 3),
+(23, 'FR-85', 4, '70.00', 2),
+(23, 'OR-249', 30, '5.00', 1),
+(24, '22225', 3, '15.00', 1),
+(24, 'FR-1', 4, '7.00', 4),
+(24, 'FR-23', 2, '7.00', 2),
+(24, 'OR-241', 10, '20.00', 3),
+(25, 'FR-77', 15, '69.00', 1),
+(25, 'FR-9', 4, '30.00', 3),
+(25, 'FR-94', 10, '30.00', 2),
+(26, 'FR-15', 9, '25.00', 3),
+(26, 'OR-188', 4, '25.00', 1),
+(26, 'OR-218', 14, '25.00', 2),
+(27, 'OR-101', 22, '6.00', 2),
+(27, 'OR-102', 22, '6.00', 3),
+(27, 'OR-186', 40, '6.00', 1),
+(28, 'FR-11', 8, '99.00', 3),
+(28, 'OR-213', 3, '266.00', 2),
+(28, 'OR-247', 1, '462.00', 1),
+(29, 'FR-82', 4, '70.00', 4),
+(29, 'FR-9', 4, '28.00', 1),
+(29, 'FR-94', 20, '31.00', 5),
+(29, 'OR-129', 2, '111.00', 2),
+(29, 'OR-160', 10, '9.00', 3),
+(30, 'AR-004', 10, '1.00', 6),
+(30, 'FR-108', 2, '32.00', 2),
+(30, 'FR-12', 2, '19.00', 3),
+(30, 'FR-72', 4, '31.00', 5),
+(30, 'FR-89', 10, '45.00', 1),
+(30, 'OR-120', 5, '5.00', 4),
+(31, 'AR-009', 25, '2.00', 3),
+(31, 'FR-102', 1, '20.00', 1),
+(31, 'FR-4', 6, '29.00', 2),
+(32, '11679', 1, '14.00', 4),
+(32, '21636', 4, '15.00', 5),
+(32, '22225', 1, '15.00', 3),
+(32, 'OR-128', 29, '100.00', 2),
+(32, 'OR-193', 5, '20.00', 1),
+(33, 'FR-17', 423, '2.00', 4),
+(33, 'FR-29', 120, '8.00', 3),
+(33, 'OR-214', 212, '10.00', 2),
+(33, 'OR-247', 150, '462.00', 1),
+(34, 'FR-3', 56, '7.00', 4),
+(34, 'FR-7', 12, '29.00', 3),
+(34, 'OR-172', 20, '18.00', 1),
+(34, 'OR-174', 24, '18.00', 2),
+(35, '21636', 12, '14.00', 4),
+(35, 'FR-47', 55, '8.00', 3),
+(35, 'OR-165', 3, '10.00', 2),
+(35, 'OR-181', 36, '10.00', 1),
+(35, 'OR-225', 72, '10.00', 5),
+(36, '30310', 4, '12.00', 2),
+(36, 'FR-1', 2, '7.00', 3),
+(36, 'OR-147', 6, '7.00', 4),
+(36, 'OR-203', 1, '12.00', 5),
+(36, 'OR-99', 15, '13.00', 1),
+(37, 'FR-105', 4, '70.00', 1),
+(37, 'FR-57', 203, '8.00', 2),
+(37, 'OR-176', 38, '10.00', 3),
+(38, '11679', 5, '14.00', 1),
+(38, '21636', 2, '14.00', 2),
+(39, '22225', 3, '12.00', 1),
+(39, '30310', 6, '12.00', 2),
+(40, 'AR-001', 4, '1.00', 1),
+(40, 'AR-002', 8, '1.00', 2),
+(41, 'AR-003', 5, '1.00', 1),
+(41, 'AR-004', 5, '1.00', 2),
+(42, 'AR-005', 3, '1.00', 1),
+(42, 'AR-006', 1, '1.00', 2),
+(43, 'AR-007', 9, '1.00', 1),
+(44, 'AR-008', 5, '1.00', 1),
+(45, 'AR-009', 6, '1.00', 1),
+(45, 'AR-010', 4, '1.00', 2),
+(46, 'FR-1', 4, '7.00', 1),
+(46, 'FR-10', 8, '7.00', 2),
+(47, 'FR-100', 9, '11.00', 1),
+(47, 'FR-101', 5, '13.00', 2),
+(48, 'FR-102', 1, '18.00', 1),
+(48, 'FR-103', 1, '25.00', 2),
+(48, 'OR-234', 50, '64.00', 1),
+(48, 'OR-236', 45, '49.00', 2),
+(48, 'OR-237', 50, '19.00', 3),
+(49, 'OR-204', 50, '10.00', 1),
+(49, 'OR-205', 10, '10.00', 2),
+(49, 'OR-206', 5, '5.00', 3),
+(50, 'OR-225', 12, '10.00', 1),
+(50, 'OR-226', 15, '38.00', 2),
+(50, 'OR-227', 44, '64.00', 3),
+(51, 'OR-209', 50, '10.00', 1),
+(51, 'OR-210', 80, '39.00', 2),
+(51, 'OR-211', 70, '59.00', 3),
+(52, 'FR-67', 10, '70.00', 1),
+(53, 'FR-2', 1, '7.00', 1),
+(53, 'FR-85', 1, '70.00', 3),
+(53, 'FR-86', 2, '11.00', 2),
+(53, 'OR-116', 6, '7.00', 4),
+(54, '11679', 3, '14.00', 3),
+(54, 'FR-100', 45, '10.00', 2),
+(54, 'FR-18', 5, '4.00', 1),
+(54, 'FR-79', 3, '22.00', 4),
+(54, 'OR-116', 8, '7.00', 6),
+(54, 'OR-123', 3, '5.00', 5),
+(54, 'OR-168', 2, '10.00', 7),
+(55, 'OR-115', 9, '7.00', 1),
+(55, 'OR-213', 2, '266.00', 2),
+(55, 'OR-227', 6, '64.00', 5),
+(55, 'OR-243', 2, '64.00', 4),
+(55, 'OR-247', 1, '462.00', 3),
+(56, 'OR-129', 1, '115.00', 5),
+(56, 'OR-130', 10, '18.00', 6),
+(56, 'OR-179', 1, '6.00', 3),
+(56, 'OR-196', 3, '10.00', 4),
+(56, 'OR-207', 4, '4.00', 2),
+(56, 'OR-250', 3, '10.00', 1),
+(57, 'FR-69', 6, '91.00', 4),
+(57, 'FR-81', 3, '49.00', 3),
+(57, 'FR-84', 2, '13.00', 1),
+(57, 'FR-94', 6, '9.00', 2),
+(58, 'OR-102', 65, '18.00', 3),
+(58, 'OR-139', 80, '4.00', 1),
+(58, 'OR-172', 69, '15.00', 2),
+(58, 'OR-177', 150, '15.00', 4),
+(59, 'FR-67', 10, '70.00', 1),
+(60, 'FR-67', 10, '70.00', 1),
+(61, 'FR-67', 10, '70.00', 1),
+(62, 'FR-67', 10, '70.00', 1),
+(63, 'FR-67', 10, '70.00', 1),
+(64, 'FR-67', 10, '70.00', 1),
+(65, 'FR-67', 10, '70.00', 1),
+(66, 'FR-67', 10, '70.00', 1),
+(67, 'FR-67', 10, '70.00', 1),
+(68, 'FR-67', 10, '70.00', 1),
+(74, 'FR-67', 15, '70.00', 1),
+(74, 'OR-227', 34, '64.00', 2),
+(74, 'OR-247', 42, '8.00', 3),
+(75, 'AR-006', 60, '1.00', 2),
+(75, 'FR-87', 24, '22.00', 3),
+(75, 'OR-157', 46, '10.00', 1),
+(76, 'AR-009', 250, '1.00', 5),
+(76, 'FR-79', 40, '22.00', 3),
+(76, 'FR-87', 24, '22.00', 4),
+(76, 'FR-94', 35, '9.00', 1),
+(76, 'OR-196', 25, '10.00', 2),
+(77, '22225', 34, '12.00', 2),
+(77, '30310', 15, '12.00', 1),
+(78, 'FR-53', 25, '8.00', 2),
+(78, 'FR-85', 56, '70.00', 3),
+(78, 'OR-157', 42, '10.00', 4),
+(78, 'OR-208', 30, '4.00', 1),
+(79, 'OR-240', 50, '6.00', 1),
+(80, 'FR-11', 40, '100.00', 3),
+(80, 'FR-36', 47, '9.00', 2),
+(80, 'OR-136', 75, '18.00', 1),
+(81, 'OR-208', 30, '4.00', 1),
+(82, 'OR-227', 34, '64.00', 1),
+(83, 'OR-208', 30, '4.00', 1),
+(89, 'FR-108', 3, '32.00', 2),
+(89, 'FR-3', 15, '7.00', 6),
+(89, 'FR-42', 12, '8.00', 4),
+(89, 'FR-66', 5, '49.00', 1),
+(89, 'FR-87', 4, '22.00', 3),
+(89, 'OR-157', 8, '10.00', 5),
+(90, 'AR-001', 19, '1.00', 1),
+(90, 'AR-002', 10, '1.00', 2),
+(90, 'AR-003', 12, '1.00', 3),
+(91, 'FR-100', 52, '11.00', 1),
+(91, 'FR-101', 14, '13.00', 2),
+(91, 'FR-102', 35, '18.00', 3),
+(92, 'FR-108', 12, '23.00', 1),
+(92, 'FR-11', 20, '100.00', 2),
+(92, 'FR-12', 30, '21.00', 3),
+(93, 'FR-54', 25, '9.00', 1),
+(93, 'FR-58', 51, '11.00', 2),
+(93, 'FR-60', 3, '32.00', 3),
+(94, '11679', 12, '14.00', 1),
+(94, 'FR-11', 33, '100.00', 3),
+(94, 'FR-4', 79, '29.00', 2),
+(95, 'FR-10', 9, '7.00', 2),
+(95, 'FR-75', 6, '32.00', 1),
+(95, 'FR-82', 5, '70.00', 3),
+(96, 'FR-43', 6, '8.00', 1),
+(96, 'FR-6', 16, '7.00', 4),
+(96, 'FR-71', 10, '22.00', 3),
+(96, 'FR-90', 4, '70.00', 2),
+(97, 'FR-41', 12, '8.00', 1),
+(97, 'FR-54', 14, '9.00', 2),
+(97, 'OR-156', 10, '10.00', 3),
+(98, 'FR-33', 14, '8.00', 4),
+(98, 'FR-56', 16, '8.00', 3),
+(98, 'FR-60', 8, '32.00', 1),
+(98, 'FR-8', 18, '6.00', 5),
+(98, 'FR-85', 6, '70.00', 2),
+(99, 'OR-157', 15, '10.00', 2),
+(99, 'OR-227', 30, '64.00', 1),
+(100, 'FR-87', 20, '22.00', 1),
+(100, 'FR-94', 40, '9.00', 2),
+(101, 'AR-006', 50, '1.00', 1),
+(101, 'AR-009', 159, '1.00', 2),
+(102, '22225', 32, '12.00', 2),
+(102, '30310', 23, '12.00', 1),
+(103, 'FR-53', 12, '8.00', 2),
+(103, 'OR-208', 52, '4.00', 1),
+(104, 'FR-85', 9, '70.00', 1),
+(104, 'OR-157', 113, '10.00', 2),
+(105, 'OR-227', 21, '64.00', 2),
+(105, 'OR-240', 27, '6.00', 1),
+(106, 'AR-009', 231, '1.00', 1),
+(106, 'OR-136', 47, '18.00', 2),
+(107, '30310', 143, '12.00', 2),
+(107, 'FR-11', 15, '100.00', 1),
+(108, 'FR-53', 53, '8.00', 1),
+(108, 'OR-208', 59, '4.00', 2),
+(109, 'FR-22', 8, '4.00', 5),
+(109, 'FR-36', 12, '9.00', 3),
+(109, 'FR-45', 14, '8.00', 4),
+(109, 'OR-104', 20, '10.00', 1),
+(109, 'OR-119', 10, '5.00', 2),
+(109, 'OR-125', 3, '5.00', 6),
+(109, 'OR-130', 2, '18.00', 7),
+(110, 'AR-010', 6, '1.00', 3),
+(110, 'FR-1', 14, '7.00', 1),
+(110, 'FR-16', 1, '45.00', 2),
+(111, 'FR-67', 10, '70.00', 1),
+(112, 'FR-67', 10, '70.00', 1),
+(113, 'FR-67', 10, '70.00', 1),
+(114, 'FR-67', 10, '70.00', 1),
+(115, 'FR-67', 10, '70.00', 1),
+(116, '21636', 5, '14.00', 1),
+(116, 'AR-001', 32, '1.00', 2),
+(116, 'AR-005', 18, '1.00', 5),
+(116, 'FR-33', 13, '8.00', 3),
+(116, 'OR-200', 10, '4.00', 4),
+(117, 'FR-78', 2, '15.00', 1),
+(117, 'FR-80', 1, '32.00', 3),
+(117, 'OR-146', 17, '4.00', 2),
+(117, 'OR-179', 4, '6.00', 4),
+(118, 'FR-67', 10, '70.00', 1),
+(119, 'FR-67', 10, '70.00', 1),
+(120, 'FR-67', 10, '70.00', 1),
+(121, 'FR-67', 10, '70.00', 1),
+(122, 'FR-67', 10, '70.00', 1),
+(123, 'FR-67', 10, '70.00', 1),
+(124, 'FR-67', 10, '70.00', 1),
+(125, 'FR-67', 10, '70.00', 1),
+(126, 'FR-67', 10, '70.00', 1),
+(127, 'FR-67', 10, '70.00', 1),
+(128, 'AR-004', 15, '1.00', 1),
+(128, 'OR-150', 18, '2.00', 2);
 

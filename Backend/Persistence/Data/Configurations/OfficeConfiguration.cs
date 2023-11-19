@@ -12,29 +12,17 @@ public class OfficeConfiguration : IEntityTypeConfiguration<Office>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("office");
+        builder.ToTable("offices");
 
-        builder.HasIndex(e => e.PostalCodeId, "postal_code_id");
+        builder.HasIndex(e => e.PostalCodeId, "IX_Offices_PostalCodeId");
 
-        builder.Property(e => e.Id)
-            .HasMaxLength(10)
-            .HasColumnName("office_code");
-        builder.Property(e => e.AddressLine1)
-            .HasMaxLength(50)
-            .HasColumnName("address_line1");
-        builder.Property(e => e.AddressLine2)
-            .HasMaxLength(50)
-            .HasColumnName("address_line2");
-        builder.Property(e => e.Phone)
-            .HasMaxLength(20)
-            .HasColumnName("phone");
-        builder.Property(e => e.PostalCodeId)
-            .HasColumnType("int(11)")
-            .HasColumnName("postal_code_id");
+        builder.Property(e => e.AddressLine1).HasMaxLength(50);
+        builder.Property(e => e.AddressLine2).HasMaxLength(50);
+        builder.Property(e => e.Phone).HasMaxLength(50);
+        builder.Property(e => e.PostalCodeId).HasColumnType("int(11)");
 
         builder.HasOne(d => d.PostalCode).WithMany(p => p.Offices)
             .HasForeignKey(d => d.PostalCodeId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("office_ibfk_1");
+            .HasConstraintName("FK_Offices_PostalCodes_PostalCodeId");
     }
 }

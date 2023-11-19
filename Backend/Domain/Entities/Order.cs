@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class Order: BaseEntity
+public partial class Order : BaseEntity
 {
-
     public DateOnly OrderDate { get; set; }
 
     public DateOnly ExpectedDate { get; set; }
@@ -18,9 +17,9 @@ public partial class Order: BaseEntity
 
     public int ClientCode { get; set; }
 
-    public virtual Client ClientCodeNavigation { get; set; } = null!;
+    public virtual Client ClientCodeNavigation { get; set; }
 
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+    public virtual ICollection<OrderDetail> Orderdetails { get; set; } = new List<OrderDetail>();
 
-    public virtual Status StatusCodeNavigation { get; set; } = null!;
+    public virtual Status StatusCodeNavigation { get; set; }
 }

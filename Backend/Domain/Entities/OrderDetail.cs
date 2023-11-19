@@ -5,9 +5,7 @@ namespace Domain.Entities;
 
 public partial class OrderDetail : BaseEntity
 {
-    public int OrderCode { get; set; }
-
-    public string ProductCode { get; set; } = null!;
+    public string ProductCode { get; set; }
 
     public int Quantity { get; set; }
 
@@ -15,7 +13,7 @@ public partial class OrderDetail : BaseEntity
 
     public short LineNumber { get; set; }
 
-    public virtual Order OrderCodeNavigation { get; set; } = null!;
+    public virtual Order IdNavigation { get; set; }
 
-    public virtual Product ProductCodeNavigation { get; set; } = null!;
+    public virtual Product ProductCodeNavigation { get; set; }
 }

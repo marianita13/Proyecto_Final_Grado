@@ -12,35 +12,20 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("person");
+        builder.ToTable("persons");
 
-        builder.HasIndex(e => e.PersonTypeId, "person_type_id");
+        builder.HasIndex(e => e.PersonTypeId, "IX_Persons_PersonTypeId");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("person_id");
-        builder.Property(e => e.Email)
-            .IsRequired()
-            .HasMaxLength(100)
-            .HasColumnName("email");
-        builder.Property(e => e.FirstName)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasColumnName("first_name");
-        builder.Property(e => e.LastName1)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasColumnName("last_name1");
-        builder.Property(e => e.LastName2)
-            .HasMaxLength(50)
-            .HasColumnName("last_name2");
-        builder.Property(e => e.PersonTypeId)
-            .HasColumnType("int(11)")
-            .HasColumnName("person_type_id");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.Email).HasMaxLength(50);
+        builder.Property(e => e.FirstName).HasMaxLength(50);
+        builder.Property(e => e.LastName1).HasMaxLength(50);
+        builder.Property(e => e.LastName2).HasMaxLength(50);
+        builder.Property(e => e.Password).HasMaxLength(50);
+        builder.Property(e => e.PersonTypeId).HasColumnType("int(11)");
 
         builder.HasOne(d => d.PersonType).WithMany(p => p.People)
             .HasForeignKey(d => d.PersonTypeId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("person_ibfk_1");
+            .HasConstraintName("FK_Persons_PersonTypes_PersonTypeId");
     }
 }

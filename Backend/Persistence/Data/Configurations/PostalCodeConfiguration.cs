@@ -12,22 +12,16 @@ public class PostalCodeConfiguration : IEntityTypeConfiguration<PostalCode>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("postal_code");
+            builder.ToTable("postalcodes");
 
-        builder.HasIndex(e => e.CityId, "city_id");
+            builder.HasIndex(e => e.CityId, "IX_PostalCodes_CityId");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("postal_code_id");
-        builder.Property(e => e.CityId)
-            .HasColumnType("int(11)")
-            .HasColumnName("city_id");
-        builder.Property(e => e.PostalCode1)
-            .HasMaxLength(10)
-            .HasColumnName("postal_code");
+            builder.Property(e => e.Id).HasColumnType("int(11)");
+            builder.Property(e => e.CityId).HasColumnType("int(11)");
+            builder.Property(e => e.PostalCode1).HasMaxLength(50);
 
-        builder.HasOne(d => d.City).WithMany(p => p.PostalCodes)
-            .HasForeignKey(d => d.CityId)
-            .HasConstraintName("postal_code_ibfk_1");
+            builder.HasOne(d => d.City).WithMany(p => p.Postalcodes)
+                .HasForeignKey(d => d.CityId)
+                .HasConstraintName("FK_PostalCodes_Cities_CityId");
     }
 }

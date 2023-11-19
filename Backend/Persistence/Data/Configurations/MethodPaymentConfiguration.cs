@@ -12,13 +12,9 @@ public class MethodPaymentConfiguration : IEntityTypeConfiguration<MethodPayment
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("method_payment");
+        builder.ToTable("methodpayments");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("id_method");
-        builder.Property(e => e.MethodPayment1)
-            .HasMaxLength(20)
-            .HasColumnName("method_payment");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.MethodPayment1).HasMaxLength(50);
     }
 }

@@ -11,35 +11,24 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
     public void Configure(EntityTypeBuilder<Payment> builder)
     {
         builder.HasKey(e => new { e.Id, e.TransactionId })
-            .HasName("PRIMARY")
-            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+                .HasName("PRIMARY")
+                .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
-        builder.ToTable("payment");
+            builder.ToTable("payments");
 
-        builder.HasIndex(e => e.MethodId, "method_id");
+            builder.HasIndex(e => e.MethodId, "IX_Payments_MethodId");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("client_code");
-        builder.Property(e => e.TransactionId)
-            .HasMaxLength(50)
-            .HasColumnName("transaction_id");
-        builder.Property(e => e.MethodId)
-            .HasColumnType("int(11)")
-            .HasColumnName("method_id");
-        builder.Property(e => e.PaymentDate).HasColumnName("payment_date");
-        builder.Property(e => e.Total)
-            .HasPrecision(15, 2)
-            .HasColumnName("total");
+            builder.Property(e => e.Id).HasColumnType("int(11)");
+            builder.Property(e => e.TransactionId).HasMaxLength(50);
+            builder.Property(e => e.MethodId).HasColumnType("int(11)");
 
-        builder.HasOne(d => d.ClientCodeNavigation).WithMany(p => p.Payments)
-            .HasForeignKey(d => d.Id)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("payment_ibfk_2");
+            builder.HasOne(d => d.IdNavigation).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.Id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Payments_Clients_Client");
 
-        builder.HasOne(d => d.Method).WithMany(p => p.Payments)
-            .HasForeignKey(d => d.MethodId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("payment_ibfk_1");
+            builder.HasOne(d => d.Method).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.MethodId)
+                .HasConstraintName("FK_Payments_MethodPayments_MethodId");
     }
 }

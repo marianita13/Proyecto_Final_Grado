@@ -17,12 +17,13 @@ public partial class Person: BaseEntity
 
     public int PersonTypeId { get; set; }
 
+    public string Password { get; set; }
+
     public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
     public virtual PersonType PersonType { get; set; }
 
-    public virtual PostalCode PostalCode { get; set; }
-    public ICollection<RefreshToken> RefreshTokens { get; set; } = new HashSet<RefreshToken>();
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

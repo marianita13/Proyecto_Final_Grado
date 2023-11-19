@@ -30,6 +30,6 @@ public partial class Client: BaseEntity
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
     public virtual Person Person { get; set; }
-    
+
     public virtual PostalCode PostalCode { get; set; }
 }

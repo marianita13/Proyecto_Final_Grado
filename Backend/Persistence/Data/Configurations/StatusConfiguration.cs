@@ -14,11 +14,7 @@ public class StatusConfiguration : IEntityTypeConfiguration<Status>
 
         builder.ToTable("status");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("cod_status");
-        builder.Property(e => e.NameStatus)
-            .HasMaxLength(20)
-            .HasColumnName("name_status");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.NameStatus).HasMaxLength(50);
     }
 }

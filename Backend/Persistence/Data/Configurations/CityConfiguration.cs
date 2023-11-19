@@ -10,24 +10,23 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
 {
     public void Configure(EntityTypeBuilder<City> builder)
     {
+        builder.ToTable("Cities");
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id);
+
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("city");
+        builder.ToTable("cities");
 
-        builder.HasIndex(e => e.StateId, "state_id");
+        builder.HasIndex(e => e.StateId, "IX_Cities_StateId");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("city_id");
-        builder.Property(e => e.CityName)
-            .HasMaxLength(50)
-            .HasColumnName("city_name");
-        builder.Property(e => e.StateId)
-            .HasColumnType("int(11)")
-            .HasColumnName("state_id");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(p => p.CityName).IsRequired().HasMaxLength(50);
+        builder.Property(e => e.StateId).HasColumnType("int(11)");
 
-        builder.HasOne(d => d.State).WithMany(p => p.Cities)
-            .HasForeignKey(d => d.StateId)
-            .HasConstraintName("city_ibfk_1");
+        builder.HasOne(d => d.State)
+        .WithMany(p => p.Cities)
+        .HasForeignKey(d => d.StateId);
     }
 }
+

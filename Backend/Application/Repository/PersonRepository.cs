@@ -15,7 +15,7 @@ public class PersonRepository : GenericRepository<Person>, IPerson
 
     public async Task<Person> GetByRefreshTokenAsync(string refreshToken)
     {
-        return await _context.People
+        return await _context.Persons
             .Include(u => u.PersonType)
             .Include(u => u.RefreshTokens)
             .FirstOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == refreshToken));
@@ -23,7 +23,7 @@ public class PersonRepository : GenericRepository<Person>, IPerson
 
     public async Task<Person> GetByFirstNameAsync(string Personname)
     {
-        return await _context.People
+        return await _context.Persons
             .Include(u => u.PersonType)
             .Include(u => u.RefreshTokens)
             .FirstOrDefaultAsync(u => u.FirstName.ToLower() == Personname.ToLower());

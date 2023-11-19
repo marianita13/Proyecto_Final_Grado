@@ -12,61 +12,34 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("client");
+        builder.ToTable("clients");
 
-        builder.HasIndex(e => e.CodEmployee, "cod_employee");
+        builder.HasIndex(e => e.CodEmployee, "IX_Clients_CodEmployee");
 
-        builder.HasIndex(e => e.PersonId, "person_id");
+        builder.HasIndex(e => e.PersonId, "IX_Clients_PersonId");
 
-        builder.HasIndex(e => e.PostalCodeId, "postal_code_id");
+        builder.HasIndex(e => e.PostalCodeId, "IX_Clients_PostalCodeId");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("client_code");
-        builder.Property(e => e.ClientName)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasColumnName("client_name");
-        builder.Property(e => e.CodEmployee)
-            .HasColumnType("int(11)")
-            .HasColumnName("cod_employee");
-        builder.Property(e => e.CreditLimit)
-            .HasPrecision(15, 2)
-            .HasColumnName("credit_limit");
-        builder.Property(e => e.Fax)
-            .IsRequired()
-            .HasMaxLength(15)
-            .HasColumnName("fax");
-        builder.Property(e => e.LineAddress)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasColumnName("line_address");
-        builder.Property(e => e.LineAddress2)
-            .HasMaxLength(50)
-            .HasColumnName("line_address2");
-        builder.Property(e => e.PersonId)
-            .HasColumnType("int(11)")
-            .HasColumnName("person_id");
-        builder.Property(e => e.Phone)
-            .IsRequired()
-            .HasMaxLength(15)
-            .HasColumnName("phone");
-        builder.Property(e => e.PostalCodeId)
-            .HasColumnType("int(11)")
-            .HasColumnName("postal_code_id");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.ClientName).HasMaxLength(50);
+        builder.Property(e => e.CodEmployee).HasColumnType("int(11)");
+        builder.Property(e => e.Fax).HasMaxLength(50);
+        builder.Property(e => e.LineAddress).HasMaxLength(100);
+        builder.Property(e => e.LineAddress2).HasMaxLength(100);
+        builder.Property(e => e.PersonId).HasColumnType("int(11)");
+        builder.Property(e => e.Phone).HasMaxLength(50);
+        builder.Property(e => e.PostalCodeId).HasColumnType("int(11)");
 
         builder.HasOne(d => d.CodEmployeeNavigation).WithMany(p => p.Clients)
             .HasForeignKey(d => d.CodEmployee)
-            .HasConstraintName("client_ibfk_3");
+            .HasConstraintName("FK_Clients_Employees_CodEmployee");
 
         builder.HasOne(d => d.Person).WithMany(p => p.Clients)
             .HasForeignKey(d => d.PersonId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("client_ibfk_1");
+            .HasConstraintName("FK_Clients_Persons_PersonId");
 
         builder.HasOne(d => d.PostalCode).WithMany(p => p.Clients)
             .HasForeignKey(d => d.PostalCodeId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("client_ibfk_2");
+            .HasConstraintName("FK_Clients_PostalCodes_PostalCodeId");
     }
 }

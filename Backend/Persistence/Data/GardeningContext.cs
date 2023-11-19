@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
+using Dominio.Entities;
 
 namespace Persistence.Data;
 
@@ -22,27 +23,30 @@ public partial class GardeningContext : DbContext
 
     public virtual DbSet<Country> Countries { get; set; }
 
+
     public virtual DbSet<Employee> Employees { get; set; }
 
-    public virtual DbSet<MethodPayment> MethodPayments { get; set; }
+    public virtual DbSet<MethodPayment> Methodpayments { get; set; }
 
     public virtual DbSet<Office> Offices { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
 
-    public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+    public virtual DbSet<OrderDetail> Orderdetails { get; set; }
 
     public virtual DbSet<Payment> Payments { get; set; }
 
-    public virtual DbSet<Person> People { get; set; }
+    public virtual DbSet<Person> Persons { get; set; }
 
-    public virtual DbSet<PersonType> PersonTypes { get; set; }
+    public virtual DbSet<PersonType> Persontypes { get; set; }
 
-    public virtual DbSet<PostalCode> PostalCodes { get; set; }
+    public virtual DbSet<PostalCode> Postalcodes { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
 
-    public virtual DbSet<ProductLine> ProductLines { get; set; }
+    public virtual DbSet<ProductLine> Productlines { get; set; }
+
+    public virtual DbSet<RefreshToken> Refreshtokens { get; set; }
 
     public virtual DbSet<State> States { get; set; }
 
@@ -50,9 +54,4 @@ public partial class GardeningContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;user=root;password=123456;database=gardening", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.27-mariadb"));
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

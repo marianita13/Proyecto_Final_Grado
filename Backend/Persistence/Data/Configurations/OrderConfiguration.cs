@@ -14,34 +14,23 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.ToTable("orders");
 
-        builder.HasIndex(e => e.ClientCode, "client_code");
+        builder.HasIndex(e => e.ClientCode, "FK_Orders_Clients_Client");
 
-        builder.HasIndex(e => e.StatusCode, "status_code");
+        builder.HasIndex(e => e.StatusCode, "FK_Orders_Status_Status");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("order_code");
-        builder.Property(e => e.ClientCode)
-            .HasColumnType("int(11)")
-            .HasColumnName("client_code");
-        builder.Property(e => e.Comments)
-            .HasColumnType("text")
-            .HasColumnName("comments");
-        builder.Property(e => e.DeliveryDate).HasColumnName("delivery_date");
-        builder.Property(e => e.ExpectedDate).HasColumnName("expected_date");
-        builder.Property(e => e.OrderDate).HasColumnName("order_date");
-        builder.Property(e => e.StatusCode)
-            .HasColumnType("int(11)")
-            .HasColumnName("status_code");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.ClientCode).HasColumnType("int(11)");
+        builder.Property(e => e.Comments).HasMaxLength(500);
+        builder.Property(e => e.StatusCode).HasColumnType("int(11)");
 
         builder.HasOne(d => d.ClientCodeNavigation).WithMany(p => p.Orders)
             .HasForeignKey(d => d.ClientCode)
             .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("orders_ibfk_2");
+            .HasConstraintName("FK_Orders_Clients_Client");
 
         builder.HasOne(d => d.StatusCodeNavigation).WithMany(p => p.Orders)
             .HasForeignKey(d => d.StatusCode)
             .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("orders_ibfk_1");
+            .HasConstraintName("FK_Orders_Status_Status");
     }
 }

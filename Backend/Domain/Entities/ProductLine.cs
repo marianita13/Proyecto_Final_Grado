@@ -5,7 +5,7 @@ namespace Domain.Entities;
 
 public partial class ProductLine: BaseEntity
 {
-    public string ProductLine1 { get; set; } = null!;
+    public string ProductLine1 { get; set; }
 
     public string DescriptionText { get; set; }
 

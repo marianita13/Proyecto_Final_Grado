@@ -12,13 +12,9 @@ public class PersonTypeConfiguration : IEntityTypeConfiguration<PersonType>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("person_type");
+        builder.ToTable("persontypes");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("type_id");
-        builder.Property(e => e.TypeName)
-            .HasMaxLength(50)
-            .HasColumnName("type_name");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.TypeName).HasMaxLength(50);
     }
 }

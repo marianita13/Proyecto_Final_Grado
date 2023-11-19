@@ -12,13 +12,9 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("country");
+        builder.ToTable("countries");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("country_id");
-        builder.Property(e => e.CountryName)
-            .HasMaxLength(50)
-            .HasColumnName("country_name");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.CountryName).HasMaxLength(50);
     }
 }

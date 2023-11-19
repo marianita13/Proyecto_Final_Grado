@@ -25,13 +25,13 @@ namespace API.Controllers
             return _mapper.Map<List<OrderDetailDto>>(orderDetail);
         }
         
-        [HttpGet("{OrderCode}")]
+        [HttpGet("{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<OrderDetailDto>> Get(int OrderCode)
+        public async Task<ActionResult<OrderDetailDto>> Get(int Id)
         {
-            var orderDetail = await _unitOfWork.Details.GetByIdAsync(OrderCode);
+            var orderDetail = await _unitOfWork.Details.GetByIdAsync(Id);
             if (orderDetail == null) return NotFound();
             return _mapper.Map<OrderDetailDto>(orderDetail);
         }
@@ -45,11 +45,11 @@ namespace API.Controllers
             _unitOfWork.Details.Add(orderDetail);
             await _unitOfWork.SaveAsync();
             if (orderDetail == null) return BadRequest();
-            orderDetailDto.OrderCode = orderDetail.OrderCode;
-            return CreatedAtAction(nameof(Post), new { OrderCode = orderDetailDto.OrderCode }, orderDetailDto);
+            orderDetailDto.OrderCode = orderDetail.Id;
+            return CreatedAtAction(nameof(Post), new { Id = orderDetailDto.OrderCode }, orderDetailDto);
         }
         
-        [HttpPut("{OrderCode}")]
+        [HttpPut("{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,12 +66,12 @@ namespace API.Controllers
             return _mapper.Map<OrderDetailDto>(orderDetail);
         
         }
-        [HttpDelete("{OrderCode}")]
+        [HttpDelete("{Id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(int OrderCode)
+        public async Task<IActionResult> Delete(int Id)
         {
-            var orderDetail = await _unitOfWork.Details.GetByIdAsync(OrderCode);
+            var orderDetail = await _unitOfWork.Details.GetByIdAsync(Id);
             if (orderDetail == null) return NotFound();
             _unitOfWork.Details.Remove(orderDetail);
             await _unitOfWork.SaveAsync();

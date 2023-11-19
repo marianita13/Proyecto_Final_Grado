@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 namespace Domain.Entities;
 
-public partial class PostalCode: BaseEntity
+public partial class PostalCode : BaseEntity
 {
-
-    
-
     public string PostalCode1 { get; set; }
 
     public int? CityId { get; set; }

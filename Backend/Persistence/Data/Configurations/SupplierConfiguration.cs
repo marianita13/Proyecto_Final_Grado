@@ -12,19 +12,11 @@ public class SupplierConfiguration : IEntityTypeConfiguration<Supplier>
     {
         builder.HasKey(e => e.Id).HasName("PRIMARY");
 
-        builder.ToTable("supplier");
+        builder.ToTable("suppliers");
 
-        builder.Property(e => e.Id)
-            .HasColumnType("int(11)")
-            .HasColumnName("supplier_id");
-        builder.Property(e => e.Fax)
-            .HasMaxLength(15)
-            .HasColumnName("fax");
-        builder.Property(e => e.Name)
-            .HasMaxLength(30)
-            .HasColumnName("name");
-        builder.Property(e => e.Phone)
-            .HasMaxLength(15)
-            .HasColumnName("phone");
+        builder.Property(e => e.Id).HasColumnType("int(11)");
+        builder.Property(e => e.Fax).HasMaxLength(50);
+        builder.Property(e => e.Name).HasMaxLength(50);
+        builder.Property(e => e.Phone).HasMaxLength(50);
     }
 }

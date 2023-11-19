@@ -5,7 +5,7 @@ namespace Domain.Entities;
 
 public partial class PersonType: BaseEntity
 {
-    public string TypeName { get; set; } = null!;
+    public string TypeName { get; set; }
 
     public virtual ICollection<Person> People { get; set; } = new List<Person>();
 }
