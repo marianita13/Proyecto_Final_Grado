@@ -47,6 +47,6 @@ buttonUp.addEventListener('click',(evento) =>{
         var StoredData = localStorage.getItem("Usuario");
         var usario = JSON.parse(StoredData);
         console.log(usario);
-        location.assign("../Index.html")
+        location.assign("../../../Index.html")
     }
 })

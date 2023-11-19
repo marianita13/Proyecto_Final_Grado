@@ -115,15 +115,16 @@ function graphic2(){
 graphic2()
 
 document.addEventListener('DOMContentLoaded', function(){
-	consult()
+	consultPrincipal()
+	pruebas()
 })
-function consult(){
+function consultPrincipal(){
 	var consulta = document.querySelectorAll('.Consult');
 	consulta.forEach(button =>{
 		button.addEventListener('click',(evento)=>{
 			evento.preventDefault();
 			localStorage.clear();
-			var prueba = {}
+			let prueba = {}
 			if(evento.target.classList.contains('employees')){
 				prueba = {"Id":"Employee"};
 			}
@@ -144,7 +145,40 @@ function consult(){
 			}
 			var Json = JSON.stringify(prueba);
 			localStorage.setItem("prueba",Json)
-			location.assign("./Pages/Queries.html")
+			location.assign("/Frontend/Pages/Queries.html")
+		})
+	})
+}
+
+function pruebas(){
+	var consultaSidebar = document.querySelectorAll(".consult2")
+
+	consultaSidebar.forEach(li =>{
+		li.addEventListener('click',(evento)=>{
+			evento.preventDefault();
+			localStorage.clear();
+			let prueba = {}
+			if(evento.target.classList.contains('employees')){
+				prueba = {"Id":"Employee"};
+			}
+			if(evento.target.classList.contains('offices')){
+				prueba = {"Id":"Offices"};
+			}
+			if(evento.target.classList.contains('clients')){
+				prueba = {"Id":"Clients"};
+			}
+			if(evento.target.classList.contains('products')){
+				prueba = {"Id":"Products"};
+			}
+			if(evento.target.classList.contains('pays')){
+				prueba = {"Id":"Pays"};
+			}
+			if(evento.target.classList.contains('orders')){
+				prueba = {"Id":"Orders"};
+			}
+			var Json = JSON.stringify(prueba);
+			localStorage.setItem("prueba",Json)
+			location.assign("/Frontend/Pages/Queries.html")
 		})
 	})
 }

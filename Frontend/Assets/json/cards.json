@@ -134,5 +134,37 @@
             "Id":5,
             "button":"Table"
         }
+    ],
+    "orders":[
+        {
+            "name":"States of a product",
+            "Id":1,
+            "button":"Table"
+        },
+        {
+            "name":"Info of the orders that haven't been delivered",
+            "Id":2,
+            "button":"Table"
+        },
+        {
+            "name":"Info of the orders that have been delivered earlier",
+            "Id":3,
+            "button":"Table"
+        },
+        {
+            "name":"Orders rejected in 2009",
+            "Id":4,
+            "button":"Table"
+        },
+        {
+            "name":"Orders delivered in january",
+            "Id":5,
+            "button":"Table"
+        },
+        {
+            "name":"Amount of Orders in every status",
+            "Id":6,
+            "button":"Table"
+        }
     ]
 }
