@@ -20,11 +20,14 @@ namespace API.Contoller
         }
 
         [HttpPost("Register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<bool>> Register(UserRegisterDto request)
         {
             try
             {
-                var existingUser = await _unitOfWork.Users.GetUserByEmailAsync(request.email);
+                var existingUser = await _unitOfWork.Users.GetUserByEmailAsync(request.Email);
 
                 if (existingUser != null)
                 {
@@ -33,8 +36,9 @@ namespace API.Contoller
 
                 var newUser = new User
                 {
-                    Email = request.email,
-                    Password = request.password
+                    Username = request.Username,
+                    Email = request.Email,
+                    Password = request.Password
                 };
 
                 _unitOfWork.Users.Add(newUser);
@@ -50,26 +54,34 @@ namespace API.Contoller
         }
         
         [HttpPost("Login")]
-        public async Task<bool> Login(UserLoginDto request)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<HttpResponse>> Login(UserLoginDto request)
         {
             try
             {
-                var user = await _unitOfWork.Users.GetUserByEmailAsync(request.email);
+                var user = await _unitOfWork.Users.GetUserByEmailAsync(request.Email);
 
                 if (user == null)
                 {
-                    return false;
+                    return BadRequest();
                 }
 
-                bool passwordMatches= request.password == user.Password;
+                bool passwordMatches= request.Password == user.Password;
+                bool EmailMatches = request.Email == user.Email;
 
-                return passwordMatches;
+                if(passwordMatches && EmailMatches){
+                    return Ok();
+                }
+                else{
+                    return Unauthorized();
+                }
             }
             catch (Exception ex)
             {
-                return false;
+                return BadRequest();
             }
         }
-        }
-
+    }
 }
