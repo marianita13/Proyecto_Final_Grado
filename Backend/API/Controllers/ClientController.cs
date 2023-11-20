@@ -25,6 +25,23 @@ namespace API.Controllers
             return _mapper.Map<List<ClientDto>>(client);
         }
         
+        [HttpGet("GetClientNoPayment")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ClientDto>> GetClientNoPayment()
+        {
+            var client = await _unitOfWork.Clients.GetClientNoPayment();
+            return Ok(client);
+        }
+        [HttpGet("GetClientNoOrder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ClientDto>> GetClientNoOrder()
+        {
+            var client = await _unitOfWork.Clients.GetClientNoOrder();
+            return Ok(client);
+        }
+        
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
