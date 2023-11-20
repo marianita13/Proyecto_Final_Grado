@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Consult ${value.Id}" style="background-color:rgb(111, 209, 255);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(111, 209, 255);">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Consult ${value.Id}" style="background-color:rgb(245, 241, 33);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(245, 241, 33);">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Consult ${value.Id}" style="background-color:rgb(235, 134, 255);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(235, 134, 255);">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Consult ${value.Id}" style="background-color:rgb(255, 106, 106);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(255, 106, 106);">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -117,15 +117,22 @@ document.addEventListener("DOMContentLoaded", () =>{
     pruebas()
 
     function tabla(){
-        var Tabla = document.querySelector(".Consult");
+        var Tabla = document.querySelectorAll(".Boton");
 
-        tabla.forEach(ta => {
+        Tabla.forEach(ta => {
             ta.addEventListener('click', (evento) =>{
                 evento.preventDefault();
                 localStorage.clear();
-                let busqueda = evento.target.classList.contains()
-                localStorage.setItem()
+                console.log('funciona?');
+                let busqueda = evento.target.classList.contains('1');
+                let json = JSON.stringify(busqueda);
+                localStorage.setItem('busqueda',busqueda);
+                let rst = localStorage.getItem('busqueda');
+                let log = JSON.parse(rst);
+                console.log(log);
+
             })
         })
     }
+    tabla()
 })
