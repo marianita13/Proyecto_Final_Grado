@@ -20,11 +20,11 @@ public class OrderDetailConfiguration : IEntityTypeConfiguration<OrderDetail>
 
         builder.HasOne(d => d.Order)
             .WithMany(p => p.Orderdetails)
-            .HasForeignKey(d => d.Id)
+            .HasForeignKey(d => d.OrderId)
             .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder.HasOne(d => d.Product)
-        .WithMany(p => p.Orderdetails)
+            .WithMany(p => p.Orderdetails)
             .HasForeignKey(d => d.ProductCode)
             .OnDelete(DeleteBehavior.ClientSetNull);
     }

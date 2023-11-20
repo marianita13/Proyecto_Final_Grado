@@ -20,7 +20,8 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
         builder.Property(e => e.LineAddress2).HasMaxLength(100);
         builder.Property(e => e.Phone).HasMaxLength(50);
 
-        builder.HasOne(d => d.CodEmployeeNavigation).WithMany(p => p.Clients)
+        builder.HasOne(d => d.CodEmployeeNavigation)
+            .WithMany(p => p.Clients)
             .HasForeignKey(d => d.CodEmployee);
 
         builder.HasOne(d => d.Person).WithMany(p => p.Clients)

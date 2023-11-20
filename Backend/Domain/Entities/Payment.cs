@@ -14,7 +14,7 @@ public partial class Payment :  BaseEntity
 
     public decimal Total { get; set; }
 
-    public virtual Client ClientCodeNavigation { get; set; } = null!;
+    public virtual int ClienteId { get; set; }
     public virtual Client IdNavigation { get; set; }
 
     public virtual MethodPayment Method { get; set; }

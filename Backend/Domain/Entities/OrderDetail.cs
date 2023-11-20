@@ -12,6 +12,7 @@ public partial class OrderDetail : BaseEntity
     public decimal UnitPrice { get; set; }
 
     public short LineNumber { get; set; }
+    public int OrderId { get; set; }
 
     public virtual Order Order { get; set; }
 

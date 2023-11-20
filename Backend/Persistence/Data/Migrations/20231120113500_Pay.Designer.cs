@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Data;
 
@@ -10,9 +11,11 @@ using Persistence.Data;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(GardeningContext))]
-    partial class GardeningContextModelSnapshot : ModelSnapshot
+    [Migration("20231120113500_Pay")]
+    partial class Pay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,14 +218,10 @@ namespace Persistence.Data.Migrations
             modelBuilder.Entity("Domain.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<short>("LineNumber")
                         .HasColumnType("smallint(6)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ProductCode")
                         .HasColumnType("varchar(255)");
@@ -234,8 +233,6 @@ namespace Persistence.Data.Migrations
                         .HasColumnType("int(11)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductCode");
 
@@ -653,7 +650,7 @@ namespace Persistence.Data.Migrations
                 {
                     b.HasOne("Domain.Entities.Order", "Order")
                         .WithMany("Orderdetails")
-                        .HasForeignKey("OrderId")
+                        .HasForeignKey("Id")
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Product", "Product")

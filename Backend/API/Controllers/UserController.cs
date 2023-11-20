@@ -46,7 +46,7 @@ namespace API.Contoller
 
                 return Ok(); // Devuelve true si el usuario se registra correctamente
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Manejo de errores
                 return StatusCode(500, false); // Envía falso en caso de error
@@ -78,7 +78,7 @@ namespace API.Contoller
                     return Unauthorized();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
