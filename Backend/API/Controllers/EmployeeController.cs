@@ -24,6 +24,15 @@ namespace API.Controllers
             var employee = await _unitOfWork.Employees.GetAllAsync();
             return _mapper.Map<List<EmployeeDto>>(employee);
         }
+
+        [HttpGet("GetEmployeesByBossCode")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeesByBossCode(int bossCode)
+        {
+            var office = await _unitOfWork.Employees.GetEmployeesByBossCode(bossCode);
+            return Ok(office);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

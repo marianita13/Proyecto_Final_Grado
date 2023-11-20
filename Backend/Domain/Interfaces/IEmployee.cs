@@ -8,6 +8,6 @@ namespace Domain.Interfaces
 {
     public interface IEmployee:IGenericRepository<Employee>
     {
-    
+        Task<IEnumerable<object>> GetEmployeesByBossCode(int bossCode);
     }
 }
