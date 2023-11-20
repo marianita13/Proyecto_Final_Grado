@@ -115,4 +115,17 @@ document.addEventListener("DOMContentLoaded", () =>{
     }
 
     pruebas()
+
+    function tabla(){
+        var Tabla = document.querySelector(".Consult");
+
+        tabla.forEach(ta => {
+            ta.addEventListener('click', (evento) =>{
+                evento.preventDefault();
+                localStorage.clear();
+                let busqueda = evento.target.classList.contains()
+                localStorage.setItem()
+            })
+        })
+    }
 })

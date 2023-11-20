@@ -23,18 +23,18 @@ public class UserService :IUserService
         _unitOfWork = unitOfWork;
         _passwordHasher = passwordHasher;
     }
-    public async Task<string> RegisterAsync(RegisterDto registerDto)
+    public async Task<string> RegisterAsync(DataPersonDto registerDto)
     {
         var user = new User
         {
             Email = registerDto.Email,
-            Username = registerDto.Username
+            Username = registerDto.UserName
         };
 
         user.Password = _passwordHasher.HashPassword(user, registerDto.Password); //Encrypt password
 
         var existingUser = _unitOfWork.Users
-                                        .Find(u => u.Username.ToLower() == registerDto.Username.ToLower())
+                                        .Find(u => u.Username.ToLower() == registerDto.UserName.ToLower())
                                         .FirstOrDefault();
 
         if (existingUser == null)
@@ -48,7 +48,7 @@ public class UserService :IUserService
                 _unitOfWork.Users.Add(user);
                 await _unitOfWork.SaveAsync();
 
-                return $"User  {registerDto.Username} has been registered successfully";
+                return $"User  {registerDto.UserName} has been registered successfully";
             }
             catch (Exception ex)
             {
@@ -58,19 +58,19 @@ public class UserService :IUserService
         }
         else
         {
-            return $"User {registerDto.Username} already registered.";
+            return $"User {registerDto.UserName} already registered.";
         }
     }
-    public async Task<DataPersonDto> GetTokenAsync(LoginDto model)
+    public async Task<DataPersonDto> GetTokenAsync(UserLoginDto model)
     {
         DataPersonDto dataUserDto = new DataPersonDto();
         var user = await _unitOfWork.Users
-                    .GetByUsernameAsync(model.Username);
+                    .GetByUsernameAsync(model.Email);
 
         if (user == null)
         {
             dataUserDto.IsAuthenticated = false;
-            dataUserDto.Message = $"User does not exist with username {model.Username}.";
+            dataUserDto.Message = $"User does not exist with username {model.Email}.";
             return dataUserDto;
         }
 
@@ -83,9 +83,6 @@ public class UserService :IUserService
             dataUserDto.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             dataUserDto.Email = user.Email;
             dataUserDto.UserName = user.Username;
-            dataUserDto.Roles = user.Rols
-                                            .Select(u => u.Name)
-                                            .ToList();
 
             if (user.RefreshTokens.Any(a => a.IsActive))
             {
@@ -144,9 +141,6 @@ public class UserService :IUserService
         dataUserDto.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
         dataUserDto.Email = usuario.Email;
         dataUserDto.UserName = usuario.Username;
-        dataUserDto.Roles = usuario.Rols
-                                        .Select(u => u.Name)
-                                        .ToList();
         dataUserDto.RefreshToken = newRefreshToken.Token;
         dataUserDto.RefreshTokenExpiration = newRefreshToken.Expires;
         return dataUserDto;
@@ -228,4 +222,5 @@ public class UserService :IUserService
         }
         return $"Invalid Credentials";
     }
+
 }

@@ -18,6 +18,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(e => e.OrderDate).HasColumnType("Date");
         builder.Property(e => e.ExpectedDate).HasColumnType("Date");
         builder.Property(e => e.DeliveryDate).HasColumnType("Date");
+        
 
         builder.HasOne(d => d.ClientCodeNavigation)
             .WithMany(p => p.Orders)

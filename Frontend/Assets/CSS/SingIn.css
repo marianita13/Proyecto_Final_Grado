@@ -55,6 +55,17 @@ form {
     grid-row: 1 / 2;
 }
 
+.form-select{
+  border: none;
+  background: #f0f0f0;
+  color: #949292;
+  border-radius: 20px;
+  font-size:17px;
+}
+.form-select #option{
+  font-size: 13px;
+}
+
 form.sign-up-form {
     opacity: 0;
     z-index: 1;

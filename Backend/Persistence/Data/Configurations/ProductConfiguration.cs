@@ -14,11 +14,11 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id);
 
-        builder.Property(e => e.Description).HasMaxLength(50);
-        builder.Property(e => e.Dimensions).HasMaxLength(50);
-        builder.Property(e => e.SellingPrice).HasMaxLength(50);
-        builder.Property(e => e.SupplierPrice).HasMaxLength(50);
-        builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
+        builder.Property(e => e.Description).HasMaxLength(500000);
+        builder.Property(e => e.Dimensions).HasMaxLength(500000);
+        builder.Property(e => e.SellingPrice).HasMaxLength(500000);
+        builder.Property(e => e.SupplierPrice).HasMaxLength(500000);
+        builder.Property(e => e.Name).HasMaxLength(500000).IsRequired();
         builder.Property(e => e.StockQuantity).HasColumnType("smallint(6)").IsRequired();
 
         builder.HasOne(d => d.Supplier)

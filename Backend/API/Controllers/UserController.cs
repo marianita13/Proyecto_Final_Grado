@@ -23,7 +23,7 @@ namespace API.Contoller
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<bool>> Register(UserRegisterDto request)
+        public async Task<ActionResult<bool>> Register(DataPersonDto request)
         {
             try
             {
@@ -36,9 +36,10 @@ namespace API.Contoller
 
                 var newUser = new User
                 {
-                    Username = request.Username,
+                    Username = request.UserName,
                     Email = request.Email,
-                    Password = request.Password
+                    Password = request.Password,
+                    Rols = request.Roles
                 };
 
                 _unitOfWork.Users.Add(newUser);
