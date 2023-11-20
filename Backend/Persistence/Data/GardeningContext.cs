@@ -19,7 +19,6 @@ public partial class GardeningContext : DbContext
 
     public DbSet<Rol> Role { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<Boss> Bosses { get; set; }
 
     public DbSet<City> Cities { get; set; }
 

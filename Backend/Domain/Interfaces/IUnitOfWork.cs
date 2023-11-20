@@ -26,7 +26,7 @@ namespace Domain.Interfaces
         IState States { get; }
         IStatus Status { get; }
         ISupplier Suppliers { get; }
-        IBoss Bosses { get; }
+
 
         Task<int> SaveAsync();
     }

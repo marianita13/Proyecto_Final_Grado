@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Data;
 
@@ -10,9 +11,11 @@ using Persistence.Data;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(GardeningContext))]
-    partial class GardeningContextModelSnapshot : ModelSnapshot
+    [Migration("20231120002834_Morir")]
+    partial class Morir
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,18 +242,20 @@ namespace Persistence.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Payment", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int(11)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<int?>("ClientCodeNavigationId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("MethodId")
-                        .HasColumnType("int(11)");
+                        .HasColumnType("int");
 
                     b.Property<DateOnly>("PaymentDate")
-                        .HasColumnType("date");
+                        .HasColumnType("Date");
 
                     b.Property<decimal>("Total")
+                        .HasMaxLength(100)
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("TransactionId")
@@ -259,9 +264,9 @@ namespace Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientCodeNavigationId");
+                    b.HasIndex("ClientId");
 
-                    b.HasIndex(new[] { "MethodId" }, "IX_Payments_MethodId");
+                    b.HasIndex("MethodId");
 
                     b.ToTable("payments", (string)null);
                 });
@@ -660,26 +665,19 @@ namespace Persistence.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
                 {
-                    b.HasOne("Domain.Entities.Client", "ClientCodeNavigation")
-                        .WithMany()
-                        .HasForeignKey("ClientCodeNavigationId");
-
-                    b.HasOne("Domain.Entities.Client", "IdNavigation")
+                    b.HasOne("Domain.Entities.Client", "Client")
                         .WithMany("Payments")
-                        .HasForeignKey("Id")
-                        .IsRequired()
-                        .HasConstraintName("FK_Payments_Clients_Client");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.MethodPayment", "Method")
                         .WithMany("Payments")
                         .HasForeignKey("MethodId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Payments_MethodPayments_MethodId");
+                        .IsRequired();
 
-                    b.Navigation("ClientCodeNavigation");
-
-                    b.Navigation("IdNavigation");
+                    b.Navigation("Client");
 
                     b.Navigation("Method");
                 });

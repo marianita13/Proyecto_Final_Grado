@@ -28,7 +28,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IState _state;
     private IStatus _status;
     private ISupplier _supplier;
-    private IBoss _Boss;
     public ICity Cities 
     {
         get
@@ -233,17 +232,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IBoss Bosses 
-    {
-        get
-        {
-            if (_Boss == null)
-            {
-                _Boss = new BossRepository(_context);
-            }
-            return _Boss;
-        }
-    }
+
 
     public IUser Users {
         get

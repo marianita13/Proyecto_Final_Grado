@@ -15,5 +15,5 @@ public partial class Office: BaseEntityS
 
     public virtual PostalCode PostalCode { get; set; }
     public ICollection<Employee> Employees { get; set; }
-    public ICollection<Boss> Bosses { get; set; }
+    
 }

@@ -25,8 +25,5 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .WithMany(p => p.Employees)
             .HasForeignKey(o => o.OfficeCode);
 
-        builder.HasOne(d => d.Boss)
-            .WithMany(p => p.Employees)
-            .HasForeignKey(o => o.BossCode);
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Data;
 
@@ -10,14 +11,46 @@ using Persistence.Data;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(GardeningContext))]
-    partial class GardeningContextModelSnapshot : ModelSnapshot
+    [Migration("20231119204212_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Domain.Entities.Boss", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Extention")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("OfficeCode")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OfficeCode");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Boss", (string)null);
+                });
 
             modelBuilder.Entity("Domain.Entities.City", b =>
                 {
@@ -111,12 +144,12 @@ namespace Persistence.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("BossCode")
+                        .HasColumnType("int");
+
                     b.Property<string>("Extention")
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<int?>("ManagerCode")
-                        .HasColumnType("int");
 
                     b.Property<string>("OfficeCode")
                         .HasColumnType("varchar(255)");
@@ -125,6 +158,8 @@ namespace Persistence.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BossCode");
 
                     b.HasIndex("OfficeCode");
 
@@ -239,18 +274,20 @@ namespace Persistence.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Payment", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int(11)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<int?>("ClientCodeNavigationId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("MethodId")
-                        .HasColumnType("int(11)");
+                        .HasColumnType("int");
 
                     b.Property<DateOnly>("PaymentDate")
-                        .HasColumnType("date");
+                        .HasColumnType("Date");
 
                     b.Property<decimal>("Total")
+                        .HasMaxLength(100)
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("TransactionId")
@@ -259,9 +296,9 @@ namespace Persistence.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientCodeNavigationId");
+                    b.HasIndex("ClientId");
 
-                    b.HasIndex(new[] { "MethodId" }, "IX_Payments_MethodId");
+                    b.HasIndex("MethodId");
 
                     b.ToTable("payments", (string)null);
                 });
@@ -563,6 +600,23 @@ namespace Persistence.Data.Migrations
                     b.ToTable("userRol", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Boss", b =>
+                {
+                    b.HasOne("Domain.Entities.Office", "Office")
+                        .WithMany("Bosses")
+                        .HasForeignKey("OfficeCode");
+
+                    b.HasOne("Domain.Entities.Person", "Person")
+                        .WithMany("Bosses")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Office");
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("Domain.Entities.City", b =>
                 {
                     b.HasOne("Domain.Entities.State", "State")
@@ -599,6 +653,12 @@ namespace Persistence.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
+                    b.HasOne("Domain.Entities.Boss", "Boss")
+                        .WithMany("Employees")
+                        .HasForeignKey("BossCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Office", "Office")
                         .WithMany("Employees")
                         .HasForeignKey("OfficeCode");
@@ -608,6 +668,8 @@ namespace Persistence.Data.Migrations
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Boss");
 
                     b.Navigation("Office");
 
@@ -660,26 +722,19 @@ namespace Persistence.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
                 {
-                    b.HasOne("Domain.Entities.Client", "ClientCodeNavigation")
-                        .WithMany()
-                        .HasForeignKey("ClientCodeNavigationId");
-
-                    b.HasOne("Domain.Entities.Client", "IdNavigation")
+                    b.HasOne("Domain.Entities.Client", "Client")
                         .WithMany("Payments")
-                        .HasForeignKey("Id")
-                        .IsRequired()
-                        .HasConstraintName("FK_Payments_Clients_Client");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.MethodPayment", "Method")
                         .WithMany("Payments")
                         .HasForeignKey("MethodId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Payments_MethodPayments_MethodId");
+                        .IsRequired();
 
-                    b.Navigation("ClientCodeNavigation");
-
-                    b.Navigation("IdNavigation");
+                    b.Navigation("Client");
 
                     b.Navigation("Method");
                 });
@@ -762,6 +817,11 @@ namespace Persistence.Data.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Boss", b =>
+                {
+                    b.Navigation("Employees");
+                });
+
             modelBuilder.Entity("Domain.Entities.City", b =>
                 {
                     b.Navigation("Postalcodes");
@@ -791,6 +851,8 @@ namespace Persistence.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Office", b =>
                 {
+                    b.Navigation("Bosses");
+
                     b.Navigation("Employees");
                 });
 
@@ -801,6 +863,8 @@ namespace Persistence.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Person", b =>
                 {
+                    b.Navigation("Bosses");
+
                     b.Navigation("Clients");
 
                     b.Navigation("Employees");
