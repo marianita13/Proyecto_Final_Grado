@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () =>{
     let Tarjeta = async() =>{
         let card = await fetch ('/Frontend/Assets/json/cards.json');
         let carta = await card.json();
-        console.log(carta);
         if(xd.includes('Employee')){
             data.insertAdjacentHTML("beforeend", /*HTML*/`
             ${carta.employee.map((value) => /*HTML*/`
