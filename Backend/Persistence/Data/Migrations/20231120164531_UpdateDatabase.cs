@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Ayuda : Migration
+    public partial class UpdateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -205,17 +205,17 @@ namespace Persistence.Data.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Name = table.Column<string>(type: "longtext", maxLength: 500000, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ProductLine = table.Column<int>(type: "int(11)", nullable: false),
-                    Dimensions = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
+                    Dimensions = table.Column<string>(type: "longtext", maxLength: 500000, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IdSupplier = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
+                    Description = table.Column<string>(type: "longtext", maxLength: 500000, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StockQuantity = table.Column<short>(type: "smallint(6)", nullable: false),
-                    SellingPrice = table.Column<decimal>(type: "decimal(65,30)", maxLength: 50, nullable: false),
-                    SupplierPrice = table.Column<decimal>(type: "decimal(65,30)", maxLength: 50, nullable: false)
+                    SellingPrice = table.Column<decimal>(type: "decimal(65,30)", maxLength: 500000, nullable: false),
+                    SupplierPrice = table.Column<decimal>(type: "decimal(65,30)", maxLength: 500000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -352,37 +352,6 @@ namespace Persistence.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Boss",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
-                    Extention = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    OfficeCode = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Phone = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Boss", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Boss_offices_OfficeCode",
-                        column: x => x.OfficeCode,
-                        principalTable: "offices",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Boss_persons_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "persons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
@@ -393,17 +362,11 @@ namespace Persistence.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     OfficeCode = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BossCode = table.Column<int>(type: "int", nullable: false)
+                    ManagerCode = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Employees_Boss_BossCode",
-                        column: x => x.BossCode,
-                        principalTable: "Boss",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Employees_offices_OfficeCode",
                         column: x => x.OfficeCode,
@@ -470,7 +433,7 @@ namespace Persistence.Data.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     OrderDate = table.Column<DateOnly>(type: "Date", nullable: false),
                     ExpectedDate = table.Column<DateOnly>(type: "Date", nullable: false),
-                    DeliveryDate = table.Column<DateOnly>(type: "Date", nullable: false),
+                    DeliveryDate = table.Column<DateOnly>(type: "Date", nullable: true),
                     StatusCode = table.Column<int>(type: "int", nullable: false),
                     Comments = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -498,22 +461,21 @@ namespace Persistence.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    MethodId = table.Column<int>(type: "int", nullable: false),
+                    MethodId = table.Column<int>(type: "int(11)", nullable: false),
                     TransactionId = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    PaymentDate = table.Column<DateOnly>(type: "Date", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(65,30)", maxLength: 100, nullable: false)
+                    PaymentDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_payments_clients_ClientId",
-                        column: x => x.ClientId,
+                        name: "FK_payments_clients_ClienteId",
+                        column: x => x.ClienteId,
                         principalTable: "clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_payments_methodpayments_MethodId",
                         column: x => x.MethodId,
@@ -527,19 +489,21 @@ namespace Persistence.Data.Migrations
                 name: "orderdetails",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ProductCode = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Quantity = table.Column<int>(type: "int(11)", nullable: false),
                     UnitPrice = table.Column<int>(type: "int(11)", nullable: false),
-                    LineNumber = table.Column<short>(type: "smallint(6)", nullable: false)
+                    LineNumber = table.Column<short>(type: "smallint(6)", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_orderdetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_orderdetails_orders_Id",
-                        column: x => x.Id,
+                        name: "FK_orderdetails_orders_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "orders",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -549,16 +513,6 @@ namespace Persistence.Data.Migrations
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Boss_OfficeCode",
-                table: "Boss",
-                column: "OfficeCode");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Boss_PersonId",
-                table: "Boss",
-                column: "PersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_StateId",
@@ -581,11 +535,6 @@ namespace Persistence.Data.Migrations
                 column: "PostalCodeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_BossCode",
-                table: "Employees",
-                column: "BossCode");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Employees_OfficeCode",
                 table: "Employees",
                 column: "OfficeCode");
@@ -599,6 +548,11 @@ namespace Persistence.Data.Migrations
                 name: "IX_offices_PostalCodeId",
                 table: "offices",
                 column: "PostalCodeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_orderdetails_OrderId",
+                table: "orderdetails",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_orderdetails_ProductCode",
@@ -616,9 +570,9 @@ namespace Persistence.Data.Migrations
                 column: "StatusCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_payments_ClientId",
+                name: "IX_payments_ClienteId",
                 table: "payments",
-                column: "ClientId");
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_payments_MethodId",
@@ -705,9 +659,6 @@ namespace Persistence.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
-
-            migrationBuilder.DropTable(
-                name: "Boss");
 
             migrationBuilder.DropTable(
                 name: "offices");

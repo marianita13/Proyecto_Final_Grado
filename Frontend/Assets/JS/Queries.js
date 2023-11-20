@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Boton ${value.Id}" style="background-color:rgb(111, 209, 255);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(111, 209, 255);"
+                    onclick="handleButtonClick('${value.Id}')">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -33,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Boton ${value.Id}" style="background-color:rgb(245, 241, 33);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(245, 241, 33);"
+                    onclick="handleButtonClick('${value.Id}')">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -55,7 +57,8 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Boton ${value.Id}" style="background-color:rgb(235, 134, 255);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(235, 134, 255);"
+                    onclick="handleButtonClick('${value.Id}')">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -71,7 +74,8 @@ document.addEventListener("DOMContentLoaded", () =>{
                     </div>
                 </div>
                 <div id="back">
-                    <button class="Boton ${value.Id}" style="background-color:rgb(255, 106, 106);">${value.button}</button>
+                    <button class="Boton ${value.Id}" style="background-color:rgb(255, 106, 106);"
+                    onclick="handleButtonClick('${value.Id}')">${value.button}</button>
                 </div>
             </div>
             `).join("")}
@@ -116,23 +120,29 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     pruebas()
 
-    function tabla(){
-        var Tabla = document.querySelectorAll(".Boton");
 
-        Tabla.forEach(ta => {
-            ta.addEventListener('click', (evento) =>{
-                evento.preventDefault();
-                localStorage.clear();
-                console.log('funciona?');
-                let busqueda = evento.target.classList.contains('1');
-                let json = JSON.stringify(busqueda);
-                localStorage.setItem('busqueda',busqueda);
-                let rst = localStorage.getItem('busqueda');
-                let log = JSON.parse(rst);
-                console.log(log);
+})
+function handleButtonClick(id){
+    // Obtener los IDs existentes del localStorage o inicializar un array vacío
+    localStorage.clear();
+    const storedIds = JSON.parse(localStorage.getItem('storedIds')) || [];
 
-            })
-        })
+    // Verificar si el ID ya está en la lista
+    if (!storedIds.includes(id)) {
+        // Si no está en la lista, agregarlo
+        storedIds.push(id);
+
+        // Actualizar el localStorage con la nueva lista de IDs
+        localStorage.setItem('storedIds', JSON.stringify(storedIds));
+
+        // Puedes hacer algo más aquí si es necesario, como actualizar la interfaz de usuario, etc.
     }
-    tabla()
+};
+
+// Agregar manejadores de clic a los botones generados
+document.querySelectorAll('.Boton').forEach((button) => {
+    button.addEventListener('click', () => {
+        const id = button.classList[1]; // Obtener el ID del botón a través de las clases
+        handleButtonClick(id);
+    });
 })

@@ -24,6 +24,22 @@ namespace API.Controllers
             var office = await _unitOfWork.Offices.GetAllAsync();
             return _mapper.Map<List<OfficeDto>>(office);
         }
+        [HttpGet("GetCitiesWithOffices")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OfficeDto>>> GetCitiesWithOffices()
+        {
+            var office = await _unitOfWork.Offices.GetCitiesWithOffices();
+            return Ok(office);
+        }
+        [HttpGet("GetCitiesWithOfficesInSpain")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OfficeDto>>> GetCitiesWithOfficesInSpain()
+        {
+            var office = await _unitOfWork.Offices.GetCitiesWithOfficesInSpain();
+            return Ok(office);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

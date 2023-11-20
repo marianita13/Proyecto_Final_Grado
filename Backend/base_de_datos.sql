@@ -890,7 +890,7 @@ INSERT INTO methodpayments (MethodPayment1) VALUES
  ('Transferencia'),
  ('Cheque');
  
-INSERT INTO payments (ClientId, MethodId, TransactionId, PaymentDate, Total) VALUES
+INSERT INTO payments (ClienteId, MethodId, TransactionId, PaymentDate, Total) VALUES
  (1, 1, 'ak-std-000001', '2008-11-10', 2000),
  (1, 1, 'ak-std-000002', '2008-12-10', 2000),
  (2, 1, 'ak-std-000003', '2009-01-16', 5000),
@@ -1957,7 +1957,7 @@ curvada, con los bordes algo constreñidos entre las semillas, que se disponen e
 longitudinalmente...',100,14,11);
 
 
- INSERT INTO orderdetails(orderId, ProductCode, Quantity, UnitPrice, LineNumber) VALUES 
+ INSERT INTO orderdetails(OrderId, ProductCode, Quantity, UnitPrice, LineNumber) VALUES 
 (1, 'FR-67', 10, '70.00', 3),
 (1, 'OR-127', 40, '4.00', 1),
 (1, 'OR-141', 25, '4.00', 2),

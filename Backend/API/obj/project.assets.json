@@ -6618,32 +6618,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\corvus\\.nuget\\packages\\": {}
+    "C:\\Users\\APM02-43\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\corvus\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\corvus\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\corvus\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\obj\\",
+      "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\APM02-43\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\APM02-43\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\corvus\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\corvus\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj"
+            "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\APM02-43\\Desktop\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj"
             }
           }
         }
@@ -6720,7 +6722,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

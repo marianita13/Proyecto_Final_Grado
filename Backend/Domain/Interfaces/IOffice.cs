@@ -8,6 +8,10 @@ namespace Domain.Interfaces
 {
     public interface IOffice:IGenericRepositoryS<Office>
     {
+        Task<IEnumerable<object>> GetCitiesWithOffices();
+        Task<IEnumerable<object>> GetCitiesWithOfficesInSpain();
+    {
     
     }
+}
 }
