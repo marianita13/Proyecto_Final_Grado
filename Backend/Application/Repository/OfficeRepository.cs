@@ -70,5 +70,26 @@ namespace Application.Repository
                           select office).Distinct()
                         .ToListAsync();
         }
+
+        public List<object> GetOfficesWithClientsInFuenlabrada()
+            {
+                var officesInFuenlabrada = _context.Offices
+                    .Where(office => office.Employees
+                                        .Any(employee => employee.Clients
+                                            .Any(client => client.PostalCode.City.CityName == "Fuenlabrada")))
+                    .Select(office => new
+                    {
+                        OfficeId = office.Id,
+                        AddressLine1 = office.AddressLine1,
+                        AddressLine2 = office.AddressLine2,
+                        City = office.PostalCode.City.CityName,
+                        EmployeesCount = office.Employees.Count,
+                        ClientsCount = office.Employees.Sum(employee => employee.Clients.Count)
+                    })
+                    .ToList<object>();
+
+                return officesInFuenlabrada;
+            }
+
     }
 }
