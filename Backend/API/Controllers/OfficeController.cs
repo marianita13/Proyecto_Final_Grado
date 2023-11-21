@@ -24,6 +24,9 @@ namespace API.Controllers
             var office = await _unitOfWork.Offices.GetAllAsync();
             return _mapper.Map<List<OfficeDto>>(office);
         }
+
+        
+        /* Devuelve un listado con el código de oficina y la ciudad donde hay oficinas. */
         [HttpGet("GetCitiesWithOffices")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -32,6 +35,8 @@ namespace API.Controllers
             var office = await _unitOfWork.Offices.GetCitiesWithOffices();
             return Ok(office);
         }
+
+        /* Devuelve un listado con la ciudad y el telé fono de las oficinas de España. */
         [HttpGet("GetCitiesWithOfficesInSpain")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -40,6 +45,25 @@ namespace API.Controllers
             var office = await _unitOfWork.Offices.GetCitiesWithOfficesInSpain();
             return Ok(office);
         }
+
+        /* Lista la dirección de las oficinas que tengan clientes en Fuenlabrada. */
+        [HttpGet("GetOfficesWithClientsInFuenlabrada")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<IEnumerable<int>> GetOfficesWithClientsInFuenlabrada()
+        {
+            try
+            {
+                var clientCodes = _unitOfWork.Offices.GetOfficesWithClientsInFuenlabrada();
+                return Ok(clientCodes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener códigos de cliente: {ex.Message}");
+                return StatusCode(500, "Error interno del servidor");
+            }
+        }
+
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

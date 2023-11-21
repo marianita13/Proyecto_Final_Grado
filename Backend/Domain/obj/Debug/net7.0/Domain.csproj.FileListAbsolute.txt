@@ -70,6 +70,7 @@ C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\D
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\refint\Domain.dll
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\Domain.pdb
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\ref\Domain.dll
+<<<<<<< HEAD
 C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\bin\Debug\net7.0\Domain.deps.json
 C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\bin\Debug\net7.0\Domain.dll
 C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\bin\Debug\net7.0\Domain.pdb
@@ -82,3 +83,17 @@ C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\Domain.dll
 C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\refint\Domain.dll
 C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\Domain.pdb
 C:\Users\corvus\Proyecto_Final_Grado\Backend\Domain\obj\Debug\net7.0\ref\Domain.dll
+=======
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.dll
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\refint\Domain.dll
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\Domain.pdb
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\bin\Debug\net7.0\Domain.deps.json
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\bin\Debug\net7.0\Domain.dll
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\bin\Debug\net7.0\Domain.pdb
+C:\Users\APM02-44\Proyecto_Final_Grado\backend\Domain\obj\Debug\net7.0\ref\Domain.dll
+>>>>>>> Paola

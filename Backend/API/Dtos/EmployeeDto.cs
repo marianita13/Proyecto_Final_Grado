@@ -7,6 +7,9 @@ namespace API.Dtos
 {
     public class EmployeeDto
     {
+        internal object FirstName;
+        internal object LastName;
+
         public int Id { get; set; }
         public int PersonId { get; set; }
 
@@ -16,7 +19,6 @@ namespace API.Dtos
         public int ManagerCode { get; set; }
 
         public string Position { get; set; }
-
-
+        public object Email { get; internal set; }
     }
 }

@@ -19,6 +19,48 @@ namespace Application.Repository
             _context = context;
         }
 
+/*  Devuelve un listado con todos los pagos que se realizaron en el
+año 2008 mediante Paypal. Ordene el resultado de mayor a menor */
+public async Task<IEnumerable<Payment>> GetPaymentsIn2008ByPaypal()
+{
+    var paymentsIn2008 = await (
+        from payment in _context.Payments
+        where payment.PaymentDate.Year == 2008 && payment.Method.MethodPayment1 == "Paypal"
+        orderby payment.Total descending
+        select new Payment
+        {
+            Id = payment.Id,
+            PaymentDate = payment.PaymentDate,
+            Total = payment.Total,
+            ClienteId = payment.ClienteId, 
+            MethodId = payment.MethodId, 
+            Method = payment.Method, 
+        }
+    ).ToListAsync();
+
+    return paymentsIn2008;
+}
+
+ /* Devuelve un listado con todas las formas de pago que aparecen en la
+tabla pago. Tenga en cuenta que no deben aparecer formas de pago
+repetidas */
+public async Task<IEnumerable<string>> GetDistinctPaymentMethods()
+{
+    var distinctPaymentMethods = await _context.Payments
+        .Select(payment => payment.Method.MethodPayment1)
+        .Distinct()
+        .ToListAsync();
+
+    return distinctPaymentMethods;
+}
+
+
+
+
+
+
+        
+
         //TODO: CONSULTA
         public async Task<IEnumerable<object>> GetPaymentsForYear()
         {

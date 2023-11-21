@@ -24,6 +24,62 @@ namespace API.Controllers
             var orders = await _unitOfWork.Orderse.GetAllAsync();
             return _mapper.Map<List<OrderDto>>(orders);
         }
+
+        /* Devuelve un listado con los distintos estados por los que puede pasar un
+pedido. */
+        [HttpGet("GetOrderStatusList")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrderStatusList()
+        {
+            var office = await _unitOfWork.Orderse.GetOrderStatusList();
+            return Ok(office);
+        }
+
+        /* Devuelve un listado con el código de pedido, código de cliente, fecha
+esperada y fecha de entrega de los pedidos que no han sido entregados a
+tiempo. */
+        [HttpGet("GetDelayedOrders")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetDelayedOrders()
+        {
+            var office = await _unitOfWork.Orderse.GetDelayedOrders();
+            return Ok(office);
+        }
+
+        /* Devuelve un listado con el código de pedido, código de cliente, fecha
+esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
+menos dos días antes de la fecha esperada. */
+        [HttpGet("GetOrdersDeliveredEarly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrdersDeliveredEarly()
+        {
+            var office = await _unitOfWork.Orderse.GetOrdersDeliveredEarly();
+            return Ok(office);
+        }
+
+        /* Devuelve un listado de todos los pedidos que fueron rechazados en 2009. */
+        [HttpGet("GetRejectedOrdersIn2009")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetRejectedOrdersIn2009()
+        {
+            var office = await _unitOfWork.Orderse.GetRejectedOrdersIn2009();
+            return Ok(office);
+        }
+        
+        /* Devuelve un listado de todos los pedidos que han sido entregados en el
+mes de enero de cualquier año. */
+        [HttpGet("GetOrdersDeliveredInJanuary")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrdersDeliveredInJanuary()
+        {
+            var office = await _unitOfWork.Orderse.GetOrdersDeliveredInJanuary();
+            return Ok(office);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -25,6 +25,41 @@ namespace API.Controllers
             return _mapper.Map<List<ProductDto>>(product);
         }
 
+        /* Devuelve un listado con todos los productos que pertenecen a la
+gama Ornamentales y que tienen más de 100 unidades en stock. El listado
+deberá estar ordenado por su precio de venta, mostrando en primer lugar
+los de mayor precio */
+        [HttpGet("GetOrnamentalProductsOver100Stock")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetOrnamentalProductsOver100Stock()
+        {
+            var office = await _unitOfWork.Products.GetOrnamentalProductsOver100Stock();
+            return Ok(office);
+        }
+
+
+
+        /*  Devuelve un listado de las diferentes gamas de producto que ha comprado
+cada cliente. */
+       [HttpGet("GetProductRangesPerClient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<IEnumerable<int>> GetProductRangesPerClient()
+        {
+            try
+            {
+                var clientCodes = _unitOfWork.Products.GetProductRangesPerClient();
+                return Ok(clientCodes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener códigos de cliente: {ex.Message}");
+                return StatusCode(500, "Error interno del servidor");
+            }
+        }
+
+
         //Producto mas caro
         [HttpGet("GetExpensiveProduct")]
         [ProducesResponseType(StatusCodes.Status200OK)]

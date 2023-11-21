@@ -5273,11 +5273,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\corvus\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\velas\\.nuget\\packages\\": {}
+>>>>>>> Paola
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
       "projectName": "Application",
       "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
@@ -5286,6 +5291,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+      "projectName": "Application",
+      "projectPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\velas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Application\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\velas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> Paola
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5297,11 +5312,19 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
             },
             "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
               "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
+=======
+            "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+            },
+            "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj"
+>>>>>>> Paola
             }
           }
         }
@@ -5331,7 +5354,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> Paola
       }
     }
   }

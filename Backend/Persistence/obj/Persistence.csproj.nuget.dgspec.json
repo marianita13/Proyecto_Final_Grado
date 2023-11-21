@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\velas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\velas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> Paola
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -67,6 +84,7 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
         }
       }
@@ -82,6 +100,23 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "projectName": "Persistence",
+        "projectPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\velas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\velas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> Paola
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -93,8 +128,13 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+=======
+              "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\velas\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+>>>>>>> Paola
               }
             }
           }
@@ -138,7 +178,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> Paola
         }
       }
     }
