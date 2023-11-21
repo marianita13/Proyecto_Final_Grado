@@ -18,7 +18,7 @@
             url = `${localhost}/Office/GetOfficesWithClientsInFuenlabrada`
         }
         if(data==4){
-            url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
+            url = `${localhost}/Office/GetOfficeNoSellFruits`
         }
         if(data==5){
             url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
@@ -27,8 +27,22 @@
             url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
         }
     }
-    if(consult.includes("Employees")){
-
+    if(consult.includes("Employee")){
+        if(data==1){
+            url = `${localhost}/Employee/GetEmployeesByBossCode?bossCode=7`
+        }
+        if(data==2){
+            url = `${localhost}/Employee/GetCEOInformation`
+        }
+        if(data==3){
+            url = `${localhost}/Employee/GetNonSalesRepresentatives`
+        }
+        if(data==4){
+            url = `${localhost}/Employee/GetEmployeesWithManagers`
+        }
+        if(data==5){
+            url = `${localhost}/Employee/GetEmployeeHierarchy`
+        }
     }
     if(consult.includes("Clients")){
 

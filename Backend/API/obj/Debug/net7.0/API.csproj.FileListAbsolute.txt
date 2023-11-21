@@ -505,7 +505,6 @@ C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\API.
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\ref\API.dll
 <<<<<<< HEAD
-<<<<<<< HEAD
 C:\Users\corvus\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\API.dll
 C:\Users\corvus\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\refint\API.dll
 C:\Users\corvus\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\API.pdb
@@ -684,7 +683,6 @@ C:\Users\APM02-44\Proyecto_Final_Grado\backend\API\obj\Debug\net7.0\API.csproj.C
 C:\Users\APM02-44\Proyecto_Final_Grado\backend\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\APM02-44\Proyecto_Final_Grado\backend\API\obj\Debug\net7.0\ref\API.dll
 >>>>>>> Paola
-=======
 C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\CsvHelper.dll
 C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.dll
