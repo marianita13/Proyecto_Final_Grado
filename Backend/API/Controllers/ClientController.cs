@@ -28,37 +28,18 @@ namespace API.Controllers
         [HttpGet("GetClientNoPayment")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ClientDto>>> GetClientNoPayment()
+        public async Task<ActionResult<ClientDto>> GetClientNoPayment()
         {
             var client = await _unitOfWork.Clients.GetClientNoPayment();
-            return _mapper.Map<List<ClientDto>>(client);
+            return Ok(client);
         }
-
         [HttpGet("GetClientNoOrder")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ClientDto>>> GetClientNoOrder()
+        public async Task<ActionResult<ClientDto>> GetClientNoOrder()
         {
             var client = await _unitOfWork.Clients.GetClientNoOrder();
-            return _mapper.Map<List<ClientDto>>(client);
-        }
-
-        [HttpGet("GetClientNoPaymentNoOrder")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ClientDto>>> GetClientNoPaymentNoOrder()
-        {
-            var client = await _unitOfWork.Clients.GetClientNoPaymentNoOrder();
-            return _mapper.Map<List<ClientDto>>(client);
-        }
-
-        [HttpGet("GetClientNoPaymentYesOrder")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ClientDto>>> GetClientNoPaymentYesOrder()
-        {
-            var client = await _unitOfWork.Clients.GetClientNoPaymentYesOrder();
-            return _mapper.Map<List<ClientDto>>(client);
+            return Ok(client);
         }
         
         [HttpGet("{id}")]

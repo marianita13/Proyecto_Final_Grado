@@ -16,7 +16,6 @@ namespace API.Controllers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -25,7 +24,6 @@ namespace API.Controllers
             var office = await _unitOfWork.Offices.GetAllAsync();
             return _mapper.Map<List<OfficeDto>>(office);
         }
-
         [HttpGet("GetCitiesWithOffices")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -41,15 +39,6 @@ namespace API.Controllers
         {
             var office = await _unitOfWork.Offices.GetCitiesWithOfficesInSpain();
             return Ok(office);
-        }
-        
-        [HttpGet("GetOfficeNoSellFruits")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<OfficeDto>>> GetOfficeNoSellFruits()
-        {
-            var office = await _unitOfWork.Offices.GetOfficeNoSellFruits();
-            return _mapper.Map<List<OfficeDto>>(office);
         }
         
         [HttpGet("{id}")]

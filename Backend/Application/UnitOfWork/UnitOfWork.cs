@@ -28,8 +28,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IState _state;
     private IStatus _status;
     private ISupplier _supplier;
-    private ISummary _Summary;
-
     public ICity Cities 
     {
         get
@@ -254,17 +252,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _rol = new RolRepository(_context);
             }
             return _rol;
-        }
-    }
-
-    public ISummary Summaries {
-        get
-        {
-            if (_Summary == null)
-            {
-                _Summary = new SummaryRepository(_context);
-            }
-            return _Summary;
         }
     }
 

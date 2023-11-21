@@ -15,7 +15,7 @@ namespace API.Dtos
 
         public int ManagerCode { get; set; }
 
-        // public string Position { get; set; }
+        public string Position { get; set; }
 
 
     }

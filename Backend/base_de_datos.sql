@@ -640,10 +640,10 @@ INSERT INTO states (StateName, CountryId) VALUES
 ('', 1), 
 ('', 4), 
 ('Barcelona', 2),
-('MA', 1),
+('MA', 2),
 ('EMEA', 3),
 ('EMEA', 4),
-('Madrid', 2),   
+('Madrid', 4),   
 ('CA', 1), 
 ('APAC', 5), 
 ('Castilla-LaMancha', 2),
@@ -663,7 +663,7 @@ INSERT INTO cities (CityName, StateId) VALUES
 ('Miami', 14),
 ('New York', 5),
 ('Fuenlabrada', 6),
-('Madrid', 7),
+('Madrid', 6),
 ('San Lorenzo del Escorial', 6),
 ('Montornes del valles', 3),
 ('Santa cruz de Tenerife', 15),
@@ -2345,5 +2345,3 @@ Insert Into User(UserName, Email,Password) VALUES
 ('antonio562','antonio.r@gardening.com','Pas1'),
 ('richard156','richard.m@gardening.com','Pas1'),
 ('justin45156','justin.s@gardening.com','Pas1');
-
-UPDATE `productlines` SET `Image` = 'img1.png' WHERE `productlines`.`Id` = 1; UPDATE `productlines` SET `Image` = 'img2.png' WHERE `productlines`.`Id` = 2; UPDATE `productlines` SET `Image` = 'img3.png' WHERE `productlines`.`Id` = 3; UPDATE `productlines` SET `Image` = 'img4.png' WHERE `productlines`.`Id` = 4; UPDATE `productlines` SET `Image` = 'img6.png' WHERE `productlines`.`Id` = 5;

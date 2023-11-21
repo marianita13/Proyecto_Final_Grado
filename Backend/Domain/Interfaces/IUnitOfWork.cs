@@ -26,7 +26,8 @@ namespace Domain.Interfaces
         IState States { get; }
         IStatus Status { get; }
         ISupplier Suppliers { get; }
-        ISummary Summaries { get; }
+
+
         Task<int> SaveAsync();
     }
 }

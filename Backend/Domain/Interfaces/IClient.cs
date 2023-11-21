@@ -10,8 +10,6 @@ namespace Domain.Interfaces
     {
         Task<IEnumerable<Client>> GetClientNoPayment();
         Task<IEnumerable<Client>> GetClientNoOrder();
-        Task<IEnumerable<Client>> GetClientNoPaymentNoOrder();
-        Task<IEnumerable<Client>> GetClientNoPaymentYesOrder();
         
     }
 }
