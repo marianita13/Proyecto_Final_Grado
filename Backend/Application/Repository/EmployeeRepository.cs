@@ -19,7 +19,8 @@ namespace Application.Repository
         {
             _context = context;
         }
-
+        /* Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
+jefe tiene un código de jefe igual a 7. */
         public async Task<IEnumerable<object>> GetEmployeesByBossCode(int bossCode)
         {
             try
@@ -40,10 +41,97 @@ namespace Application.Repository
             }
             catch (Exception ex)
             {
-                // Manejar la excepción según tus necesidades (puedes registrarla o mostrarla en la salida)
+                
                 Console.WriteLine($"Error al obtener empleados: {ex.Message}");
-                throw; // Puedes elegir relanzar la excepción o manejarla de manera diferente
+                throw;
             }
         }
+
+        /* Devuelve un listado con el nombre, apellidos y puesto de aquellos
+empleados que no sean representantes de ventas. */
+        public async Task<IEnumerable<object>> GetNonSalesRepresentatives()
+{
+    try
+    {
+        var nonSalesReps = await (
+            from employee in _context.Employees
+            join person in _context.Persons on employee.PersonId equals person.Id
+            join personType in _context.Persontypes on person.PersonTypeId equals personType.Id
+            where personType.TypeName != "Representante Ventas"
+            select new
+            {
+                FirstName = person.FirstName,
+                LastName = person.LastName1,
+                JobTitle = personType.TypeName
+            }
+        ).ToListAsync();
+
+        return nonSalesReps;
+    }
+    catch (Exception ex)
+    {
+
+        Console.WriteLine($"Error al obtener empleados que no son representantes de ventas: {ex.Message}");
+        throw; 
+    }
+}
+
+/* Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
+empresa. */
+public async Task<IEnumerable<object>> GetCEOInformation()
+{
+    var ceoInfo = await (
+        from employee in _context.Employees
+        where employee.ManagerCode == null 
+        join person in _context.Persons on employee.PersonId equals person.Id
+        join position in _context.Persontypes on person.PersonTypeId equals position.Id
+        select new
+        {
+            JobTitle = position.TypeName,
+            FirstName = person.FirstName,
+            LastName = person.LastName1,
+            Email = person.Email
+        }
+    ).ToListAsync();
+
+    return ceoInfo;
+}
+
+
+/* Devuelve un listado que muestre el nombre de cada empleados, el nombre
+de su jefe y el nombre del jefe de sus jefe. */
+public List<object> GetEmployeeHierarchy()
+{
+    var employeeHierarchy = from employee in _context.Employees
+                            join manager in _context.Employees on employee.ManagerCode equals manager.PersonId into managers
+                            from manager in managers.DefaultIfEmpty()
+                            join grandManager in _context.Employees on manager.ManagerCode equals grandManager.PersonId into grandManagers
+                            from grandManager in grandManagers.DefaultIfEmpty()
+                            select new
+                            {
+                                EmployeeName = employee.Person.FirstName + " " + employee.Person.LastName1,
+                                ManagerName = manager != null ? manager.Person.FirstName + " " + manager.Person.LastName1 : null,
+                                GrandManagerName = grandManager != null ? grandManager.Person.FirstName + " " + grandManager.Person.LastName1 : null
+                            };
+
+    return employeeHierarchy.Cast<object>().ToList();
+}
+public List<object> GetEmployeesWithManagers()
+{
+    var employeesWithManagers = from employee in _context.Employees
+                                join manager in _context.Employees on employee.ManagerCode equals manager.PersonId into managers
+                                from manager in managers.DefaultIfEmpty()
+                                select new
+                                {
+                                    EmployeeName = employee.Person.FirstName + " " + employee.Person.LastName1,
+                                    ManagerName = manager != null ? manager.Person.FirstName + " " + manager.Person.LastName1 : null
+                                };
+
+    return employeesWithManagers.Cast<object>().ToList();
+}
+
+
+
+
     }
 }

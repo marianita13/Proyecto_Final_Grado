@@ -26,6 +26,31 @@ namespace API.Controllers
             return _mapper.Map<List<PaymentDto>>(payment);
         }
         
+       /*  Devuelve un listado con todos los pagos que se realizaron en el
+año 2008 mediante Paypal. Ordene el resultado de mayor a menor */
+        [HttpGet("GetPaymentsIn2008ByPaypal")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<PaymentDto>>> GetPaymentsIn2008ByPaypal()
+        {
+            var office = await _unitOfWork.Payments.GetPaymentsIn2008ByPaypal();
+            return Ok(office);
+        }
+
+        /* Devuelve un listado con todas las formas de pago que aparecen en la
+tabla pago. Tenga en cuenta que no deben aparecer formas de pago
+repetidas */
+        [HttpGet("GetDistinctPaymentMethods")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<PaymentDto>>> GetDistinctPaymentMethods()
+        {
+            var office = await _unitOfWork.Payments.GetDistinctPaymentMethods();
+            return Ok(office);
+        }
+
+
+
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

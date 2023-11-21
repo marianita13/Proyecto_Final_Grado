@@ -26,6 +26,7 @@ namespace Application.Repository
                 .ToListAsync();
         }
 
+
         /* Devuelve un listado con la ciudad y el telé fono de las oficinas de España. */
     public async Task<IEnumerable<object>> GetCitiesWithOfficesInSpain()
     {
@@ -37,6 +38,23 @@ namespace Application.Repository
                 select new { office.Id, city.CityName, office.Phone })
                 .ToListAsync();
     }
+
+/* Lista la dirección de las oficinas que tengan clientes en Fuenlabrada. */
+public List<string> GetOfficesWithClientsInFuenlabrada()
+{
+    var officesInFuenlabrada = _context.Offices
+        .Where(office => office.Employees
+                            .Any(employee => employee.Clients
+                                .Any(client => client.PostalCode.City.CityName == "Fuenlabrada")))
+        .Select(office => $"{office.AddressLine1}, {office.AddressLine2}")
+        .ToList();
+
+    return officesInFuenlabrada;
+}
+
+
+
+
 
 
 
