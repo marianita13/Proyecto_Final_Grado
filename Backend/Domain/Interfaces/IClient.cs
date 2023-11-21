@@ -8,6 +8,11 @@ namespace Domain.Interfaces
 {
     public interface IClient:IGenericRepository<Client>
     {
+        Task<IEnumerable<Client>> GetClientNoPayment();
+        Task<IEnumerable<Client>> GetClientNoOrder();
+        Task<IEnumerable<Client>> GetClientNoPaymentNoOrder();
+        Task<IEnumerable<Client>> GetClientNoPaymentYesOrder();
+        
         Task<IEnumerable<string>> GetSpanishClients();
         IEnumerable<int> GetUniqueClientCodesWithPaymentsIn2008();
         List<object> GetClientsFromMadridWithSpecificEmployees();

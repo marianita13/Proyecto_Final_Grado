@@ -5254,11 +5254,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\corvus\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\duvan\\.nuget\\packages\\": {}
+>>>>>>> dd82a258
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
       "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
@@ -5267,6 +5272,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "projectName": "Persistence",
+      "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> dd82a258
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5278,8 +5293,13 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+=======
+            "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\netcore\\ProjectsnetCore\\filtro\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+>>>>>>> dd82a258
             }
           }
         }
@@ -5323,7 +5343,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+>>>>>>> dd82a258
       }
     }
   },

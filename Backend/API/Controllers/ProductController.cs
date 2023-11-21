@@ -25,6 +25,25 @@ namespace API.Controllers
             return _mapper.Map<List<ProductDto>>(product);
         }
 
+        [HttpGet("GetProductsNoOrder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsNoOrder()
+        {
+            var product = await _unitOfWork.Products.GetProductsNoOrder();
+            return _mapper.Map<List<ProductDto>>(product);
+        }
+
+        [HttpGet("GetProductsNoOrderWithInfo")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsNoOrderWithInfo()
+        {
+            var product = await _unitOfWork.Products.GetProductsNoOrderWithInfo();
+            return Ok(product);
+        }
+        
+
         /* Devuelve un listado con todos los productos que pertenecen a la
 gama Ornamentales y que tienen más de 100 unidades en stock. El listado
 deberá estar ordenado por su precio de venta, mostrando en primer lugar

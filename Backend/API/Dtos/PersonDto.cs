@@ -22,9 +22,6 @@ namespace API.Dtos
         public int PersonTypeId { get; set; }
 
 
-        public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
-
-        public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
 
     }

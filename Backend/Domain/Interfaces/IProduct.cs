@@ -8,6 +8,8 @@ namespace Domain.Interfaces
 {
     public interface IProduct:IGenericRepositoryS<Product>
     {
+        Task<IEnumerable<Product>> GetProductsNoOrder();
+        Task<IEnumerable<object>> GetProductsNoOrderWithInfo();
         Task<object> GetExpensiveProduct();
         Task<object> GetProductHigherStock();
         Task<object> GetProductLowerStock();

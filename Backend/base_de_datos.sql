@@ -2345,3 +2345,5 @@ Insert Into User(UserName, Email,Password) VALUES
 ('antonio562','antonio.r@gardening.com','Pas1'),
 ('richard156','richard.m@gardening.com','Pas1'),
 ('justin45156','justin.s@gardening.com','Pas1');
+
+UPDATE `productlines` SET `Image` = 'img1.png' WHERE `productlines`.`Id` = 1; UPDATE `productlines` SET `Image` = 'img2.png' WHERE `productlines`.`Id` = 2; UPDATE `productlines` SET `Image` = 'img3.png' WHERE `productlines`.`Id` = 3; UPDATE `productlines` SET `Image` = 'img4.png' WHERE `productlines`.`Id` = 4; UPDATE `productlines` SET `Image` = 'img6.png' WHERE `productlines`.`Id` = 5;
