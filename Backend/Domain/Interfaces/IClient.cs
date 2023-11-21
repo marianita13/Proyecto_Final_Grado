@@ -14,7 +14,7 @@ namespace Domain.Interfaces
         Task<IEnumerable<Client>> GetClientNoPaymentYesOrder();
         
         Task<IEnumerable<string>> GetSpanishClients();
-        IEnumerable<int> GetUniqueClientCodesWithPaymentsIn2008();
+        IEnumerable<object> GetUniqueClientCodesWithPaymentsIn2008();
         List<object> GetClientsFromMadridWithSpecificEmployees();
         List<object> GetClientAndSalesRepresentativeInfo();
         List<string> GetClientsWithPaymentsAndSalesRepresentatives();

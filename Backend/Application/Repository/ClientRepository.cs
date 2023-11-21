@@ -89,13 +89,13 @@ namespace Application.Repository
 /*  Devuelve un listado con el código de cliente de aquellos clientes que
 realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
 aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta */
-public IEnumerable<int> GetUniqueClientCodesWithPaymentsIn2008()
+public IEnumerable<object> GetUniqueClientCodesWithPaymentsIn2008()
 {
     var clientCodesWithPaymentsIn2008 = _context.Payments
         .Where(payment => payment.PaymentDate.Year == 2008)
-        .Select(payment => payment.IdNavigation.PersonId) 
+        .Select(payment => new { ClientCode = payment.IdNavigation.PersonId })
         .Distinct()
-        .OrderBy(clientCode => clientCode); 
+        .OrderBy(clientDetails => clientDetails.ClientCode);
 
     return clientCodesWithPaymentsIn2008;
 }

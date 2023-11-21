@@ -8,10 +8,10 @@ namespace Domain.Interfaces
 {
     public interface IOrders:IGenericRepository<Order>
     {
-        Task<IEnumerable<string>> GetOrderStatusList();
-        Task<IEnumerable<Order>> GetDelayedOrders();
-        Task<IEnumerable<Order>> GetOrdersDeliveredEarly();
-        Task<IEnumerable<Order>> GetRejectedOrdersIn2009();
-        Task<IEnumerable<Order>> GetOrdersDeliveredInJanuary();
+        Task<IEnumerable<object>> GetOrderStatusList();
+        Task<IEnumerable<object>> GetDelayedOrders();
+        Task<IEnumerable<object>> GetOrdersDeliveredEarly();
+        Task<IEnumerable<object>> GetRejectedOrdersIn2009();
+        Task<IEnumerable<object>> GetOrdersDeliveredInJanuary();
     }
 }

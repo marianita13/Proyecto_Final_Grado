@@ -41,7 +41,42 @@ document.addEventListener("DOMContentLoaded", () =>{
             `)
         }
         else if(xd.includes("Clients")){
-            data.insertAdjacentHTML("beforeend", /*HTML*/``)
+            data.insertAdjacentHTML("beforeend", /*HTML*/`
+            <select>
+            <option value="1">2008Payment</option>
+            <option value="2">Opción 2</option>
+            <option value="3">Opción 3</option>
+            <option value="4">Opción 4</option>
+            <option value="5">Opción 5</option>
+            <option value="6">Opción 6</option>
+            <option value="7">Opción 7</option>
+            <option value="8">Opción 8</option>
+            <option value="9">Opción 9</option>
+            <option value="10">Opción 10</option>
+            <option value="11">Opción 11</option>
+            <option value="12">Opción 12</option>
+            <option value="13">Opción 13</option>
+            <option value="14">Opción 14</option>
+            <option value="15">Opción 15</option>
+            <option value="16">Opción 16</option>
+            <option value="17">Opción 17</option>
+            <option value="18">Opción 18</option>
+            <option value="19">Opción 19</option>
+            <option value="20">Opción 20</option>
+            <option value="21">Opción 21</option>
+            <option value="22">Opción 22</option>
+            <option value="23">Opción 23</option>
+            <option value="24">Opción 24</option>
+            <option value="25">Opción 25</option>
+            <option value="26">Opción 26</option>
+            <option value="27">Opción 27</option>
+            <option value="28">Opción 28</option>
+            <option value="29">Opción 29</option>
+            <option value="30">Opción 30</option>
+            <option value="31">Opción 31</option>
+            <option value="32">Opción 32</option>
+            </select>
+            `)
         }
         else if(xd.includes("Products")){
             data.insertAdjacentHTML("beforeend", /*HTML*/``)

@@ -15,10 +15,18 @@ namespace Application.Repository
             _context = context;
         }
         // 1. ¿Cuántos empleados hay en la compañía?
-        public async Task<int> GetQuantiyEmployees()
+        public async Task<IEnumerable<object>> GetQuantiyEmployees()
         {
-            return await _context.Employees.CountAsync();
+            return await (from Person in _context.Persons
+            where Person.PersonTypeId == 8
+            select new{
+                Id = Person.Id,
+                name = Person.FirstName,
+                lastname = Person.LastName1
+            }).ToListAsync();
         }
+
+
 
         // 2. ¿Cuántos clientes tiene cada país?
         public async Task<IEnumerable<object>> ClientQuantityForCountry()

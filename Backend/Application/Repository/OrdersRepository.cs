@@ -21,17 +21,14 @@ namespace Application.Repository
 
         /* Devuelve un listado con los distintos estados por los que puede pasar un
 pedido. */
-        public async Task<IEnumerable<string>> GetOrderStatusList()
+        public async Task<IEnumerable<object>> GetOrderStatusList()
 {
     try
     {
-        var orderStatusList = await (
-            from order in _context.Orders
-            join status in _context.Statuses on order.StatusCode equals status.Id
-            select status.NameStatus
-        ).Distinct().ToListAsync();
-
-        return orderStatusList;
+        return await (from status in _context.Statuses
+        select new{
+            name = status.NameStatus
+        }).ToListAsync();
     }
     catch (Exception ex)
     {
@@ -44,12 +41,18 @@ pedido. */
 /* Devuelve un listado con el código de pedido, código de cliente, fecha
 esperada y fecha de entrega de los pedidos que no han sido entregados a
 tiempo. */
-public async Task<IEnumerable<Order>> GetDelayedOrders()
+public async Task<IEnumerable<object>> GetDelayedOrders()
 {
     var delayedOrders = await (
         from order in _context.Orders
         where order.DeliveryDate.HasValue && order.DeliveryDate > order.ExpectedDate
-        select order
+        select new{
+            orderId = order.Id,
+            clientId = order.ClientCode,
+            ExpectedDate = order.ExpectedDate,
+            DeliveredDate = order.DeliveryDate,
+            Comments = order.Comments
+        }
     ).ToListAsync();
 
     return delayedOrders;
@@ -58,12 +61,12 @@ public async Task<IEnumerable<Order>> GetDelayedOrders()
 /* Devuelve un listado con el código de pedido, código de cliente, fecha
 esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
 menos dos días antes de la fecha esperada. */
-public async Task<IEnumerable<Order>> GetOrdersDeliveredEarly()
+public async Task<IEnumerable<object>> GetOrdersDeliveredEarly()
 {
     var earlyDeliveredOrders = await (
         from order in _context.Orders
         where EF.Functions.DateDiffDay(order.DeliveryDate, order.ExpectedDate) >= 2
-        select new Order
+        select new
         {
             Id = order.Id,
             ClientCode = order.ClientCode,
@@ -76,13 +79,13 @@ public async Task<IEnumerable<Order>> GetOrdersDeliveredEarly()
 }
 
 /* Devuelve un listado de todos los pedidos que fueron rechazados en 2009. */
-public async Task<IEnumerable<Order>> GetRejectedOrdersIn2009()
+public async Task<IEnumerable<object>> GetRejectedOrdersIn2009()
 {
-    var rejectedOrders = await (
+    return await (
         from order in _context.Orders
         where order.StatusCode == 2 // Reemplaza 'RejectedStatusCode' con el código correspondiente para pedidos rechazados en tu sistema
             && order.OrderDate.Year == 2009
-        select new Order
+        select new
         {
             Id = order.Id,
             ClientCode = order.ClientCode,
@@ -91,17 +94,16 @@ public async Task<IEnumerable<Order>> GetRejectedOrdersIn2009()
         }
     ).ToListAsync();
 
-    return rejectedOrders;
 }
 
 /* Devuelve un listado de todos los pedidos que han sido entregados en el
 mes de enero de cualquier año. */
-public async Task<IEnumerable<Order>> GetOrdersDeliveredInJanuary()
+public async Task<IEnumerable<object>> GetOrdersDeliveredInJanuary()
 {
     var ordersInJanuary = await (
         from order in _context.Orders
         where order.DeliveryDate != null && order.DeliveryDate.Value.Month == 1
-        select new Order
+        select new
         {
             Id = order.Id, 
             ClientCode = order.ClientCode,

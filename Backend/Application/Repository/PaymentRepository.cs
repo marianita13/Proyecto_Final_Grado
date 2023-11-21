@@ -21,20 +21,18 @@ namespace Application.Repository
 
 /*  Devuelve un listado con todos los pagos que se realizaron en el
 año 2008 mediante Paypal. Ordene el resultado de mayor a menor */
-public async Task<IEnumerable<Payment>> GetPaymentsIn2008ByPaypal()
+public async Task<IEnumerable<object>> GetPaymentsIn2008ByPaypal()
 {
     var paymentsIn2008 = await (
         from payment in _context.Payments
         where payment.PaymentDate.Year == 2008 && payment.Method.MethodPayment1 == "Paypal"
         orderby payment.Total descending
-        select new Payment
+        select new
         {
             Id = payment.Id,
             PaymentDate = payment.PaymentDate,
-            Total = payment.Total,
-            ClienteId = payment.ClienteId, 
             MethodId = payment.MethodId, 
-            Method = payment.Method, 
+            Method = payment.Method.MethodPayment1, 
         }
     ).ToListAsync();
 
@@ -44,14 +42,12 @@ public async Task<IEnumerable<Payment>> GetPaymentsIn2008ByPaypal()
  /* Devuelve un listado con todas las formas de pago que aparecen en la
 tabla pago. Tenga en cuenta que no deben aparecer formas de pago
 repetidas */
-public async Task<IEnumerable<string>> GetDistinctPaymentMethods()
+public async Task<IEnumerable<object>> GetDistinctPaymentMethods()
 {
-    var distinctPaymentMethods = await _context.Payments
-        .Select(payment => payment.Method.MethodPayment1)
-        .Distinct()
-        .ToListAsync();
-
-    return distinctPaymentMethods;
+    return await (from Method in _context.Methodpayments
+    select new{
+        name = Method.MethodPayment1
+    }).ToListAsync();
 }
 
 
