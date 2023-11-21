@@ -12,5 +12,7 @@ namespace Domain.Interfaces
         Task<object> GetProductHigherStock();
         Task<object> GetProductLowerStock();
         Task<IEnumerable<object>> AnyProduct();
+        List<object> GetProductsSalesOver3000Euros();
+        List<string> GetProductWithMostUnitsSold();
     }
 }

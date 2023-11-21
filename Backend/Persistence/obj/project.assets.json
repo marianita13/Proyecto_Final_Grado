@@ -5254,19 +5254,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Janus\\.nuget\\packages\\": {}
+    "C:\\Users\\corvus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
-      "packagesPath": "C:\\Users\\Janus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
+      "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\Persistence.csproj",
+      "packagesPath": "C:\\Users\\corvus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Janus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\corvus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -5278,8 +5278,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Janus\\OneDrive\\Documentos\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
+            "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\corvus\\Proyecto_Final_Grado\\Backend\\Domain\\Domain.csproj"
             }
           }
         }
@@ -5323,7 +5323,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

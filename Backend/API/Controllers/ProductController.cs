@@ -54,6 +54,44 @@ namespace API.Controllers
             var product = await _unitOfWork.Products.GetProductLowerStock();
             return Ok(product);
         }
+
+/* Lista las ventas totales de los productos que hayan facturado más de 3000
+euros. Se mostrará el nombre, unidades vendidas, total facturado y total
+facturado con impuestos (21% IVA) */
+        [HttpGet("GetProductsSalesOver3000Euros")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<IEnumerable<int>> GetProductsSalesOver3000Euros()
+        {
+            try
+            {
+                var clientCodes = _unitOfWork.Products.GetProductsSalesOver3000Euros();
+                return Ok(clientCodes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener códigos de cliente: {ex.Message}");
+                return StatusCode(500, "Error interno del servidor");
+            }
+        }
+
+        [HttpGet("GetProductWithMostUnitsSold")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<IEnumerable<int>> GetProductWithMostUnitsSold()
+        {
+            try
+            {
+                var clientCodes = _unitOfWork.Products.GetProductWithMostUnitsSold();
+                return Ok(clientCodes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener códigos de cliente: {ex.Message}");
+                return StatusCode(500, "Error interno del servidor");
+            }
+        }
+        
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
