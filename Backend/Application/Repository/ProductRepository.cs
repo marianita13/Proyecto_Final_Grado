@@ -19,6 +19,18 @@ namespace Application.Repository
             _context = context;
         }
 
+        public async Task<IEnumerable<object>> AnyProduct()
+        {
+            return await (from product in _context.Products
+            where !_context.Orderdetails.Any(p => p.ProductCode == product.Id)
+            select new{
+                Id = product.Id,
+                name = product.Name,
+                
+
+            }).ToListAsync();
+        }
+
         //TODO: CONSULTA
         public async Task<object> GetExpensiveProduct()
         {

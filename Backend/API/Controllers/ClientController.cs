@@ -44,6 +44,16 @@ namespace API.Controllers
             var client = await _unitOfWork.Clients.GetCreditAndPayment();
             return Ok(client);
         }
+
+        //CLIENTES QUE YA REALIZARON UN PAGO
+        [HttpGet("Clients_With_Any_Audio")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ClientDto>> Clients_With_Any_Audio()
+        {
+            var client = await _unitOfWork.Clients.Clients_With_Any_Audio();
+            return Ok(client);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

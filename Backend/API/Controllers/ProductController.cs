@@ -45,7 +45,7 @@ namespace API.Controllers
             return Ok(product);
         }
 
-        //Producto con mas stock
+        //Producto con menos stock
         [HttpGet("GetProductLowerStock")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

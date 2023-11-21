@@ -11,5 +11,6 @@ namespace Domain.Interfaces
         Task<object> GetExpensiveProduct();
         Task<object> GetProductHigherStock();
         Task<object> GetProductLowerStock();
+        Task<IEnumerable<object>> AnyProduct();
     }
 }

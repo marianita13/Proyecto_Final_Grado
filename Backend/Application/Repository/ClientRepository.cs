@@ -19,6 +19,17 @@ namespace Application.Repository
             _context = context;
         }
 
+        public async Task<IEnumerable<object>> Clients_With_Any_Audio()
+        {
+            return await (from client in _context.Clients 
+            where _context.Payments.Any(p => p.ClienteId == client.Id)
+            select new{
+                Id=client.Id,
+                Name = client.ClientName,
+                Phone = client.Phone
+            }).ToListAsync();
+        }
+
         //TODO: CONSULTA
         public async Task<object> GetBigCreditLimit()
         {

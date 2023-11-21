@@ -8,6 +8,7 @@ namespace Domain.Interfaces
 {
     public interface IEmployee:IGenericRepository<Employee>
     {
-    
+        Task<IEnumerable<object>> AlbertoSoriaEmployees();
+        // Task<IEnumerable<object>> Employees_Dont_Represent_Client();
     }
 }

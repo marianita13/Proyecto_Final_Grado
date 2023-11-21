@@ -24,6 +24,27 @@ namespace API.Controllers
             var employee = await _unitOfWork.Employees.GetAllAsync();
             return _mapper.Map<List<EmployeeDto>>(employee);
         }
+
+        //EMPLEADOS A CARGO DE ALBERTOSORIA
+        [HttpGet("AlbertoSoriaEmployees")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> AlbertoSoriaEmployees()
+        {
+            var employee = await _unitOfWork.Employees.AlbertoSoriaEmployees();
+            return Ok(employee);
+        }
+
+
+        //EMPLEADOS A CARGO DE ALBERTOSORIA
+        // [HttpGet("Employees_Dont_Represent_Client")]
+        // [ProducesResponseType(StatusCodes.Status200OK)]
+        // [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        // public async Task<ActionResult<IEnumerable<EmployeeDto>>> Employees_Dont_Represent_Client()
+        // {
+        //     var employee = await _unitOfWork.Employees.Employees_Dont_Represent_Client();
+        //     return Ok(employee);
+        // }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -10,5 +10,6 @@ namespace Domain.Interfaces
     {
         Task<object> GetBigCreditLimit();
         Task<IEnumerable<object>> GetCreditAndPayment();
+        Task<IEnumerable<object>> Clients_With_Any_Audio();
     }
 }
