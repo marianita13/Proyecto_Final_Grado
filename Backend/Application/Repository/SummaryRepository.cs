@@ -25,6 +25,8 @@ namespace Application.Repository
             };
         }
 
+
+
         // 2. ¿Cuántos clientes tiene cada país?
         public async Task<IEnumerable<object>> ClientQuantityForCountry()
         {

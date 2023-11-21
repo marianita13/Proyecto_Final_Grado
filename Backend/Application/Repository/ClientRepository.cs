@@ -19,44 +19,44 @@ namespace Application.Repository
         public async Task<IEnumerable<Client>> GetClientNoPayment()
         {
             return await (from client in _context.Clients
-                          join payment in _context.Payments on client.Id equals payment.ClienteId into JoinedData
-                          from subpayment in JoinedData.DefaultIfEmpty()
-                          where subpayment == null
-                          select client)
+                            join payment in _context.Payments on client.Id equals payment.ClienteId into JoinedData
+                            from subpayment in JoinedData.DefaultIfEmpty()
+                            where subpayment == null
+                            select client)
                         .ToListAsync();
         }
         // 2. Devuelve un listado que muestre solamente los clientes que no han realizado ningún pedido.
         public async Task<IEnumerable<Client>> GetClientNoOrder()
         {
             return await (from client in _context.Clients
-                          join order in _context.Orders on client.Id equals order.ClientCode into JoinedData
-                          from subOrder in JoinedData.DefaultIfEmpty()
-                          where subOrder == null
-                          select client)
+                            join order in _context.Orders on client.Id equals order.ClientCode into JoinedData
+                            from subOrder in JoinedData.DefaultIfEmpty()
+                            where subOrder == null
+                            select client)
                         .ToListAsync();
         }
         // 3. Devuelve un listado que muestre los clientes que no han realizado ningún pago y los que no han realizado ningún pedido.
         public async Task<IEnumerable<Client>> GetClientNoPaymentNoOrder()
         {
             return await (from client in _context.Clients
-                          join order in _context.Orders on client.Id equals order.ClientCode into orderGroup
-                          from order in orderGroup.DefaultIfEmpty()
-                          join payment in _context.Payments on client.Id equals payment.ClienteId into paymentGroup
-                          from payment in paymentGroup.DefaultIfEmpty()
-                          where payment == null && order == null
-                          select client).ToListAsync();
+                            join order in _context.Orders on client.Id equals order.ClientCode into orderGroup
+                            from order in orderGroup.DefaultIfEmpty()
+                            join payment in _context.Payments on client.Id equals payment.ClienteId into paymentGroup
+                            from payment in paymentGroup.DefaultIfEmpty()
+                            where payment == null && order == null
+                            select client).ToListAsync();
         }
 
         // 11. Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
         public async Task<IEnumerable<Client>> GetClientNoPaymentYesOrder()
         {
             return await (from client in _context.Clients
-                          join payment in _context.Payments on client.Id equals payment.ClienteId into paymentGroup
-                          from subpayment in paymentGroup.DefaultIfEmpty()
-                          join order in _context.Orders on client.Id equals order.ClientCode into orderGroup
-                          from subOrder in orderGroup.DefaultIfEmpty()
-                          where subpayment == null
-                          select client)
+                            join payment in _context.Payments on client.Id equals payment.ClienteId into paymentGroup
+                            from subpayment in paymentGroup.DefaultIfEmpty()
+                            join order in _context.Orders on client.Id equals order.ClientCode into orderGroup
+                            from subOrder in orderGroup.DefaultIfEmpty()
+                            where subpayment == null
+                            select client)
                         .ToListAsync();
         }
 
@@ -88,13 +88,13 @@ namespace Application.Repository
         /*  Devuelve un listado con el código de cliente de aquellos clientes que
         realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
         aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta */
-        public IEnumerable<int> GetUniqueClientCodesWithPaymentsIn2008()
+        public IEnumerable<object> GetUniqueClientCodesWithPaymentsIn2008()
         {
             var clientCodesWithPaymentsIn2008 = _context.Payments
                 .Where(payment => payment.PaymentDate.Year == 2008)
-                .Select(payment => payment.IdNavigation.PersonId)
+                .Select(payment => new { ClientCode = payment.IdNavigation.PersonId })
                 .Distinct()
-                .OrderBy(clientCode => clientCode);
+                .OrderBy(clientDetails => clientDetails.ClientCode);
 
             return clientCodesWithPaymentsIn2008;
         }
@@ -104,16 +104,16 @@ namespace Application.Repository
         public List<object> GetClientsFromMadridWithSpecificEmployees()
         {
             var clients = from client in _context.Clients
-                          join employee in _context.Employees on client.CodEmployee equals employee.PersonId
-                          join person in _context.Persons on client.PersonId equals person.Id
-                          join postalCode in _context.Postalcodes on client.PostalCodeId equals postalCode.Id
-                          where postalCode.CityId == 5 && (employee.Id == 11 || employee.Id == 30)
-                          select new
-                          {
-                              ClientName = client.ClientName,
-                              City = postalCode.City.CityName, // Reemplaza con el nombre de tu propiedad que almacena el nombre de la ciudad
-                              SalesRepresentative = person.FirstName + " " + person.LastName1 // Ajusta esto según la estructura de tu entidad Person
-                          };
+                            join employee in _context.Employees on client.CodEmployee equals employee.PersonId
+                            join person in _context.Persons on client.PersonId equals person.Id
+                            join postalCode in _context.Postalcodes on client.PostalCodeId equals postalCode.Id
+                            where postalCode.CityId == 5 && (employee.Id == 11 || employee.Id == 30)
+                            select new
+                            {
+                                ClientName = client.ClientName,
+                                City = postalCode.City.CityName, // Reemplaza con el nombre de tu propiedad que almacena el nombre de la ciudad
+                                SalesRepresentative = person.FirstName + " " + person.LastName1 // Ajusta esto según la estructura de tu entidad Person
+                            };
 
             return clients.Cast<object>().ToList();
         }
@@ -125,14 +125,14 @@ namespace Application.Repository
         public List<object> GetClientAndSalesRepresentativeInfo()
         {
             var clientInfoList = from client in _context.Clients
-                                 join employee in _context.Employees on client.CodEmployee equals employee.PersonId
-                                 join person in _context.Persons on client.PersonId equals person.Id
-                                 where client.CodEmployee != null // Asegúrate de considerar clientes con representantes asignados
-                                 select new
-                                 {
-                                     ClientName = client.ClientName,
-                                     SalesRepresentative = person.FirstName + " " + person.LastName1
-                                 };
+                                    join employee in _context.Employees on client.CodEmployee equals employee.PersonId
+                                    join person in _context.Persons on client.PersonId equals person.Id
+                                    where client.CodEmployee != null // Asegúrate de considerar clientes con representantes asignados
+                                    select new
+                                    {
+                                        ClientName = client.ClientName,
+                                        SalesRepresentative = person.FirstName + " " + person.LastName1
+                                    };
 
             return clientInfoList.Cast<object>().ToList();
         }
@@ -140,10 +140,10 @@ namespace Application.Repository
         public List<string> GetClientsWithPaymentsAndSalesRepresentatives()
         {
             var clientsWithPayments = from client in _context.Clients
-                                      join payment in _context.Payments on client.PersonId equals payment.Id
-                                      join employee in _context.Employees on client.CodEmployee equals employee.PersonId
-                                      join person in _context.Persons on client.PersonId equals person.Id
-                                      select $"{client.ClientName} - Representante de Ventas: {person.FirstName} {person.LastName1}";
+                                        join payment in _context.Payments on client.PersonId equals payment.Id
+                                        join employee in _context.Employees on client.CodEmployee equals employee.PersonId
+                                        join person in _context.Persons on client.PersonId equals person.Id
+                                        select $"{client.ClientName} - Representante de Ventas: {person.FirstName} {person.LastName1}";
 
             return clientsWithPayments.ToList();
         }
@@ -154,8 +154,8 @@ namespace Application.Repository
         public List<Client> GetClientsWithoutPayments()
         {
             var clientsWithoutPayments = from client in _context.Clients
-                                         where !_context.Payments.Any(payment => payment.Id == client.PersonId)
-                                         select client;
+                                            where !_context.Payments.Any(payment => payment.Id == client.PersonId)
+                                            select client;
 
             return clientsWithoutPayments.ToList();
         }
@@ -271,13 +271,13 @@ namespace Application.Repository
         public async Task<IEnumerable<object>> Clients_With_Any_Audio()
         {
             return await (from client in _context.Clients
-                          where _context.Payments.Any(p => p.ClienteId == client.Id)
-                          select new
-                          {
-                              Id = client.Id,
-                              Name = client.ClientName,
-                              Phone = client.Phone
-                          }).ToListAsync();
+                            where _context.Payments.Any(p => p.ClienteId == client.Id)
+                            select new
+                            {
+                                Id = client.Id,
+                                Name = client.ClientName,
+                                Phone = client.Phone
+                            }).ToListAsync();
         }
 
         //TODO: CONSULTA
@@ -285,36 +285,36 @@ namespace Application.Repository
         {
             // return await _context.Clients.OrderByDescending(c => c.CreditLimit).FirstOrDefaultAsync();
             return await (from client in _context.Clients
-                          orderby client.CreditLimit descending
-                          select new
-                          {
-                              Id = client.Id,
-                              Name = client.ClientName,
-                              creditLimit = client.CreditLimit
-                          }).FirstOrDefaultAsync();
+                            orderby client.CreditLimit descending
+                            select new
+                            {
+                                Id = client.Id,
+                                Name = client.ClientName,
+                                creditLimit = client.CreditLimit
+                            }).FirstOrDefaultAsync();
         }
 
         //TODO: CONSULTA
         public async Task<IEnumerable<object>> GetCreditAndPayment()
         {
             return await (from Client in _context.Clients
-                    where Client.CreditLimit >
-                    (from pay in _context.Payments
-                     where pay.ClienteId == Client.Id
-                     select pay.Total).Sum()
-                    &&
-                    (from pay in _context.Payments
-                     where pay.ClienteId == Client.Id
-                     select pay.Total).Sum() > 0
-                    select new
-                    {
-                        Id = Client.Id,
-                        name = Client.ClientName,
-                        creditLimit = Client.CreditLimit,
-                        totalpayment = (from pay in _context.Payments
-                                        where pay.ClienteId == Client.Id
-                                        select pay.Total).Sum()
-                    }).ToListAsync();
+                            where Client.CreditLimit >
+                            (from pay in _context.Payments
+                            where pay.ClienteId == Client.Id
+                            select pay.Total).Sum()
+                            &&
+                            (from pay in _context.Payments
+                            where pay.ClienteId == Client.Id
+                            select pay.Total).Sum() > 0
+                            select new
+                            {
+                                Id = Client.Id,
+                                name = Client.ClientName,
+                                creditLimit = Client.CreditLimit,
+                                totalpayment = (from pay in _context.Payments
+                                                where pay.ClienteId == Client.Id
+                                                select pay.Total).Sum()
+                            }).ToListAsync();
         }
     }
 }

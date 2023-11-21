@@ -41,7 +41,37 @@ document.addEventListener("DOMContentLoaded", () =>{
             `)
         }
         else if(xd.includes("Clients")){
-            data.insertAdjacentHTML("beforeend", /*HTML*/``)
+            data.insertAdjacentHTML("beforeend", /*HTML*/`
+            <select>
+            <option value="#"></option>
+            <option value="1">Clients from Spain</option>
+            <option value="2">Client Id OF 2008 Payments</option>
+            <option value="3">Client from Madrid / Sells agent code == 11 or 30</option>
+            <option value="4">Info Clients / Sells Agent</option>
+            <option value="5">Clients Payments(yes) / Sells Agent</option>
+            <option value="6">Clients Payments(no) / Sells Agent</option>
+            <option value="7">Clients Payments(yes) / Sells Agent Name / City Office</option>
+            <option value="8">Clients Payments(no) / Sells Agent Name / City Office</option>
+            <option value="9">Clients / Sells Agent Name / City Office</option>
+            <option value="10">Clients who don´t have receive their order already</option>
+            <option value="11">Clients Payments(no)</option>
+            <option value="12">Clients Orders(no)</option>
+            <option value="13">Clients Payments(no) / Clients Orders(no)</option>
+            <option value="14">Clients Payments(no) / Clients Orders(yes)</option>
+            <option value="15">Quantity Clients for Country</option>
+            <option value="16">Quantity Clients</option>
+            <option value="17">Clients in Madrid</option>
+            <option value="18">Clients in Cities start "M"</option>
+            <option value="19">Quantity Clients / Sells Agent(no)</option>
+            <option value="20">Client with more Limit Credit</option>
+            <option value="21">Clients / Limit Credit > Payments</option>
+            <option value="22">Clients Payments(yes)</option>
+            <option value="23">Client / Quantity Payments</option>
+            <option value="24">Client / Total Payments</option>
+            <option value="25">Clients name / Orders in 2008</option>
+            <option value="26">Clients name / Sells Agent Name / Phone Office </option>
+            </select>
+            `)
         }
         else if(xd.includes("Products")){
             data.insertAdjacentHTML("beforeend", /*HTML*/``)
