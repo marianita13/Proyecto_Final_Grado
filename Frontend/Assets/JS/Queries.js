@@ -84,6 +84,8 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     Tarjeta()
 
+    
+
     function pruebas(){
         var consultaSidebar = document.querySelectorAll(".consult2")
         
@@ -119,29 +121,23 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     pruebas()
 
-
 })
+
 function handleButtonClick(id){
     // Obtener los IDs existentes del localStorage o inicializar un array vacío
-    localStorage.clear();
-    const storedIds = JSON.parse(localStorage.getItem('storedIds')) || [];
-
+    localStorage.setItem('storedIds',id)
+    const storedIds = JSON.parse(localStorage.getItem('storedIds'));
+    console.log(storedIds);
     // Verificar si el ID ya está en la lista
-    if (!storedIds.includes(id)) {
-        // Si no está en la lista, agregarlo
-        storedIds.push(id);
-
-        // Actualizar el localStorage con la nueva lista de IDs
-        localStorage.setItem('storedIds', JSON.stringify(storedIds));
-
-        // Puedes hacer algo más aquí si es necesario, como actualizar la interfaz de usuario, etc.
-    }
+    localStorage.setItem('storedIds', JSON.stringify(storedIds));
+    window.location.href = "/Frontend/Pages/Tables.html"
 };
 
 // Agregar manejadores de clic a los botones generados
 document.querySelectorAll('.Boton').forEach((button) => {
     button.addEventListener('click', () => {
         const id = button.classList[1]; // Obtener el ID del botón a través de las clases
+        console.log(id);
         handleButtonClick(id);
     });
 })

@@ -27,10 +27,12 @@ namespace Application.Repository
 
         public async Task<IEnumerable<object>> GetCitiesWithOfficesInSpain()
     {
-    return await (from office in _context.Offices
+        return await (from office in _context.Offices
                 join postalCode in _context.Postalcodes on office.PostalCodeId equals postalCode.Id
                 join city in _context.Cities on postalCode.CityId equals city.Id
-                where city.Country == "España"  // Ajusta según la propiedad real en tu entidad City
+                where city.State.Country.CountryName == "España"  // Ajusta según la propiedad real en tu entidad City
+                join state in _context.States on city.StateId equals state.Id
+                where state.Country.CountryName == "España" 
                 select new { office.Id, city.CityName, office.Phone })
                 .ToListAsync();
     }

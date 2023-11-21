@@ -10,8 +10,5 @@ namespace Domain.Interfaces
     {
         Task<IEnumerable<object>> GetCitiesWithOffices();
         Task<IEnumerable<object>> GetCitiesWithOfficesInSpain();
-    {
-    
     }
-}
 }

@@ -358,6 +358,17 @@ nav .profile {
 }
 /*CARDS*/
 
+/*TABLE*/
+
+
+.table{
+	width: 100%;
+	margin-top: 20px;
+	border-radius: 20px;
+	background: var(--light);
+	box-shadow: 4px 4px 3px rgba(0, 0, 0, .05);
+}
+/*TABLE*/
 
 @media screen and (max-width: 768px) {
 	#content {
