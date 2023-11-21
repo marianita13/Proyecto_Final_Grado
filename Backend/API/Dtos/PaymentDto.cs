@@ -7,9 +7,9 @@ namespace API.Dtos
 {
     public class PaymentDto
     {
-        public int ClientCode { get; set; }
+        public int ClienteId { get; set; }
         public int MethodId { get; set; }
-        public string TransactionId { get; set; } = null!;
+        public string TransactionId { get; set; }
         public DateOnly PaymentDate { get; set; }
 
         public decimal Total { get; set; }

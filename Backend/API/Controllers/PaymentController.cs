@@ -25,6 +25,16 @@ namespace API.Controllers
             var payment = await _unitOfWork.Payments.GetAllAsync();
             return _mapper.Map<List<PaymentDto>>(payment);
         }
+
+        //PAGOS TOTALES POR YEAR
+        [HttpGet("GetPaymentsForYear")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<PaymentDto>>> GetPaymentsForYear()
+        {
+            var payment = await _unitOfWork.Payments.GetPaymentsForYear();
+            return Ok(payment);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -46,20 +56,20 @@ namespace API.Controllers
             _unitOfWork.Payments.Add(payment);
             await _unitOfWork.SaveAsync();
             if (payment == null) return BadRequest();
-            paymentDto.ClientCode = payment.Id;
-            return CreatedAtAction(nameof(Post), new { id = paymentDto.ClientCode }, paymentDto);
+            paymentDto.ClienteId = payment.Id;
+            return CreatedAtAction(nameof(Post), new { id = paymentDto.ClienteId }, paymentDto);
         }
         
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<PaymentDto>> Put(int ClientCode, [FromBody] PaymentDto paymentDto)
+        public async Task<ActionResult<PaymentDto>> Put(int ClienteId, [FromBody] PaymentDto paymentDto)
         {
             if (paymentDto == null) return NotFound();
-            if (paymentDto.ClientCode == 0) paymentDto.ClientCode = ClientCode;
-            if (paymentDto.ClientCode != ClientCode) return BadRequest();
-            var payment = await _unitOfWork.Payments.GetByIdAsync(ClientCode);
+            if (paymentDto.ClienteId == 0) paymentDto.ClienteId = ClienteId;
+            if (paymentDto.ClienteId != ClienteId) return BadRequest();
+            var payment = await _unitOfWork.Payments.GetByIdAsync(ClienteId);
             _mapper.Map(paymentDto, payment);
             //payment.FechaModificacion = DateTime.Now;
             _unitOfWork.Payments.Update(payment);

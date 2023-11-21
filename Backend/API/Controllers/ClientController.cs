@@ -24,6 +24,26 @@ namespace API.Controllers
             var client = await _unitOfWork.Clients.GetAllAsync();
             return _mapper.Map<List<ClientDto>>(client);
         }
+
+        //CREDITO MAS GRANDE
+        [HttpGet("GetBigCreditLimit")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ClientDto>> GetBigCreditLimit()
+        {
+            var client = await _unitOfWork.Clients.GetBigCreditLimit();
+            return Ok(client);
+        }
+
+        //CREDITO MAYOR A LOS PAGOS REALIZADOS
+        [HttpGet("GetCreditAndPayment")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ClientDto>> GetCreditAndPayment()
+        {
+            var client = await _unitOfWork.Clients.GetCreditAndPayment();
+            return Ok(client);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

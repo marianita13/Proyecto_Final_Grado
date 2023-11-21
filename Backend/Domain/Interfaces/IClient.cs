@@ -8,6 +8,7 @@ namespace Domain.Interfaces
 {
     public interface IClient:IGenericRepository<Client>
     {
-    
+        Task<object> GetBigCreditLimit();
+        Task<IEnumerable<object>> GetCreditAndPayment();
     }
 }

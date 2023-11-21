@@ -24,6 +24,36 @@ namespace API.Controllers
             var product = await _unitOfWork.Products.GetAllAsync();
             return _mapper.Map<List<ProductDto>>(product);
         }
+
+        //Producto mas caro
+        [HttpGet("GetExpensiveProduct")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ProductDto>> GetExpensiveProduct()
+        {
+            var product = await _unitOfWork.Products.GetExpensiveProduct();
+            return Ok(product);
+        }
+
+        //Producto con mas stock
+        [HttpGet("GetProductHigherStock")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ProductDto>> GetProductHigherStock()
+        {
+            var product = await _unitOfWork.Products.GetProductHigherStock();
+            return Ok(product);
+        }
+
+        //Producto con mas stock
+        [HttpGet("GetProductLowerStock")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ProductDto>> GetProductLowerStock()
+        {
+            var product = await _unitOfWork.Products.GetProductLowerStock();
+            return Ok(product);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
