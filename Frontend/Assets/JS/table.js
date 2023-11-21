@@ -14,6 +14,33 @@
         if(data==2){
             url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
         }
+        if(data==3){
+            url = `${localhost}/Office/GetOfficesWithClientsInFuenlabrada`
+        }
+        if(data==4){
+            url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
+        }
+        if(data==5){
+            url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
+        }
+        if(data==6){
+            url = `${localhost}/Office/GetCitiesWithOfficesInSpain`
+        }
+    }
+    if(consult.includes("Employees")){
+
+    }
+    if(consult.includes("Clients")){
+
+    }
+    if(consult.includes("Products")){
+        
+    }
+    if(consult.includes("Pays")){
+
+    }
+    if(consult.includes("Orders")){
+
     }
     fetch(`${url}`)
     .then((response) => {

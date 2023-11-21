@@ -40,17 +40,26 @@ namespace Application.Repository
     }
 
 /* Lista la dirección de las oficinas que tengan clientes en Fuenlabrada. */
-public List<string> GetOfficesWithClientsInFuenlabrada()
+public List<object> GetOfficesWithClientsInFuenlabrada()
 {
     var officesInFuenlabrada = _context.Offices
         .Where(office => office.Employees
                             .Any(employee => employee.Clients
                                 .Any(client => client.PostalCode.City.CityName == "Fuenlabrada")))
-        .Select(office => $"{office.AddressLine1}, {office.AddressLine2}")
-        .ToList();
+        .Select(office => new
+        {
+            OfficeId = office.Id,
+            AddressLine1 = office.AddressLine1,
+            AddressLine2 = office.AddressLine2,
+            City = office.PostalCode.City.CityName,
+            EmployeesCount = office.Employees.Count,
+            ClientsCount = office.Employees.Sum(employee => employee.Clients.Count)
+        })
+        .ToList<object>();
 
     return officesInFuenlabrada;
 }
+
 
 
 
