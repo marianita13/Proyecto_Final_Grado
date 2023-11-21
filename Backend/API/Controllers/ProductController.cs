@@ -24,6 +24,24 @@ namespace API.Controllers
             var product = await _unitOfWork.Products.GetAllAsync();
             return _mapper.Map<List<ProductDto>>(product);
         }
+
+        [HttpGet("GetProductsNoOrder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsNoOrder()
+        {
+            var product = await _unitOfWork.Products.GetProductsNoOrder();
+            return _mapper.Map<List<ProductDto>>(product);
+        }
+
+        [HttpGet("GetProductsNoOrderWithInfo")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsNoOrderWithInfo()
+        {
+            var product = await _unitOfWork.Products.GetProductsNoOrderWithInfo();
+            return Ok(product);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

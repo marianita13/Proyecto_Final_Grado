@@ -504,3 +504,14 @@ C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\refi
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\API.pdb
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\APM02-43\Desktop\Proyecto_Final_Grado\Backend\API\obj\Debug\net7.0\ref\API.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\CsvHelper.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.AspNetCore.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Extensions.Hosting.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Extensions.Logging.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Settings.Configuration.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Sinks.Console.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
+C:\Users\duvan\Archivos\CampusLand\Programacion\Skills\netcore\ProjectsnetCore\filtro\Proyecto_Final_Grado\Backend\API\bin\Debug\net7.0\Serilog.Sinks.File.dll

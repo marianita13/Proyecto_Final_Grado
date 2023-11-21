@@ -24,6 +24,51 @@ namespace API.Controllers
             var employee = await _unitOfWork.Employees.GetAllAsync();
             return _mapper.Map<List<EmployeeDto>>(employee);
         }
+
+        [HttpGet("GetEmployeeNoOffice")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeNoOffice()
+        {
+            var employee = await _unitOfWork.Employees.GetEmployeeNoOffice();
+            return _mapper.Map<List<EmployeeDto>>(employee);
+        }
+
+        [HttpGet("GetEmployeeNoClient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeNoClient()
+        {
+            var employee = await _unitOfWork.Employees.GetEmployeeNoClient();
+            return _mapper.Map<List<EmployeeDto>>(employee);
+        }
+
+        [HttpGet("GetEmployeeNoClientWithOffice")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeNoClientWithOffice()
+        {
+            var employee = await _unitOfWork.Employees.GetEmployeeNoClientWithOffice();
+            return Ok(employee);
+        }
+
+        [HttpGet("GetEmployeeNoOfficeNoClient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeNoOfficeNoClient()
+        {
+            var employee = await _unitOfWork.Employees.GetEmployeeNoOfficeNoClient();
+            return _mapper.Map<List<EmployeeDto>>(employee);
+        }
+
+        [HttpGet("GetEmployeeNoClientWithBoss")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeNoClientWithBoss()
+        {
+            var employee = await _unitOfWork.Employees.GetEmployeeNoClientWithBoss();
+            return Ok(employee);
+        }
         
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
